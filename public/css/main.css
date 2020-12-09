@@ -1,0 +1,18 @@
+thead tr th.rotate,
+tfoot tr th.rotate {
+    height: 200px;
+    white-space: nowrap;
+}
+thead tr th.rotate > div {
+    transform: translate(0px, 0px) rotate(270deg);
+    width: 40px;
+}
+tfoot tr th.rotate > div {
+    transform: translate(0px, 0px) rotate(90deg);
+    width: 40px;
+}
+thead tr th.rotate > div > span,
+tfoot tr th.rotate > div > span {
+    padding: 5px 10px;
+}
+

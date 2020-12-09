@@ -1,0 +1,20 @@
+{
+    "name": "vendor_name/Providers",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Almir",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+    },
+
+    "autoload": {
+        "classmap": [
+            "vendor/google/apiclient/src/Google"
+        ]
+    }
+}
