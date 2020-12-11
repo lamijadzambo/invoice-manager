@@ -41,10 +41,11 @@ class OrderController extends Controller
             'per_page' => 100,
             'orderby' => 'date'
         ];
-
+                
         $orders = $woocommerce->get('orders', $params);
 
         $numberOfSavedOrders = OrderService::save($orders);
+
         $orderIds = array_filter($numberOfSavedOrders);
         $order = end($orderIds);
 
