@@ -38,7 +38,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-striped text-center">
+                    <table class="table table-striped text-center" id="orders-table">
                         <thead>
                             <tr>
                                 <th>ORDER NUMBER</th>
@@ -61,23 +61,31 @@
                                     <td>{{$order->order_status}}</td>
                                     <td>{{$order->order_total_amount}}</td>
                                     <td>
-                                        <a href="{{ route('generate-man-pdf', $order->id) }}" class="btn btn-dark"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
-                                        <a href="{{ route('generate-woman-pdf', $order->id) }}" class="btn btn-dark"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>
-                                        <a href="{{ route('generate-man-doc', $order->id) }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Word Man</a>
-                                        <a href="{{ route('generate-woman-doc', $order->id) }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Word Woman</a>
-                                        <a href="{{ route('show.order', $order->id) }}" class="btn btn-secondary"><i class="fas fa-directions mr-1"></i> View Order</a>
-                                        <form method="POST" action="{{ route('delete.order', $order->id) }}" class="d-inline-block">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-exclamation-triangle mr-1"></i> Delete Order</button>
-                                        </form>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="mr-2 d-flex flex-column">
+                                                <a href="{{ route('generate-man-pdf', $order->id) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
+                                                <a href="{{ route('generate-woman-pdf', $order->id) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>
+                                            </div>
+                                            <div class="mr-2 d-flex flex-column">
+                                                <a href="{{ route('generate-man-doc', $order->id) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Man</a>
+                                                <a href="{{ route('generate-woman-doc', $order->id) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Woman</a>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a href="{{ route('show.order', $order->id) }}" class="btn btn-secondary action-buttons my-1"><i class="fas fa-directions mr-1"></i> View Order</a>
+                                                <form method="POST" action="{{ route('delete.order', $order->id) }}" class="d-inline-block">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-danger action-buttons my-1"><i class="fas fa-exclamation-triangle mr-1"></i> Delete Order</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
                                         <div>
                                             @if($order->print_status == 'printed')
-                                                <span class="d-block p-2 bg-success text-white rounded"><i class="fas fa-check-circle mr-1"></i> Printed</span>
+                                                <span class="d-block p-2 bg-success text-white rounded my-1"><i class="fas fa-check-circle mr-1"></i> Printed</span>
                                             @else
-                                                <a href="{{ route('set-status.order', $order->id) }}" class="btn btn-warning"><i class="fas fa-times-circle mr-1"></i> Not Printed</a>
+                                                <a href="{{ route('set-status.order', $order->id) }}" class="d-block btn btn-warning my-1"><i class="fas fa-times-circle mr-1"></i> Not Printed</a>
                                             @endif
                                         </div>
                                     </td>

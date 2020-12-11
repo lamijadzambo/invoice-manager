@@ -7,6 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <style>
+        .action-buttons{width: 150px;}
+        #orders-table tbody tr td{
+            vertical-align: middle;
+        }
+    </style>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
