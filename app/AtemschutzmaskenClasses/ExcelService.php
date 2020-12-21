@@ -14,9 +14,7 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class ExcelService implements FromCollection, WithHeadings, WithStyles, WithColumnWidths
 {
-
     use Exportable;
-
 
     public function headings(): array
     {
@@ -68,8 +66,6 @@ class ExcelService implements FromCollection, WithHeadings, WithStyles, WithColu
     }
 
 
-
-
     public function collection()
     {
         return Order::all('billing_company', 'billing_last_name', 'billing_first_name', 'item', 'billing_email',
@@ -77,5 +73,4 @@ class ExcelService implements FromCollection, WithHeadings, WithStyles, WithColu
         'door_handler', 'med_einweg', 'stoffmasken', 'trennwand', 'thermometer', 'hand_disinfection', 'flachendes', 'hand_spender',
         'order_total_amount');
     }
-
 }

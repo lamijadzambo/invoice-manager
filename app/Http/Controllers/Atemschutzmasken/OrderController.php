@@ -37,13 +37,23 @@ class OrderController extends Controller
             ]
         );
 
+        /*$woocommerce = new Client(
+            env('WOO_ENDPOINT_FLIPFLOP'),
+            env('WOO_CK_FLIPFLOP'),
+            env('WOO_CS_FLIPFLOP'),
+            [
+                'wp_api' => true,
+                'version' => 'wc/v3',
+                'query_string_auth' => true,
+            ]
+        );*/
+
         $params = [
             'per_page' => 100,
             'orderby' => 'date'
         ];
-                
-        $orders = $woocommerce->get('orders', $params);
 
+        $orders = $woocommerce->get('orders', $params);
         $numberOfSavedOrders = OrderService::save($orders);
 
         $orderIds = array_filter($numberOfSavedOrders);
