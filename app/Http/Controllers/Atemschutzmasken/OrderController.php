@@ -18,11 +18,13 @@ class OrderController extends Controller
         return view('orders.index', compact('orders'));
     }
 
+
     public function show($id)
     {
         $order = Order::findOrFail($id);
         return view('orders.show', compact('order'));
     }
+
 
     public function get(Request $request)
     {
@@ -54,6 +56,7 @@ class OrderController extends Controller
         ];
 
         $orders = $woocommerce->get('orders', $params);
+
         $numberOfSavedOrders = OrderService::save($orders);
 
         $orderIds = array_filter($numberOfSavedOrders);
@@ -67,6 +70,7 @@ class OrderController extends Controller
 
         return redirect()->route('index');
     }
+
 
     public function delete($id)
     {
