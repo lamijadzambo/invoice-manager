@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id('id')->unsigned()->unique();
+            $table->integer('project_id');
             $table->string('order_status');
             $table->date('order_date');
             $table->text('customer_note')->nullable();
@@ -38,7 +39,7 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_country_code')->nullable();
             $table->string('item')->nullable();
             $table->json('products')->nullable();
-            $table->integer('hyg_hg001')->nullable();
+            /*$table->integer('hyg_hg001')->nullable();
             $table->integer('typ_II')->nullable();
             $table->integer('typ_IIR')->nullable();
             $table->integer('n95_hg002')->nullable();
@@ -51,7 +52,7 @@ class CreateOrdersTable extends Migration
             $table->integer('thermometer')->nullable();
             $table->integer('hand_disinfection')->nullable();
             $table->integer('flachendes')->nullable();
-            $table->integer('hand_spender')->nullable();
+            $table->integer('hand_spender')->nullable();*/
 
             $table->string('shipping_method_title')->nullable();
             $table->string('order_shipping_amount')->nullable();

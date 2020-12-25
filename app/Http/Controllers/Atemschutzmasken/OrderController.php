@@ -18,6 +18,12 @@ class OrderController extends Controller
         return view('orders.index', compact('orders'));
     }
 
+    /*public function index(Request $request)
+    {
+        $orders = Order::orderBy('project_id', 'desc')->get();;
+        return view('orders.index', compact('orders'));
+    }*/
+
 
     public function show($id)
     {

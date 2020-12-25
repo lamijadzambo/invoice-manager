@@ -25,6 +25,10 @@ class Order extends Model
 
     public static $piece = 'Stk. ';
 
+    public function projects(){
+        return $this->belongsTo(Project::class);
+    }
+
 
 
 }

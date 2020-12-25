@@ -45,5 +45,15 @@ class LoginController extends Controller
         return $this->loggedOut($request) ? redirect()->back() : redirect('/');
     }
 
+    /**
+     * Show the application's login form.
+     *
+     */
+   /* public function showLoginForm()
+    {
+        $projects = Project::all();
+        return view('auth.login', compact('projects'));
+    }*/
+
 
 }
