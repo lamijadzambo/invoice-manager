@@ -6,16 +6,19 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
-                        <select name="projects" id="">
-                            @foreach($projects as $project)
-                                <option value="{{ $project->id }}">{{ $project->name }}</option>
-                                @endforeach
-                        </select>
+                        <div class="form-group row">
+                            <label for="project" class="col-md-4 col-form-label text-md-right">Choose a project:</label>
+                            <div class="col-md-6">
+                                <select name="projects" id="project" class="form-control">
+                                    @foreach($projects as $project)
+                                        <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
