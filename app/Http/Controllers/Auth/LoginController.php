@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -49,11 +50,21 @@ class LoginController extends Controller
      * Show the application's login form.
      *
      */
-   /* public function showLoginForm()
+
+    public function showLoginForm(Project $project)
     {
-        $projects = Project::all();
+        $projects = $project->all();
         return view('auth.login', compact('projects'));
-    }*/
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'projects' => 'required',
+        ]);
+    }
 
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Atemschutzmasken;
 use App\AtemschutzmaskenClasses\OrderService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Project;
 use App\Repositories\ApplicationRepositoryInterface;
 use Automattic\WooCommerce\Client;
 use Automattic\WooCommerce\HttpClient\HttpClientException;
@@ -14,6 +15,8 @@ class OrderController extends Controller
 {
     public function index()
     {
+        //dd($id);
+
         $orders = Order::orderBy('id', 'desc')->get();;
         return view('orders.index', compact('orders'));
     }
