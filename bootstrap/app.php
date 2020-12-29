@@ -45,6 +45,9 @@ $app->singleton(
 setlocale(LC_TIME, 'German');
 
 
+
+setlocale(LC_TIME, 'German');
+
 /*
 |--------------------------------------------------------------------------
 | Return The ApplicationRepository

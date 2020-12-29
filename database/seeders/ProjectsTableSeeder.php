@@ -21,7 +21,5 @@ class ProjectsTableSeeder extends Seeder
         $project2 = new Project();
         $project2->name = 'Flip Flop';
         $project2->save();
-
-
     }
 }

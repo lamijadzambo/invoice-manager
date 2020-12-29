@@ -11,10 +11,8 @@ use PhpOffice\PhpWord\TemplateProcessor;
 class WordService extends PhpWord
 {
 
-
     public function generateManDoc($order)
     {
-        $dt = Carbon::now();
         Settings::setOutputEscapingEnabled(true); // allows '&' in word docs
         $templateProcessor = new TemplateProcessor('word-template/order-word-template.docx');
         $templateProcessor->setValue('company', $order->shipping_company);
@@ -24,7 +22,8 @@ class WordService extends PhpWord
         $templateProcessor->setValue('postcode', $order->shipping_post_code);
         $templateProcessor->setValue('city', $order->shipping_city);
         $templateProcessor->setValue('order_id', $order->id);
-        $templateProcessor->setValue('date', $dt->formatLocalized('%d. %B %Y.'));
+        $dt = Carbon::now();
+        $templateProcessor->setValue('date', $dt->formatLocalized('%d. %B. %Y'));
         $templateProcessor->setValue('message', Order::$message_man);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
@@ -77,7 +76,8 @@ class WordService extends PhpWord
         $templateProcessor->setValue('postcode', $order->shipping_post_code);
         $templateProcessor->setValue('city', $order->shipping_city);
         $templateProcessor->setValue('order_id', $order->id);
-        $templateProcessor->setValue('date', date('j. F. Y'));
+        $dt = Carbon::now();
+        $templateProcessor->setValue('date', $dt->formatLocalized('%d. %B. %Y'));
         $templateProcessor->setValue('message', Order::$message_woman);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
         $templateProcessor->setValue('thank_you', Order::$thx_message);

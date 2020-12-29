@@ -147,6 +147,7 @@ class OrderService
 //            }
 //        }
 
+
         $orderExist = Order::where('id', $order->id)->exists();
         if ($orderExist == false) {
             $numberOfSavedOrders = $order->id;
@@ -157,7 +158,8 @@ class OrderService
         }
     }
 
-//    public function getProductQuantity($quantities)
+
+//    ublic function getProductQuantity($quantities)
 //    {
 //        $quantity = $quantities[0];
 //        for ($i = 1; $i < count($quantities); $i++) {
@@ -165,6 +167,7 @@ class OrderService
 //        }
 //        return $quantity;
 //    }
+
 }
 
 
