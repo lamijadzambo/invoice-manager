@@ -16,7 +16,6 @@ class OrderController extends Controller
     public function index($id)
     {
         $orders = Order::where('project_id', $id)->orderBy('id', 'desc')->get();
-        //$orders = Order::orderBy('id', 'desc')->get();
         return view('orders.index', compact('orders', 'id'));
     }
 
@@ -30,7 +29,6 @@ class OrderController extends Controller
 
     public function get(Request $request, $id)
     {
-
         if($id == 1){
             $endPoint = env('WOO_ENDPOINT');
             $clientKey = env('WOO_CK');
@@ -41,10 +39,7 @@ class OrderController extends Controller
             $clientSecret = env('WOO_CS_FLIPFLOP');
         }
 
-        $woocommerce = new Client(
-            $endPoint, //env('WOO_ENDPOINT'),
-            $clientKey, //env('WOO_CK'),
-            $clientSecret, //env('WOO_CS'),
+        $woocommerce = new Client( $endPoint, $clientKey, $clientSecret,
             [
                 'wp_api' => true,
                 'version' => 'wc/v3',
@@ -69,8 +64,7 @@ class OrderController extends Controller
         } else {
             $request->session()->flash('info', 'No new orders.');
         }
-
-        return redirect()->route('index');
+        return redirect()->back();
     }
 
 
