@@ -42,7 +42,7 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
-setlocale(LC_TIME, 'German');
+
 
 
 
