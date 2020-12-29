@@ -5,16 +5,14 @@ namespace App\Http\Controllers\Atemschutzmasken;
 use App\AtemschutzmaskenClasses\OrderService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Repositories\ApplicationRepositoryInterface;
 use Automattic\WooCommerce\Client;
-use Automattic\WooCommerce\HttpClient\HttpClientException;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::orderBy('id', 'desc')->get();;
+        $orders = Order::orderBy('id', 'desc')->get();
         return view('orders.index', compact('orders'));
     }
 
@@ -41,7 +39,7 @@ class OrderController extends Controller
             'per_page' => 100,
             'orderby' => 'date'
         ];
-                
+
         $orders = $woocommerce->get('orders', $params);
 
         $numberOfSavedOrders = OrderService::save($orders);
