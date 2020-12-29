@@ -31,19 +31,17 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/logout', [LoginController::class, 'logout'])->name('user.logout');
-
-Route::get('/index', [OrderController::class, 'index'])->name('index');
 Route::group(['middleware' => 'auth'], function () {
 
-    // SELECT SHOP  
+    // SELECT SHOP
     Route::get('/projects', [ProjectController::class, 'showProjects'])->name('projects');
     Route::get('/index/{id}', [OrderController::class, 'index'])->name('index');
 
 // CRUD ORDER
-Route::get('/orders', [OrderController::class, 'get'])->name('get.orders');
+Route::get('/orders/{id}', [OrderController::class, 'get'])->name('get.orders');
 Route::get('/order/{id}', [OrderController::class, 'show'])->name('show.order');
 Route::delete('/order/{id}', [OrderController::class, 'delete'])->name('delete.order');
-  
+
 // SELECT IF ORDER PRINTED OUT
 Route::get('/order-status/{id}', [OrderController::class, 'setStatus'])->name('set-status.order');
 

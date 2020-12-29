@@ -13,11 +13,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
-    {      
+    public function index($id)
+    {
         $orders = Order::where('project_id', $id)->orderBy('id', 'desc')->get();
-        $orders = Order::orderBy('id', 'desc')->get();
-        return view('orders.index', compact('orders'));
+        //$orders = Order::orderBy('id', 'desc')->get();
+        return view('orders.index', compact('orders', 'id'));
     }
 
 
@@ -28,12 +28,23 @@ class OrderController extends Controller
     }
 
 
-    public function get(Request $request)
+    public function get(Request $request, $id)
     {
+
+        if($id == 1){
+            $endPoint = env('WOO_ENDPOINT');
+            $clientKey = env('WOO_CK');
+            $clientSecret = env('WOO_CS');
+        }elseif ($id == 2){
+            $endPoint = env('WOO_ENDPOINT_FLIPFLOP');
+            $clientKey = env('WOO_CK_FLIPFLOP');
+            $clientSecret = env('WOO_CS_FLIPFLOP');
+        }
+
         $woocommerce = new Client(
-            env('WOO_ENDPOINT'),
-            env('WOO_CK'),
-            env('WOO_CS'),
+            $endPoint, //env('WOO_ENDPOINT'),
+            $clientKey, //env('WOO_CK'),
+            $clientSecret, //env('WOO_CS'),
             [
                 'wp_api' => true,
                 'version' => 'wc/v3',
@@ -41,24 +52,14 @@ class OrderController extends Controller
             ]
         );
 
-        /*$woocommerce = new Client(
-            env('WOO_ENDPOINT_FLIPFLOP'),
-            env('WOO_CK_FLIPFLOP'),
-            env('WOO_CS_FLIPFLOP'),
-            [
-                'wp_api' => true,
-                'version' => 'wc/v3',
-                'query_string_auth' => true,
-            ]
-        );*/
-
         $params = [
             'per_page' => 100,
             'orderby' => 'date'
         ];
 
         $orders = $woocommerce->get('orders', $params);
-        $numberOfSavedOrders = OrderService::save($orders);
+
+        $numberOfSavedOrders = OrderService::save($orders, $id);
 
         $orderIds = array_filter($numberOfSavedOrders);
         $order = end($orderIds);
