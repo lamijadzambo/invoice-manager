@@ -21,13 +21,14 @@ class OrderService
     {
         $full_order = new Order;
         $full_order->id = $order->id;
-        $status = $order->status;
+        /*$status = $order->status;
         if ($status == 'processing') {
             $order_status = 'Bearbeitung';
         } elseif ($status == 'on-hold') {
             $order_status = 'Wartestellung';
         }
-        $full_order->order_status = $order_status;
+        $full_order->order_status = $order_status;*/
+        $full_order->order_status = $order->status;
         $full_order->order_date = $order->date_created;
         $full_order->customer_note = $order->customer_note;
         $full_order->payment_method_title = $order->payment_method_title;

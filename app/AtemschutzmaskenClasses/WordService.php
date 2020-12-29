@@ -3,6 +3,7 @@
 namespace App\AtemschutzmaskenClasses;
 
 use App\Models\Order;
+use Carbon\Carbon;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -22,7 +23,8 @@ class WordService extends PhpWord
         $templateProcessor->setValue('postcode', $order->shipping_post_code);
         $templateProcessor->setValue('city', $order->shipping_city);
         $templateProcessor->setValue('order_id', $order->id);
-        $templateProcessor->setValue('date', date('j. F. Y'));
+        $dt = Carbon::now();
+        $templateProcessor->setValue('date', $dt->formatLocalized('%d. %B. %Y'));
         $templateProcessor->setValue('message', Order::$message_man);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
@@ -75,7 +77,8 @@ class WordService extends PhpWord
         $templateProcessor->setValue('postcode', $order->shipping_post_code);
         $templateProcessor->setValue('city', $order->shipping_city);
         $templateProcessor->setValue('order_id', $order->id);
-        $templateProcessor->setValue('date', date('j. F. Y'));
+        $dt = Carbon::now();
+        $templateProcessor->setValue('date', $dt->formatLocalized('%d. %B. %Y'));
         $templateProcessor->setValue('message', Order::$message_woman);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
         $templateProcessor->setValue('thank_you', Order::$thx_message);

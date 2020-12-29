@@ -41,6 +41,8 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+setlocale(LC_TIME, 'German');
+
 /*
 |--------------------------------------------------------------------------
 | Return The ApplicationRepository
