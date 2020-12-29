@@ -71,81 +71,82 @@ class OrderService
         $full_order->shipping_country_code = $order->shipping->country;
         $full_order->products = json_encode($order->line_items);
 
-        /*foreach ($order->line_items as $product) {
+//        foreach ($order->line_items as $product) {
+//
+//            $sku01 = '001';
+//            $sku02 = '001-1-1';
+//            $sku03 = '001-1';
+//            $sku04 = '002';
+//            $sku05 = '003';
+//            $sku06 = 'Hyg';
+//            $sku07 = '004';
+//            $sku08 = 'Med';
+//            $sku09 = '14-01';
+//            $sku10 = '006';
+//            $sku11 = '009';
+//            $sku12 = '007';
+//            $sku13 = '008';
+//            $sku14 = '00-11';
+//
+//            if ($product->sku == $sku01) {
+//                $quantities1[] = $product->quantity;
+//                $product_quantity_1 = $this->getProductQuantity($quantities1);
+//                $full_order->hyg_hg001 = $product_quantity_1;
+//            } elseif ($product->sku == $sku02) {
+//                $quantities2[] = $product->quantity;
+//                $product_quantity_2 = $this->getProductQuantity($quantities2);
+//                $full_order->typ_II = $product_quantity_2;
+//            } elseif ($product->sku == $sku03) {
+//                $quantities3[] = $product->quantity;
+//                $product_quantity_3 = $this->getProductQuantity($quantities3);
+//                $full_order->typ_IIR = $product_quantity_3;
+//            } elseif ($product->sku == $sku04) {
+//                $quantities4[] = $product->quantity;
+//                $product_quantity_4 = $this->getProductQuantity($quantities4);
+//                $full_order->n95_hg002 = $product_quantity_4;
+//            } elseif ($product->sku == $sku05) {
+//                $quantities5[] = $product->quantity;
+//                $product_quantity_5 = $this->getProductQuantity($quantities5);
+//                $full_order->schild_hg005 = $product_quantity_5;
+//            } elseif ($product->sku == $sku06) {
+//                $quantities6[] = $product->quantity;
+//                $product_quantity_6 = $this->getProductQuantity($quantities6);
+//                $full_order->hyg_red_masks = $product_quantity_6;
+//            } elseif ($product->sku == $sku07) {
+//                $quantities7[] = $product->quantity;
+//                $product_quantity_7 = $this->getProductQuantity($quantities7);
+//                $full_order->door_handler = $product_quantity_7;
+//            } elseif ($product->sku == $sku08) {
+//                $quantities8[] = $product->quantity;
+//                $product_quantity_8 = $this->getProductQuantity($quantities8);
+//                $full_order->med_einweg = $product_quantity_8;
+//            } elseif ($product->sku == $sku09) {
+//                $quantities9[] = +$product->quantity;
+//                $product_quantity_9 = $this->getProductQuantity($quantities9);
+//                $full_order->stoffmasken = $product_quantity_9;
+//            } elseif ($product->sku == $sku10) {
+//                $quantities10[] = $product->quantity;
+//                $product_quantity_10 = $this->getProductQuantity($quantities10);
+//                $full_order->trennwand = $product_quantity_10;
+//            } elseif ($product->sku == $sku11) {
+//                $quantities11[] = $product->quantity;
+//                $product_quantity_11 = $this->getProductQuantity($quantities11);
+//                $full_order->thermometer = $product_quantity_11;
+//            } elseif ($product->sku == $sku12) {
+//                $quantities12[] = $product->quantity;
+//                $product_quantity_12 = $this->getProductQuantity($quantities12);
+//                $full_order->hand_disinfection = $product_quantity_12;
+//            } elseif ($product->sku == $sku13) {
+//                $quantities13[] = $product->quantity;
+//                $product_quantity_13 = $this->getProductQuantity($quantities13);
+//                $full_order->flachendes = $product_quantity_13;
+//            } elseif ($product->sku == $sku14) {
+//                $quantities14[] = $product->quantity;
+//                $product_quantity_14 = $this->getProductQuantity($quantities14);
+//                $full_order->hand_spender = $product_quantity_14;
+//            }
+//        }
 
-            $sku01 = '001';
-            $sku02 = '001-1-1';
-            $sku03 = '001-1';
-            $sku04 = '002';
-            $sku05 = '003';
-            $sku06 = 'Hyg';
-            $sku07 = '004';
-            $sku08 = 'Med';
-            $sku09 = '14-01';
-            $sku10 = '006';
-            $sku11 = '009';
-            $sku12 = '007';
-            $sku13 = '008';
-            $sku14 = '00-11';
-
-            if ($product->sku == $sku01) {
-                $quantities1[] = $product->quantity;
-                $product_quantity_1 = $this->getProductQuantity($quantities1);
-                $full_order->hyg_hg001 = $product_quantity_1;
-            } elseif ($product->sku == $sku02) {
-                $quantities2[] = $product->quantity;
-                $product_quantity_2 = $this->getProductQuantity($quantities2);
-                $full_order->typ_II = $product_quantity_2;
-            } elseif ($product->sku == $sku03) {
-                $quantities3[] = $product->quantity;
-                $product_quantity_3 = $this->getProductQuantity($quantities3);
-                $full_order->typ_IIR = $product_quantity_3;
-            } elseif ($product->sku == $sku04) {
-                $quantities4[] = $product->quantity;
-                $product_quantity_4 = $this->getProductQuantity($quantities4);
-                $full_order->n95_hg002 = $product_quantity_4;
-            } elseif ($product->sku == $sku05) {
-                $quantities5[] = $product->quantity;
-                $product_quantity_5 = $this->getProductQuantity($quantities5);
-                $full_order->schild_hg005 = $product_quantity_5;
-            } elseif ($product->sku == $sku06) {
-                $quantities6[] = $product->quantity;
-                $product_quantity_6 = $this->getProductQuantity($quantities6);
-                $full_order->hyg_red_masks = $product_quantity_6;
-            } elseif ($product->sku == $sku07) {
-                $quantities7[] = $product->quantity;
-                $product_quantity_7 = $this->getProductQuantity($quantities7);
-                $full_order->door_handler = $product_quantity_7;
-            } elseif ($product->sku == $sku08) {
-                $quantities8[] = $product->quantity;
-                $product_quantity_8 = $this->getProductQuantity($quantities8);
-                $full_order->med_einweg = $product_quantity_8;
-            } elseif ($product->sku == $sku09) {
-                $quantities9[] = +$product->quantity;
-                $product_quantity_9 = $this->getProductQuantity($quantities9);
-                $full_order->stoffmasken = $product_quantity_9;
-            } elseif ($product->sku == $sku10) {
-                $quantities10[] = $product->quantity;
-                $product_quantity_10 = $this->getProductQuantity($quantities10);
-                $full_order->trennwand = $product_quantity_10;
-            } elseif ($product->sku == $sku11) {
-                $quantities11[] = $product->quantity;
-                $product_quantity_11 = $this->getProductQuantity($quantities11);
-                $full_order->thermometer = $product_quantity_11;
-            } elseif ($product->sku == $sku12) {
-                $quantities12[] = $product->quantity;
-                $product_quantity_12 = $this->getProductQuantity($quantities12);
-                $full_order->hand_disinfection = $product_quantity_12;
-            } elseif ($product->sku == $sku13) {
-                $quantities13[] = $product->quantity;
-                $product_quantity_13 = $this->getProductQuantity($quantities13);
-                $full_order->flachendes = $product_quantity_13;
-            } elseif ($product->sku == $sku14) {
-                $quantities14[] = $product->quantity;
-                $product_quantity_14 = $this->getProductQuantity($quantities14);
-                $full_order->hand_spender = $product_quantity_14;
-            }
-        }*/
 
         $orderExist = Order::where('id', $order->id)->exists();
         if ($orderExist == false) {
@@ -157,14 +158,16 @@ class OrderService
         }
     }
 
-    /*public function getProductQuantity($quantities)
-    {
-        $quantity = $quantities[0];
-        for ($i = 1; $i < count($quantities); $i++) {
-            $quantity += $quantities[$i];
-        }
-        return $quantity;
-    }*/
+
+//    ublic function getProductQuantity($quantities)
+//    {
+//        $quantity = $quantities[0];
+//        for ($i = 1; $i < count($quantities); $i++) {
+//            $quantity += $quantities[$i];
+//        }
+//        return $quantity;
+//    }
+
 }
 
 

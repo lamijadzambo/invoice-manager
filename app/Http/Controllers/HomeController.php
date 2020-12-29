@@ -22,9 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        return redirect()->route('index');
+
+        return redirect()->route('projects');
     }
 
 

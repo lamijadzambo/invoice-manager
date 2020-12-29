@@ -18,8 +18,8 @@ class ProjectsTableSeeder extends Seeder
         $project1->name = 'Atemschutzmasken';
         $project1->save();
 
-        $project1 = new Project();
-        $project1->name = 'FlipFlop';
-        $project1->save();
+        $project2 = new Project();
+        $project2->name = 'Flip Flop';
+        $project2->save();
     }
 }

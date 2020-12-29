@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -30,6 +31,8 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+
+
     /**
      * Create a new controller instance.
      *
@@ -51,10 +54,10 @@ class LoginController extends Controller
      *
      */
 
-    public function showLoginForm(Project $project)
+    public function showLoginForm()
     {
-        $projects = $project->all();
-        return view('auth.login', compact('projects'));
+//        $projects = $project->all();
+        return view('auth.login');
     }
 
     protected function validateLogin(Request $request)

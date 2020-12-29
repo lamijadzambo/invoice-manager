@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-
     public function index()
-    {
+    {      
+        $orders = Order::where('project_id', $id)->orderBy('id', 'desc')->get();
         $orders = Order::orderBy('id', 'desc')->get();
         return view('orders.index', compact('orders'));
     }

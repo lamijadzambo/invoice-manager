@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ProjectsTableSeeder::class,
         ]);
+
+        $this->call([
+            ProjectsTableSeeder::class,
+        ]);
     }
 
 }

@@ -135,6 +135,7 @@
         8317 Tagelswangen, {{App\Models\Order::currentDate()}}
     </div>
 
+
     <div class="thank-customer">
         {{App\Models\Order::$message_man}} {{$order->shipping_last_name}}<br/>{{App\Models\Order::$thx_message}}
     </div>
