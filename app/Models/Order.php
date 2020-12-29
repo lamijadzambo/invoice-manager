@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -25,9 +26,18 @@ class Order extends Model
 
     public static $piece = 'Stk. ';
 
+    public static function currentDate(){
+        $dt = Carbon::now();
+        return $dt->formatLocalized('%d. %B. %Y');
+    }
+
     public function projects(){
         return $this->belongsTo(Project::class);
     }
+
+
+
+
 
 
 

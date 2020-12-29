@@ -129,7 +129,7 @@
 
 
     <div class="invoice-date">
-        8317 Tagelswangen, {{date('j. F. Y')}}
+        8317 Tagelswangen, {{App\Models\Order::currentDate()}}
     </div>
 
     <div class="thank-customer">
