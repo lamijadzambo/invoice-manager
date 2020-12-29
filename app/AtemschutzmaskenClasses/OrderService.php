@@ -8,26 +8,20 @@ use App\Models\Order;
 
 class OrderService
 {
-    public static function save($orders)
+    public static function save($orders, $id)
     {
         foreach ($orders as $order) {
-            $numberOfSavedOrders[] = (new OrderService)->createOrders($order);
+            $numberOfSavedOrders[] = (new OrderService)->createOrders($order, $id);
         }
 
         return $numberOfSavedOrders;
     }
 
-    public function createOrders($order)
+    public function createOrders($order, $id)
     {
         $full_order = new Order;
         $full_order->id = $order->id;
-        $status = $order->status;
-       /* if ($status == 'processing') {
-            $order_status = 'Bearbeitung';
-        } elseif ($status == 'on-hold') {
-            $order_status = 'Wartestellung';
-        }
-        $full_order->order_status = $order_status;*/
+        $full_order->project_id = $id;
         $full_order->order_status = $order->status;
         $full_order->order_date = $order->date_created;
         $full_order->customer_note = $order->customer_note;

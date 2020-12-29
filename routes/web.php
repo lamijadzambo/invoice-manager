@@ -32,7 +32,6 @@ Auth::routes(['register' => false]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/logout', [LoginController::class, 'logout'])->name('user.logout');
 
-
 Route::group(['middleware' => 'auth'], function () {
 
     // SELECT SHOP
@@ -40,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/index/{id}', [OrderController::class, 'index'])->name('index');
 
 // CRUD ORDER
-Route::get('/orders', [OrderController::class, 'get'])->name('get.orders');
+Route::get('/orders/{id}', [OrderController::class, 'get'])->name('get.orders');
 Route::get('/order/{id}', [OrderController::class, 'show'])->name('show.order');
 Route::delete('/order/{id}', [OrderController::class, 'delete'])->name('delete.order');
 
