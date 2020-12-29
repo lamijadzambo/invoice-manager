@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <div class="form-group row">
+                        {{--<div class="form-group row">
                             <label for="project" class="col-md-4 col-form-label text-md-right">Choose a project:</label>
                             <div class="col-md-6">
                                 <select name="projects" id="project" class="form-control">
@@ -18,7 +18,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div>--}}
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>

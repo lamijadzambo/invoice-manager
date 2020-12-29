@@ -13,19 +13,12 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
     public function index()
     {
-        //dd($id);
-
-        $orders = Order::orderBy('id', 'desc')->get();;
+        $orders = Order::orderBy('id', 'desc')->get();
         return view('orders.index', compact('orders'));
     }
-
-    /*public function index(Request $request)
-    {
-        $orders = Order::orderBy('project_id', 'desc')->get();;
-        return view('orders.index', compact('orders'));
-    }*/
 
 
     public function show($id)
@@ -65,7 +58,6 @@ class OrderController extends Controller
         ];
 
         $orders = $woocommerce->get('orders', $params);
-
         $numberOfSavedOrders = OrderService::save($orders);
 
         $orderIds = array_filter($numberOfSavedOrders);

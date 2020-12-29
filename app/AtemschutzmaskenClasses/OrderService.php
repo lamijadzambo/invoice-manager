@@ -71,7 +71,7 @@ class OrderService
         $full_order->shipping_country_code = $order->shipping->country;
         $full_order->products = json_encode($order->line_items);
 
-        foreach ($order->line_items as $product) {
+        /*foreach ($order->line_items as $product) {
 
             $sku01 = '001';
             $sku02 = '001-1-1';
@@ -145,7 +145,7 @@ class OrderService
                 $product_quantity_14 = $this->getProductQuantity($quantities14);
                 $full_order->hand_spender = $product_quantity_14;
             }
-        }
+        }*/
 
         $orderExist = Order::where('id', $order->id)->exists();
         if ($orderExist == false) {
@@ -157,14 +157,14 @@ class OrderService
         }
     }
 
-    public function getProductQuantity($quantities)
+    /*public function getProductQuantity($quantities)
     {
         $quantity = $quantities[0];
         for ($i = 1; $i < count($quantities); $i++) {
             $quantity += $quantities[$i];
         }
         return $quantity;
-    }
+    }*/
 }
 
 
