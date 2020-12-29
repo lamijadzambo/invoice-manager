@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/logout', [LoginController::class, 'logout'])->name('user.logout');
+
 Route::group(['middleware' => 'auth'], function () {
 
     // SELECT SHOP
