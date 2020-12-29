@@ -7,6 +7,7 @@ use App\Http\Controllers\Atemschutzmasken\WordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GoogleOrdersController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/logout', [LoginController::class, 'logout'])->name('user.logout');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/index', [OrderController::class, 'index'])->name('index');
+    Route::get('/projects', [ProjectController::class, 'showProjects'])->name('projects');
+    Route::get('/index/{id}', [OrderController::class, 'index'])->name('index');
     Route::get('/orders', [OrderController::class, 'get'])->name('get.orders');
     Route::get('/order/{id}', [OrderController::class, 'show'])->name('show.order');
     Route::delete('/order/{id}', [OrderController::class, 'delete'])->name('delete.order');

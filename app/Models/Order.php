@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +25,11 @@ class Order extends Model
     public static $questions = 'Für weitere Auskünfte stehe ich Ihnen gerne zur Verfügung.';
 
     public static $piece = 'Stk. ';
+
+    public static function currentDate(){
+        $dt = Carbon::now();
+        return $dt->formatLocalized('%d. %B. %Y');
+    }
 
     public function projects(){
         return $this->belongsTo(Project::class);
