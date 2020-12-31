@@ -52,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($allOrders as $order)
+                        @foreach($savedOrder as $order)
                             <tr>
                                 <td title="FIRMA">{{$order->billing_company}}</td>
                                 <td title="NAME">{{$order->billing_last_name}}</td>
@@ -65,24 +65,25 @@
 
                                 @foreach(json_decode($order->products) as $product)
 
-                                <td title="{{$product->name}}">{{$product->quantity}}</td>
-                                <td title="{{$product->name}}">{{$product->quantity}}</td>
-                                {{--<td title="TYP II">{{$product->name}}</td>
-                                <td title="TYP IIR"></td>
-                                <td title="N95 HG-002"></td>
-                                <td title="SHILD HG-005"></td>
-                                <td title="HYG ROTE MASKEN"></td>
-                                <td title="DOORHANDLER"></td>
-                                <td title="MED. EINWEG"></td>
-                                <td title="STOFFMASKEN"></td>
-                                <td title="TRENNWAND"></td>
-                                <td title="THERMOMETER"></td>
-                                <td title="HANDDESINF."></td>
-                                <td title="FLÄCHENDES."></td>
-                                <td title="HAND SPENDER"></td>--}}
+                                  <td title="{{$product->name}}">{{$product->quantity}}</td>
+                                  <td title="{{$product->name}}">{{$product->quantity}}</td>
+                              {{--<td title="TYP II">{{$product->name}}</td>
+                                  <td title="HYG HG-001"></td>
+                                  <td title="TYP II"></td>
+                                  <td title="TYP IIR"></td>
+                                  <td title="N95 HG-002"></td>
+                                  <td title="SHILD HG-005"></td>
+                                  <td title="HYG ROTE MASKEN"></td>
+                                  <td title="DOORHANDLER"></td>
+                                  <td title="MED. EINWEG"></td>
+                                  <td title="STOFFMASKEN"></td>
+                                  <td title="TRENNWAND"></td>
+                                  <td title="THERMOMETER"></td>
+                                  <td title="HANDDESINF."></td>
+                                  <td title="FLÄCHENDES."></td>
+                                  <td title="HAND SPENDER"></td>--}}
                                 @endforeach
                                 <td title="BETRAG">{{$order->order_total_amount}}</td>
-
                             </tr>
                         @endforeach
                         </tbody>
