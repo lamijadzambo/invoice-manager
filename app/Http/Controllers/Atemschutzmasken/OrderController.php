@@ -17,7 +17,6 @@ class OrderController extends Controller
     {
         $orders = Order::where('project_id', $project_id)->orderBy('id', 'desc')->get();
         return view('orders.index', compact('orders', 'project_id'));
-
     }
 
 
@@ -54,9 +53,6 @@ class OrderController extends Controller
         ];
 
         $orders = $woocommerce->get('orders', $params);
-//        foreach($orders as $order){
-//            dd($order);
-//        }
         $numberOfSavedOrders = OrderService::save($orders, $project_id);
 
         $orderIds = array_filter($numberOfSavedOrders);
