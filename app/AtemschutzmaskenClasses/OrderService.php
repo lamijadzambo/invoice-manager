@@ -61,6 +61,7 @@ class OrderService
         $full_order->shipping_state_code = $order->shipping->state;
         $full_order->shipping_post_code = $order->shipping->postcode;
         $full_order->shipping_country_code = $order->shipping->country;
+
         $full_order->products = json_encode($order->line_items);
 
 //        foreach ($order->line_items as $product) {

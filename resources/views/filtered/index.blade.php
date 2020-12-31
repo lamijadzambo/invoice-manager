@@ -34,7 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($allOrders as $order)
+                        @foreach($savedOrder as $order)
                             <tr>
                                 <td title="FIRMA">{{$order->billing_company}}</td>
                                 <td title="NAME">{{$order->billing_last_name}}</td>
@@ -44,8 +44,7 @@
                                 <td title="TELEFON"><a href="tel:{{$order->billing_phone}}">{{$order->billing_phone}}</a></td>
                                 <td class="BESTELL NO.">{{$order->id}}</td>
                                 <td title="STATUS">{{$order->order_status}}</td>
-                                @foreach(json_decode($order->products) as $product)
-                                <td title="HYG HG-001">{{$product->quantity}}</td>
+                                <td title="HYG HG-001"></td>
                                 <td title="TYP II"></td>
                                 <td title="TYP IIR"></td>
                                 <td title="N95 HG-002"></td>
@@ -59,7 +58,6 @@
                                 <td title="HANDDESINF."></td>
                                 <td title="FLÄCHENDES."></td>
                                 <td title="HAND SPENDER"></td>
-                                @endforeach
                                 <td title="BETRAG">{{$order->order_total_amount}}</td>
 
                             </tr>

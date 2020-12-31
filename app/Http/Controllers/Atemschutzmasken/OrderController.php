@@ -16,7 +16,6 @@ class OrderController extends Controller
     public function index($project_id)
     {
         $orders = Order::where('project_id', $project_id)->orderBy('id', 'desc')->get();
-
         return view('orders.index', compact('orders', 'project_id'));
 
     }
