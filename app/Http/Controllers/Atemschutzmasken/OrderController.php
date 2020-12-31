@@ -53,7 +53,6 @@ class OrderController extends Controller
         ];
 
         $orders = $woocommerce->get('orders', $params);
-
         $numberOfSavedOrders = OrderService::save($orders, $id);
 
         $orderIds = array_filter($numberOfSavedOrders);

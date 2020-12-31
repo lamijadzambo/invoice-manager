@@ -153,7 +153,7 @@ class OrderService
     }
 
 
-//    ublic function getProductQuantity($quantities)
+//    public function getProductQuantity($quantities)
 //    {
 //        $quantity = $quantities[0];
 //        for ($i = 1; $i < count($quantities); $i++) {
