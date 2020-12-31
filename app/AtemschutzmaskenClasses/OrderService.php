@@ -41,9 +41,7 @@ class OrderService
             $full_order->order_shipping_amount = $shipping->total;
         }
 
-        foreach ($order->tax_lines as $tax) {
-            $full_order->order_total_tax_amount = $tax->tax_total;
-        }
+        $full_order->order_total_tax_amount = $order->total_tax;
 
         $full_order->billing_first_name = $order->billing->first_name;
         $full_order->billing_last_name = $order->billing->last_name;
@@ -153,7 +151,7 @@ class OrderService
     }
 
 
-//    ublic function getProductQuantity($quantities)
+//    public function getProductQuantity($quantities)
 //    {
 //        $quantity = $quantities[0];
 //        for ($i = 1; $i < count($quantities); $i++) {

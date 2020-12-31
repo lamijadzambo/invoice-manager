@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="actions mb-5 text-right">
-                        <a href="{{ route('get.orders', $id) }}" class="btn btn-primary"><i class="fas fa-file-import mr-1"></i> Update Orders</a>
+                        <a href="{{ route('get.orders', $project_id) }}" class="btn btn-primary"><i class="fas fa-file-import mr-1"></i> Update Orders</a>
                         <a href="{{ route('excel-export') }}" class="btn btn-secondary"><i class="fas fa-file-download mr-1"></i> Export All Orders</a>
                         <a href="{{ route('color-table-export') }}" class="btn btn-warning"><i class="fas fa-file-download mr-1"></i> Export Color Table</a>
 {{--                        <a href="{{ route('google-spreadsheet') }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>--}}
@@ -71,7 +71,7 @@
                                                 <a href="{{ route('generate-woman-doc', $order->id) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Woman</a>
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a href="{{ route('show.order', $order->id) }}" class="btn btn-secondary action-buttons my-1"><i class="fas fa-directions mr-1"></i> View Order</a>
+                                                <a href="{{ route('show.order', ['project_id'=>$project_id, 'id'=>$order->id]) }}" class="btn btn-secondary action-buttons my-1"><i class="fas fa-directions mr-1"></i> View Order</a>
                                                 <form method="POST" action="{{ route('delete.order', $order->id) }}" class="d-inline-block">
                                                     @csrf
                                                     @method('delete')

@@ -20,10 +20,10 @@ class ExcelController extends Controller
         $this->orderRepository = $orderRepository;
     }
 
-    public function index()
+    public function index($project_id)
     {
-        $allOrders = Order::all();
-        return view('filtered.index', compact('allOrders'));
+        $allOrders = Order::where('project_id', $project_id)->get();
+        return view('filtered.index', compact('allOrders', 'project_id'));
     }
 
     public function exportOrdersExcel(){
