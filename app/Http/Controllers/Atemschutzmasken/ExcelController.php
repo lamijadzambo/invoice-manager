@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Atemschutzmasken;
 
-use App\AtemschutzmaskenClasses\AttributesService;
-
 //use App\Imports\BulkImport;
+use App\AtemschutzmaskenClasses\Product;
 use App\AtemschutzmaskenClasses\ProductAttributesService;
 use App\AtemschutzmaskenClasses\ExcelService;
+use App\AtemschutzmaskenClasses\ProductService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Repositories\ApplicationRepositoryInterface;
+use Automattic\WooCommerce\Client;
 
 class ExcelController extends Controller
 {
@@ -20,10 +21,12 @@ class ExcelController extends Controller
         $this->orderRepository = $orderRepository;
     }
 
-    public function index()
+    public function index($project_id)
     {
-        $allOrders = Order::all();
-        return view('filtered.index', compact('allOrders'));
+        $allOrders = Order::where('project_id', $project_id)->get();
+        $productName = (new ProductService)->fetchProductNames($project_id);
+
+        return view('filtered.index', compact('allOrders', 'project_id', 'productName'));
     }
 
     public function exportOrdersExcel(){

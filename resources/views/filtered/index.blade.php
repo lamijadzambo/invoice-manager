@@ -16,20 +16,38 @@
                                 <th>TELEFON</th>
                                 <th>BESTELL NO.</th>
                                 <th>STATUS</th>
-                                <th class="rotate"><div><span>HYG HG-001</span></div></th>
-                                <th class="rotate"><div><span>TYP II</span></div></th>
-                                <th class="rotate"><div><span>TYP IIR</span></div></th>
-                                <th class="rotate"><div><span>N95 HG-002</span></div></th>
-                                <th class="rotate"><div><span>SHILD HG-005</span></div></th>
-                                <th class="rotate"><div><span>HYG ROTE MASKEN</span></div></th>
-                                <th class="rotate"><div><span>DOORHANDLER</span></div></th>
-                                <th class="rotate"><div><span>MED. EINWEG</span></div></th>
-                                <th class="rotate"><div><span>STOFFMASKEN</span></div></th>
-                                <th class="rotate"><div><span>TRENNWAND</span></div></th>
-                                <th class="rotate"><div><span>THERMOMETER</span></div></th>
-                                <th class="rotate"><div><span>HANDDESINF.</span></div></th>
-                                <th class="rotate"><div><span>FLÄCHENDES.</span></div></th>
-                                <th class="rotate"><div><span>HAND SPENDER</span></div></th>
+                                @if($project_id == 1)
+                                    <th class="rotate"><div><span>{{($productName->typII ?: 'TYP II')}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->typIIR ?: 'TYP IIR'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->hg002 ?: 'HG-002'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->hg005 ?: 'HG-005'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->redMask ?: 'HYG ROTE MASKEN'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->doorHandler ?: 'DOORHANDLER'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->medEinweg ?: 'MED. EINWEG'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->stoff ?: 'STOFFMASKEN'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->trennwand ?: 'TRENNWAND'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->thermometer ?: 'THERMOMETER'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->handSmilsan ?: 'HANDDESINFEKTION SMILSAN'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->handsmittel ?: 'HANDSMITTEL'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flachendes ?: 'FLACHENDES'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->handSpender ?: 'HAND SPENDER'}}</span></div></th>
+
+                                @elseif($project_id == 2)
+                                    <th class="rotate"><div><span>{{($productName->flipflop ?: 'FLIPFLOP 1')}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 2'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 3'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 4'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 5'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 6'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 7'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 8'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 9'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 10'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 11'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 12'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 13'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 14'}}</span></div></th>
+                                @endif
                                 <th class="rotate"><div><span>BETRAG</span></div></th>
                             </tr>
                         </thead>
@@ -44,21 +62,27 @@
                                 <td title="TELEFON"><a href="tel:{{$order->billing_phone}}">{{$order->billing_phone}}</a></td>
                                 <td class="BESTELL NO.">{{$order->id}}</td>
                                 <td title="STATUS">{{$order->order_status}}</td>
-                                <td title="HYG HG-001">{{$order->hyg_hg001}}</td>
-                                <td title="TYP II">{{$order->typ_II}}</td>
-                                <td title="TYP IIR">{{$order->typ_IIR}}</td>
-                                <td title="N95 HG-002">{{$order->n95_hg002}}</td>
-                                <td title="SHILD HG-005">{{$order->schild_hg005}}</td>
-                                <td title="HYG ROTE MASKEN">{{$order->hyg_red_masks}}</td>
-                                <td title="DOORHANDLER">{{$order->door_handler}}</td>
-                                <td title="MED. EINWEG">{{$order->med_einweg}}</td>
-                                <td title="STOFFMASKEN">{{$order->stoffmasken}}</td>
-                                <td title="TRENNWAND">{{$order->trennwand}}</td>
-                                <td title="THERMOMETER">{{$order->thermometer}}</td>
-                                <td title="HANDDESINF.">{{$order->hand_disinfection}}</td>
-                                <td title="FLÄCHENDES.">{{$order->flachendes}}</td>
-                                <td title="HAND SPENDER">{{$order->hand_spender}}</td>
+
+                                @foreach(json_decode($order->products) as $product)
+
+                                <td title="{{$product->name}}">{{$product->quantity}}</td>
+                                <td title="{{$product->name}}">{{$product->quantity}}</td>
+                                {{--<td title="TYP II">{{$product->name}}</td>
+                                <td title="TYP IIR"></td>
+                                <td title="N95 HG-002"></td>
+                                <td title="SHILD HG-005"></td>
+                                <td title="HYG ROTE MASKEN"></td>
+                                <td title="DOORHANDLER"></td>
+                                <td title="MED. EINWEG"></td>
+                                <td title="STOFFMASKEN"></td>
+                                <td title="TRENNWAND"></td>
+                                <td title="THERMOMETER"></td>
+                                <td title="HANDDESINF."></td>
+                                <td title="FLÄCHENDES."></td>
+                                <td title="HAND SPENDER"></td>--}}
+                                @endforeach
                                 <td title="BETRAG">{{$order->order_total_amount}}</td>
+
                             </tr>
                         @endforeach
                         </tbody>

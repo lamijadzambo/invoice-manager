@@ -13,27 +13,27 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index($id)
+    public function index($project_id)
     {
-        $orders = Order::where('project_id', $id)->orderBy('id', 'desc')->get();
-        return view('orders.index', compact('orders', 'id'));
+        $orders = Order::where('project_id', $project_id)->orderBy('id', 'desc')->get();
+        return view('orders.index', compact('orders', 'project_id'));
     }
 
 
-    public function show($id)
+    public function show($project_id, $id)
     {
-        $order = Order::findOrFail($id);
-        return view('orders.show', compact('order'));
+        $order = Order::where('project_id', $project_id)->findOrFail($id);
+        return view('orders.show', compact('order', 'project_id'));
     }
 
 
-    public function get(Request $request, $id)
+    public function get(Request $request, $project_id)
     {
-        if($id == 1){
+        if($project_id == 1){
             $endPoint = env('WOO_ENDPOINT');
             $clientKey = env('WOO_CK');
             $clientSecret = env('WOO_CS');
-        }elseif ($id == 2){
+        }elseif ($project_id == 2){
             $endPoint = env('WOO_ENDPOINT_FLIPFLOP');
             $clientKey = env('WOO_CK_FLIPFLOP');
             $clientSecret = env('WOO_CS_FLIPFLOP');
@@ -53,7 +53,7 @@ class OrderController extends Controller
         ];
 
         $orders = $woocommerce->get('orders', $params);
-        $numberOfSavedOrders = OrderService::save($orders, $id);
+        $numberOfSavedOrders = OrderService::save($orders, $project_id);
 
         $orderIds = array_filter($numberOfSavedOrders);
         $order = end($orderIds);
