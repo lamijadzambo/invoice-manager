@@ -36,18 +36,18 @@ Route::group(['middleware' => 'auth'], function () {
 
     // SELECT SHOP
     Route::get('/projects', [ProjectController::class, 'showProjects'])->name('projects');
-    Route::get('/index/{id}', [OrderController::class, 'index'])->name('index');
+    Route::get('/index/{project_id}', [OrderController::class, 'index'])->name('index');
 
 // CRUD ORDER
-Route::get('/orders/{id}', [OrderController::class, 'get'])->name('get.orders');
-Route::get('/order/{id}', [OrderController::class, 'show'])->name('show.order');
+Route::get('/orders/{project_id}', [OrderController::class, 'get'])->name('get.orders');
+Route::get('/order/{project_id}/show/{id}/', [OrderController::class, 'show'])->name('show.order');
 Route::delete('/order/{id}', [OrderController::class, 'delete'])->name('delete.order');
 
 // SELECT IF ORDER PRINTED OUT
 Route::get('/order-status/{id}', [OrderController::class, 'setStatus'])->name('set-status.order');
 
     // EXCEL EXPORT
-    Route::get('/index/filtered', [ExcelController::class, 'index'])->name('excel.index');
+    Route::get('/index/filtered/{project_id}', [ExcelController::class, 'index'])->name('excel.index');
     Route::get('/export', [ExcelController::class, 'exportOrdersExcel'])->name('excel-export');
     Route::get('/export-color', [ExcelController::class, 'exportProductColorsExcel'])->name('color-table-export');
     //Route::get('importExportView', [ImportExportController::class, 'importExportView']);

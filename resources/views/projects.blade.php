@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header"></div>
+                    <div class="card-header">{{ __('Login') }}</div>
                     <div class="card-body">
                         <form method="GET" role="form">
                             @csrf
@@ -14,7 +14,9 @@
                                     <select name="projects" id="project" class="form-control" onchange="doUrl(event)">
                                         <option value="" selected disabled hidden>Choose project</option>
                                         @foreach($projects as $project)
+
                                             <option value="{{ $project->id }} ">{{ $project->name }}</option>
+
                                         @endforeach
                                     </select>
                                 </div>
@@ -32,6 +34,7 @@
         </div>
     </div>
 @endsection
+
 
 
 

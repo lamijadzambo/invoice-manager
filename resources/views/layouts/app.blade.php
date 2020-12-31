@@ -42,9 +42,11 @@
                     <!-- Left Side Of Navbar -->
                     @if(Auth::check())
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                            <li class="nav-item"><a href="{{ route('excel.index') }}" class="nav-link">View Filtered Orders</a></li>
+                            @if(isset($project_id))
+                            <li class="nav-item"><a href="{{ route('index', $project_id) }}" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="{{ route('excel.index', $project_id) }}" class="nav-link">View Filtered Orders</a></li>
 {{--                            <li class="nav-item"><a href="{{route('upload-file')}}" class="nav-link">Upload Invoice</a></li>--}}
+                            @endif
                         </ul>
                     @endif
 

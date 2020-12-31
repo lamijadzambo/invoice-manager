@@ -44,21 +44,24 @@
                                 <td title="TELEFON"><a href="tel:{{$order->billing_phone}}">{{$order->billing_phone}}</a></td>
                                 <td class="BESTELL NO.">{{$order->id}}</td>
                                 <td title="STATUS">{{$order->order_status}}</td>
-                                <td title="HYG HG-001">{{$order->hyg_hg001}}</td>
-                                <td title="TYP II">{{$order->typ_II}}</td>
-                                <td title="TYP IIR">{{$order->typ_IIR}}</td>
-                                <td title="N95 HG-002">{{$order->n95_hg002}}</td>
-                                <td title="SHILD HG-005">{{$order->schild_hg005}}</td>
-                                <td title="HYG ROTE MASKEN">{{$order->hyg_red_masks}}</td>
-                                <td title="DOORHANDLER">{{$order->door_handler}}</td>
-                                <td title="MED. EINWEG">{{$order->med_einweg}}</td>
-                                <td title="STOFFMASKEN">{{$order->stoffmasken}}</td>
-                                <td title="TRENNWAND">{{$order->trennwand}}</td>
-                                <td title="THERMOMETER">{{$order->thermometer}}</td>
-                                <td title="HANDDESINF.">{{$order->hand_disinfection}}</td>
-                                <td title="FLÄCHENDES.">{{$order->flachendes}}</td>
-                                <td title="HAND SPENDER">{{$order->hand_spender}}</td>
+                                @foreach(json_decode($order->products) as $product)
+                                <td title="HYG HG-001">{{$product->quantity}}</td>
+                                <td title="TYP II"></td>
+                                <td title="TYP IIR"></td>
+                                <td title="N95 HG-002"></td>
+                                <td title="SHILD HG-005"></td>
+                                <td title="HYG ROTE MASKEN"></td>
+                                <td title="DOORHANDLER"></td>
+                                <td title="MED. EINWEG"></td>
+                                <td title="STOFFMASKEN"></td>
+                                <td title="TRENNWAND"></td>
+                                <td title="THERMOMETER"></td>
+                                <td title="HANDDESINF."></td>
+                                <td title="FLÄCHENDES."></td>
+                                <td title="HAND SPENDER"></td>
+                                @endforeach
                                 <td title="BETRAG">{{$order->order_total_amount}}</td>
+
                             </tr>
                         @endforeach
                         </tbody>
