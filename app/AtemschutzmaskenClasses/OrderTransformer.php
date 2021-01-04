@@ -4,13 +4,12 @@ namespace App\AtemschutzmaskenClasses;
 
 class OrderTransformer{
 
-    public static function save($allOrders)
+    public static function transformOrder($orders)
     {
-        foreach ($allOrders as $item) {
-            $savedOrder[] = (new OrderTransformer)->createOrder($item);
+        foreach ($orders as $item) {
+            $transformedOrders[] = (new OrderTransformer)->createOrder($item);
         }
-
-        return $savedOrder;
+        return $transformedOrders;
     }
 
     public function createOrder($item)
@@ -23,7 +22,6 @@ class OrderTransformer{
         $order->payment_method_title = $item->payment_method_title;
         $order->order_total_amount = $item->order_total_amount;
         $order->order_total_tax_amount = $item->order_total_tax_amount;
-
         $order->billing_company = $item->billing_company;
         $order->billing_first_name = $item->billing_first_name;
         $order->billing_last_name = $item->billing_last_name;
@@ -44,34 +42,89 @@ class OrderTransformer{
         $order->shipping_country_code = $item->shipping_country_code;
         $order->products = $item->products;
 
-        foreach(json_decode($order->products) as $product){         
+        foreach(json_decode($order->products) as $product){
 
             $sku01 = '001';
-            $sku02 = '001-1-1';
-            $sku03 = '001-1';
-            $sku04 = '002';
-            $sku05 = '003';
-            $sku06 = 'Hyg';
-            $sku07 = '004';
-            $sku08 = 'Med';
-            $sku09 = '14-01';
-            $sku10 = '006';
-            $sku11 = '009';
-            $sku12 = '007';
-            $sku13 = '008';
-            $sku14 = '00-11';
-            $sku15 = '14-01-1';
-          
-        }
+            $sku02 = '001-1';
+            $sku03 = '002';
+            $sku04 = '003';
+            $sku05 = '001-1-1';
+            $sku06 = '004';
+            $sku07 = '006';
+            $sku08 = '009';
+            $sku09 = '007';
+            $sku10 = '008';
+            $sku11 = '010';
+            $sku12 = '00-11';
+            $sku13 = '14-01';
+            $sku14 = 'medEinweg';
 
+            if ($product->sku == $sku01) {
+                $quantities1[] = $product->quantity;
+                $product_quantity_1 = $this->getProductQuantity($quantities1);
+                $order->typII = $product_quantity_1;
+            }elseif ($product->sku == $sku02) {
+                $quantities2[] = $product->quantity;
+                $product_quantity_2 = $this->getProductQuantity($quantities2);
+                $order->typIIR = $product_quantity_2;
+            }elseif ($product->sku == $sku03) {
+                $quantities3[] = $product->quantity;
+                $product_quantity_3 = $this->getProductQuantity($quantities3);
+                $order->hg002 = $product_quantity_3;
+            }elseif ($product->sku == $sku04) {
+                $quantities4[] = $product->quantity;
+                $product_quantity_4 = $this->getProductQuantity($quantities4);
+                $order->hg005 = $product_quantity_4;
+            }elseif ($product->sku == $sku05) {
+                $quantities5[] = $product->quantity;
+                $product_quantity_5 = $this->getProductQuantity($quantities5);
+                $order->redMask = $product_quantity_5;
+            }elseif ($product->sku == $sku06) {
+                $quantities6[] = $product->quantity;
+                $product_quantity_6 = $this->getProductQuantity($quantities6);
+                $order->doorHandler = $product_quantity_6;
+            }elseif ($product->sku == $sku07) {
+                $quantities7[] = $product->quantity;
+                $product_quantity_7 = $this->getProductQuantity($quantities7);
+                $order->trennwand = $product_quantity_7;
+            }elseif ($product->sku == $sku08) {
+                $quantities8[] = $product->quantity;
+                $product_quantity_8 = $this->getProductQuantity($quantities8);
+                $order->thermometer = $product_quantity_8;
+            }elseif ($product->sku == $sku09) {
+                $quantities9[] = $product->quantity;
+                $product_quantity_9 = $this->getProductQuantity($quantities9);
+                $order->handsmittel = $product_quantity_9;
+            }elseif ($product->sku == $sku10) {
+                $quantities10[] = $product->quantity;
+                $product_quantity_10 = $this->getProductQuantity($quantities10);
+                $order->flachendes = $product_quantity_10;
+            }elseif ($product->sku == $sku11) {
+                $quantities11[] = $product->quantity;
+                $product_quantity_11 = $this->getProductQuantity($quantities11);
+                $order->handSmilsan = $product_quantity_11;
+            }elseif ($product->sku == $sku12) {
+                $quantities12[] = $product->quantity;
+                $product_quantity_12 = $this->getProductQuantity($quantities12);
+                $order->handSpender = $product_quantity_12;
+            }elseif ($product->sku == $sku13) {
+                $quantities13[] = $product->quantity;
+                $product_quantity_13 = $this->getProductQuantity($quantities13);
+                $order->stoff = $product_quantity_13;
+            }elseif ($product->sku == $sku14) {
+                $quantities14[] = $product->quantity;
+                $product_quantity_14 = $this->getProductQuantity($quantities14);
+                $order->medEinweg = $product_quantity_14;
+            }
+        }
         return $order;
     }
+  
     public function getProductQuantity($quantities){
         $quantity = $quantities[0];
         for ($i = 1; $i < count($quantities); $i++) {
             $quantity += $quantities[$i];
         }
         return $quantity;
-
     }
 }

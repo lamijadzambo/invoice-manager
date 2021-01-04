@@ -29,9 +29,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                @if(isset($project_id))
+                <a class="navbar-brand" href="{{ route('index', $project_id) }}">
                     {{ config('app.name') }}
                 </a>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
