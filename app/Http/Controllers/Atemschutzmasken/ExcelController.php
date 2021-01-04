@@ -27,7 +27,9 @@ class ExcelController extends Controller
 
     public function index($project_id)
     {
-        //$allOrders = Order::where('project_id', $project_id)->get();
+
+        $allOrders = Order::where('project_id', $project_id)->get();
+
         $savedOrder = OrderTransformer::save($allOrders, $project_id);
         $productName = (new ProductService)->fetchProductNames($project_id);
 

@@ -48,13 +48,36 @@ class OrderTransformer{
 
         foreach(json_decode($order->products) as $product){
 
-            $order->product_sku = $product->sku;
+            //dd($product);
 
-            $meta_data = json_encode($product->meta_data);
+            $sku01 = '001';
+            $sku02 = '001-1-1';
+            $sku03 = '001-1';
+            $sku04 = '002';
+            $sku05 = '003';
+            $sku06 = 'Hyg';
+            $sku07 = '004';
+            $sku08 = 'Med';
+            $sku09 = '14-01';
+            $sku10 = '006';
+            $sku11 = '009';
+            $sku12 = '007';
+            $sku13 = '008';
+            $sku14 = '00-11';
+            $sku15 = '14-01-1';
 
-            foreach(json_decode($meta_data) as $single_product){
+            if ($product->sku == $sku15) {
+                $quantities1[] = $product->quantity;
+                $product_quantity_1 = $this->getProductQuantity($quantities1);
+                $order->FFP2 = $product_quantity_1;
 
-                $order->product_value = $single_product->value;
+
+            }elseif ($product->sku == $sku02) {
+                $quantities2[] = $product->quantity;
+                $product_quantity_2 = $this->getProductQuantity($quantities2);
+                $order->FFP2 = $product_quantity_2;
+
+
 
             }
         }
@@ -62,6 +85,16 @@ class OrderTransformer{
         return $order;
 
 
+
+
+
+    }
+    public function getProductQuantity($quantities){
+        $quantity = $quantities[0];
+        for ($i = 1; $i < count($quantities); $i++) {
+            $quantity += $quantities[$i];
+        }
+        return $quantity;
 
     }
 }

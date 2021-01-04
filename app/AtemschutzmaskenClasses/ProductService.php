@@ -36,8 +36,6 @@ class ProductService{
             $apiProductNames[] = $product->name;
         }
 
-
-        //dd($apiProductNames);
         $product = new Product();
         foreach($apiProductNames as $productName){
 
