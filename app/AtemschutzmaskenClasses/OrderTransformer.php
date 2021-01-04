@@ -4,16 +4,16 @@ namespace App\AtemschutzmaskenClasses;
 
 class OrderTransformer{
 
-    public static function save($allOrders, $id)
+    public static function save($allOrders)
     {
         foreach ($allOrders as $item) {
-            $savedOrder[] = (new OrderTransformer)->createOrder($item, $id);
+            $savedOrder[] = (new OrderTransformer)->createOrder($item);
         }
 
         return $savedOrder;
     }
 
-    public function createOrder($item, $id)
+    public function createOrder($item)
     {
         $order = new Order;
         $order->id = $item->id;
@@ -42,13 +42,9 @@ class OrderTransformer{
         $order->shipping_state_code = $item->shipping_state_code;
         $order->shipping_post_code = $item->shipping_post_code;
         $order->shipping_country_code = $item->shipping_country_code;
-
         $order->products = $item->products;
 
-
-        foreach(json_decode($order->products) as $product){
-
-            //dd($product);
+        foreach(json_decode($order->products) as $product){         
 
             $sku01 = '001';
             $sku02 = '001-1-1';
@@ -65,29 +61,10 @@ class OrderTransformer{
             $sku13 = '008';
             $sku14 = '00-11';
             $sku15 = '14-01-1';
-
-            if ($product->sku == $sku15) {
-                $quantities1[] = $product->quantity;
-                $product_quantity_1 = $this->getProductQuantity($quantities1);
-                $order->FFP2 = $product_quantity_1;
-
-
-            }elseif ($product->sku == $sku02) {
-                $quantities2[] = $product->quantity;
-                $product_quantity_2 = $this->getProductQuantity($quantities2);
-                $order->FFP2 = $product_quantity_2;
-
-
-
-            }
+          
         }
 
         return $order;
-
-
-
-
-
     }
     public function getProductQuantity($quantities){
         $quantity = $quantities[0];

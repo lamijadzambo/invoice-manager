@@ -29,8 +29,7 @@ class ExcelController extends Controller
     {
 
         $allOrders = Order::where('project_id', $project_id)->get();
-
-        $savedOrder = OrderTransformer::save($allOrders, $project_id);
+        $savedOrder = OrderTransformer::save($allOrders);
         $productName = (new ProductService)->fetchProductNames($project_id);
 
         return view('filtered.index', compact('savedOrder', 'project_id', 'productName'));
