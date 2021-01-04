@@ -42,13 +42,9 @@ class OrderTransformer{
         $order->shipping_state_code = $item->shipping_state_code;
         $order->shipping_post_code = $item->shipping_post_code;
         $order->shipping_country_code = $item->shipping_country_code;
-
         $order->products = $item->products;
 
-
-        foreach(json_decode($order->products) as $product){
-
-            //dd($product);
+        foreach(json_decode($order->products) as $product){         
 
             $sku01 = '001';
             $sku02 = '001-1-1';
@@ -65,11 +61,10 @@ class OrderTransformer{
             $sku13 = '008';
             $sku14 = '00-11';
             $sku15 = '14-01-1';
-
+          
         }
 
         return $order;
-
     }
     public function getProductQuantity($quantities){
         $quantity = $quantities[0];
@@ -77,5 +72,6 @@ class OrderTransformer{
             $quantity += $quantities[$i];
         }
         return $quantity;
+
     }
 }
