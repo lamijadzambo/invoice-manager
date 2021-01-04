@@ -78,10 +78,12 @@ class OrderTransformer{
                 $order->FFP2 = $product_quantity_2;
 
 
+
             }
         }
 
         return $order;
+
 
 
 
@@ -93,5 +95,6 @@ class OrderTransformer{
             $quantity += $quantities[$i];
         }
         return $quantity;
+
     }
 }
