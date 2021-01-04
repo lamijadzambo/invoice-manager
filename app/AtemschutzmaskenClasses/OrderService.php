@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\AtemschutzmaskenClasses;
-
 
 use App\Models\Order;
 
@@ -34,7 +32,6 @@ class OrderService
         $order->discount_amount_tax = $apiOrder->discount_tax;
 
         foreach ($apiOrder->shipping_lines as $shipping) {
-
             $shipping_method_full = $shipping->method_title;
             $shipping_method_title = str_replace('Swiss Post Paket ', '', $shipping_method_full);
             $order->shipping_method_title = $shipping_method_title;
@@ -42,7 +39,6 @@ class OrderService
         }
 
         $order->order_total_tax_amount = $apiOrder->total_tax;
-
         $order->billing_first_name = $apiOrder->billing->first_name;
         $order->billing_last_name = $apiOrder->billing->last_name;
         $order->billing_company = $apiOrder->billing->company;
@@ -61,21 +57,18 @@ class OrderService
         $order->shipping_state_code = $apiOrder->shipping->state;
         $order->shipping_post_code = $apiOrder->shipping->postcode;
         $order->shipping_country_code = $apiOrder->shipping->country;
-
         $order->products = json_encode($apiOrder->line_items);
-
-
         $orderExist = Order::where('id', $apiOrder->id)->exists();
+
         if ($orderExist == false) {
             $numberOfSavedOrders = $apiOrder->id;
             $order->save();
         }
+      
         if (isset($numberOfSavedOrders)) {
             return $numberOfSavedOrders;
         }
     }
-
-
 
 }
 

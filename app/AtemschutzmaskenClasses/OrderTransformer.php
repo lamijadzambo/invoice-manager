@@ -9,7 +9,6 @@ class OrderTransformer{
         foreach ($orders as $item) {
             $transformedOrders[] = (new OrderTransformer)->createOrder($item);
         }
-
         return $transformedOrders;
     }
 
@@ -23,7 +22,6 @@ class OrderTransformer{
         $order->payment_method_title = $item->payment_method_title;
         $order->order_total_amount = $item->order_total_amount;
         $order->order_total_tax_amount = $item->order_total_tax_amount;
-
         $order->billing_company = $item->billing_company;
         $order->billing_first_name = $item->billing_first_name;
         $order->billing_last_name = $item->billing_last_name;
@@ -42,9 +40,7 @@ class OrderTransformer{
         $order->shipping_state_code = $item->shipping_state_code;
         $order->shipping_post_code = $item->shipping_post_code;
         $order->shipping_country_code = $item->shipping_country_code;
-
         $order->products = $item->products;
-
 
         foreach(json_decode($order->products) as $product){
 
@@ -62,7 +58,6 @@ class OrderTransformer{
             $sku12 = '00-11';
             $sku13 = '14-01';
             $sku14 = 'medEinweg';
-
 
             if ($product->sku == $sku01) {
                 $quantities1[] = $product->quantity;
@@ -122,22 +117,14 @@ class OrderTransformer{
                 $order->medEinweg = $product_quantity_14;
             }
         }
-
         return $order;
-
-
-
-
-
-
-
     }
+  
     public function getProductQuantity($quantities){
         $quantity = $quantities[0];
         for ($i = 1; $i < count($quantities); $i++) {
             $quantity += $quantities[$i];
         }
         return $quantity;
-
     }
 }

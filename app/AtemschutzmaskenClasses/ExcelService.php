@@ -65,12 +65,36 @@ class ExcelService implements FromCollection, WithHeadings, WithStyles, WithColu
         ];
     }
 
+    public function array(): array{
 
-    public function collection()
+        $dbOrders = Order::all();
+
+        $orders = OrderTransformer::save($dbOrders);
+
+        foreach($orders as $order){
+            $formattedOrderProductColors = array(
+                'company'               => $order->billing_company,
+                'name'                  => $order->billing_first_name,
+                'surname'               => $order->billing_last_name,
+                'email'                 => $order->billing_email,
+                'phone'                 => $order->billing_phone,
+                'orderNumber'           => $order->id,
+                'status'                => $order->order_status,
+                'hyg_hg_001'            => '',
+                'typII'                 => $order->typII
+            );
+
+            $colorExportData[] = $formattedOrderProductColors;
+        }
+
+        return $colorExportData;
+    }
+
+    /*public function collection()
     {
         return Order::all('billing_company', 'billing_last_name', 'billing_first_name', 'item', 'billing_email',
         'billing_phone', 'id', 'order_status', 'hyg_hg001', 'typ_II', 'typ_IIR', 'n95_hg002', 'schild_hg005', 'hyg_red_masks',
         'door_handler', 'med_einweg', 'stoffmasken', 'trennwand', 'thermometer', 'hand_disinfection', 'flachendes', 'hand_spender',
         'order_total_amount');
-    }
+    }*/
 }
