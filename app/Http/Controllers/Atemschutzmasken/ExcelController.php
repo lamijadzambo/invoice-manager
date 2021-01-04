@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Atemschutzmasken;
 //use App\Imports\BulkImport;
 
 use App\AtemschutzmaskenClasses\Product;
-use App\AtemschutzmaskenClasses\OrderExecutor;
+use App\AtemschutzmaskenClasses\OrderTransformer;
 use App\AtemschutzmaskenClasses\OrderService;
 use App\AtemschutzmaskenClasses\ProductAttributesService;
 use App\AtemschutzmaskenClasses\ExcelService;
@@ -27,9 +27,9 @@ class ExcelController extends Controller
 
     public function index($project_id)
     {
-        //$allOrders = Order::where('project_id', $project_id)->get();
-        $savedOrder = OrderExecutor::save($allOrders, $project_id);
-        $productName = (new ProductService)->fetchProductNames($project_id);             
+        $allOrders = Order::where('project_id', $project_id)->get();
+        $savedOrder = OrderTransformer::save($allOrders, $project_id);
+        $productName = (new ProductService)->fetchProductNames($project_id);
 
         return view('filtered.index', compact('savedOrder', 'project_id', 'productName'));
     }

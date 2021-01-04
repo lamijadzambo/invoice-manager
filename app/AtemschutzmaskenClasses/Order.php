@@ -32,7 +32,5 @@ class Order{
     public $products;
     public $product_sku;
     public $product_value;
-
-
-
+    public $stoff;
 }
