@@ -2,12 +2,12 @@
 
 namespace App\AtemschutzmaskenClasses;
 
-class OrderExecutor{
+class OrderTransformer{
 
     public static function save($allOrders, $id)
     {
         foreach ($allOrders as $item) {
-            $savedOrder[] = (new OrderExecutor)->createOrder($item, $id);
+            $savedOrder[] = (new OrderTransformer)->createOrder($item, $id);
         }
 
         return $savedOrder;
