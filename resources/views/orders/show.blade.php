@@ -114,6 +114,7 @@
                                         <th>PRODUCT NAME</th>
                                         <th>SKU</th>
                                         <th>PRODUCT PRICE</th>
+                                        <th>PRODUCT VARIATION</th>
                                         <th>PRODUCT QUANTITY</th>
                                         <th>PRODUCT SUBTOTAL</th>
                                         <th>SHIPPING TYPE</th>
@@ -121,23 +122,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach(json_decode($order->products) as $product)
                                         <tr>
                                             <td>{{ $productName = str_replace(['<span>', '</span>'], '', $product->name) }}</td>
                                             <td>{{ $product->sku }}</td>
                                             <td>{{$product->price}}</td>
+                                            @if($product->meta_data)
+                                                @foreach($product->meta_data as $item)
+                                                        <td>{{$item->value}}</td>
+                                                @endforeach
+                                            @elseif(!$product->meta_data)
+                                                <td>{{''}}</td>
+                                            @endif
                                             <td>{{$product->quantity}}</td>
                                             <td>{{$product->subtotal}}</td>
                                             <td>{{$order->shipping_method_title}}</td>
                                             <td>{{$order->order_shipping_amount}}</td>
                                         </tr>
                                     @endforeach
+
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>PRODUCT NAME</th>
                                         <th>SKU</th>
                                         <th>PRODUCT PRICE</th>
+                                        <th>PRODUCT VARIATION</th>
                                         <th>PRODUCT QUANTITY</th>
                                         <th>PRODUCT SUBTOTAL</th>
                                         <th>SHIPPING TYPE</th>

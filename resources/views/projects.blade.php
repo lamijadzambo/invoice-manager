@@ -5,18 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header">{{ __('Choose shop') }}</div>
                     <div class="card-body">
                         <form method="GET" role="form">
                             @csrf
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <select name="projects" id="project" class="form-control" onchange="doUrl(event)">
-                                        <option value="" selected disabled hidden>Choose project</option>
+                                        <option value="" selected disabled hidden>Choose shop</option>
                                         @foreach($projects as $project)
-
                                             <option value="{{ $project->id }} ">{{ $project->name }}</option>
-
                                         @endforeach
                                     </select>
                                 </div>
@@ -24,7 +22,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button><a id="linkNext" role="button" href="{{ url('index/'. $project->id) }}">Next</a> </button>
+                                    <button><a id="linkNext" href="{{ url('index/'. $project->id) }}">Next</a></button>
                                 </div>
                             </div>
                         </form>

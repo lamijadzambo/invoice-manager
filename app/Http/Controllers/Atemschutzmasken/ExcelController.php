@@ -28,12 +28,11 @@ class ExcelController extends Controller
     public function index($project_id)
     {
 
-        $allOrders = Order::where('project_id', $project_id)->get();
-
-        $savedOrder = OrderTransformer::save($allOrders, $project_id);
+        $dbOrders = Order::where('project_id', $project_id)->get();
+        $orders = OrderTransformer::transformOrder($dbOrders);
         $productName = (new ProductService)->fetchProductNames($project_id);
 
-        return view('filtered.index', compact('savedOrder', 'project_id', 'productName'));
+        return view('filtered.index', compact('orders', 'project_id', 'productName'));
     }
 
     public function exportOrdersExcel(){

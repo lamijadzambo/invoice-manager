@@ -52,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($savedOrder as $order)
+                        @foreach($orders as $order)
                             <tr>
                                 <td title="FIRMA">{{$order->billing_company}}</td>
                                 <td title="NAME">{{$order->billing_last_name}}</td>
@@ -62,28 +62,24 @@
                                 <td title="TELEFON"><a href="tel:{{$order->billing_phone}}">{{$order->billing_phone}}</a></td>
                                 <td class="BESTELL NO.">{{$order->id}}</td>
                                 <td title="STATUS">{{$order->order_status}}</td>
-
-                                @foreach(json_decode($order->products) as $product)
-
-                                  <td title="{{$product->name}}">{{$product->quantity}}</td>
-                                  <td title="{{$product->name}}">{{$product->quantity}}</td>
-                              {{--<td title="TYP II">{{$product->name}}</td>
-                                  <td title="HYG HG-001"></td>
-                                  <td title="TYP II"></td>
-                                  <td title="TYP IIR"></td>
-                                  <td title="N95 HG-002"></td>
-                                  <td title="SHILD HG-005"></td>
-                                  <td title="HYG ROTE MASKEN"></td>
-                                  <td title="DOORHANDLER"></td>
-                                  <td title="MED. EINWEG"></td>
-                                  <td title="STOFFMASKEN"></td>
-                                  <td title="TRENNWAND"></td>
-                                  <td title="THERMOMETER"></td>
-                                  <td title="HANDDESINF."></td>
-                                  <td title="FLÄCHENDES."></td>
-                                  <td title="HAND SPENDER"></td>--}}
-                                @endforeach
+                                @if($project_id == 1)
+                                <td title="TYP II">{{$order->typII}}</td>
+                                <td title="TYP IIR">{{$order->typIIR}}</td>
+                                <td title="N95 HG-002">{{$order->hg002}}</td>
+                                <td title="SHILD HG-005">{{$order->hg005}}</td>
+                                <td title="HYG ROTE MASKEN">{{$order->redMask}}</td>
+                                <td title="DOORHANDLER">{{$order->doorHandler}}</td>
+                                <td title="MED. EINWEG">{{$order->medEinweg}}</td>
+                                <td title="STOFFMASKEN">{{$order->stoff}}</td>
+                                <td title="TRENNWAND">{{$order->trennwand}}</td>
+                                <td title="THERMOMETER">{{$order->thermometer}}</td>
+                                <td title="HANDDESINF.">{{$order->handSmilsan}}</td>
+                                <td title="FLÄCHENDES.">{{$order->handsmittel}}</td>
+                                <td title="FLÄCHENDES.">{{$order->flachendes}}</td>
+                                <td title="HAND SPENDER">{{$order->handSpender}}</td>
+                                @endif
                                 <td title="BETRAG">{{$order->order_total_amount}}</td>
+
                             </tr>
                         @endforeach
                         </tbody>
