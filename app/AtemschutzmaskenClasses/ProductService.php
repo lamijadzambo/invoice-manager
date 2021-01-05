@@ -81,9 +81,34 @@ class ProductService{
             elseif ($productName == 'Spender für Handdesinfektion'){
                 $product->handSpender = 'HAND SPENDER';
             }
+            elseif ($productName == 'Flip Flop Deutschland'){
+                $product->germany = 'DEUTSCHLAND';
+            }
+            elseif ($productName == 'Flip Flop Schweiz'){
+                $product->switzerland = 'SCHWEIZ';
+            }
+            elseif ($productName == 'Flip Flop Italien'){
+                $product->italy = 'ITALIEN';
+            }
+            elseif ($productName == 'Flip Flop Frankreich'){
+                $product->france = 'FRANKREICH';
+            }
+            elseif ($productName == 'Flip Flop Niederlande'){
+                $product->netherlands = 'NIEDERLANDE';
+            }
+            elseif ($productName == 'Flip Flop Spanien'){
+                $product->spain = 'SPANIEN';
+            }
+            elseif ($productName == 'Flip Flop England'){
+                $product->england = 'ENGLAND';
+            }
+            elseif ($productName == 'Flip Flop Österreich'){
+                $product->austria = 'ÖSTERREICH';
+            }
+            elseif ($productName == 'Flip Flop Portugal'){
+                $product->portugal = 'PORTUGAL';
+            }
         }
         return $product;
     }
-
-
 }

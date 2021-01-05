@@ -29,7 +29,7 @@
                 <div class="col-12">
                     <div class="actions mb-5 text-right">
                         <a href="{{ route('get.orders', $project_id) }}" class="btn btn-primary"><i class="fas fa-file-import mr-1"></i> Update Orders</a>
-                        <a href="{{ route('excel-export') }}" class="btn btn-secondary"><i class="fas fa-file-download mr-1"></i> Export All Orders</a>
+                        <a href="{{ route('excel-export', $project_id) }}" class="btn btn-secondary"><i class="fas fa-file-download mr-1"></i> Export All Orders</a>
                         @if($project_id == 1)
                             <a href="{{ route('color-table-export') }}" class="btn btn-warning"><i class="fas fa-file-download mr-1"></i> Export Color Table</a>
                         @endif
