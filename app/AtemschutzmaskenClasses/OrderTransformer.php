@@ -49,6 +49,7 @@ class OrderTransformer{
                 '00-11', '14-01', 'medEinweg', '001FF', '002FF', '003FF', '004FF', '005FF', '006FF',
                 '007FF', '008FF', '009FF'
             ];
+
             $sku = $product->sku;
             $foundSku = in_array($sku, $skus);
 

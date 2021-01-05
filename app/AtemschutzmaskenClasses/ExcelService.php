@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\AtemschutzmaskenClasses;
 
 use App\Models\Order;
@@ -12,8 +11,8 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-
 class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWidths
+
 {
     use Exportable;
 
@@ -21,7 +20,6 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
     public function __construct ($project_id){
         $this->id = $project_id;
     }
-
 
 
     public function headings(): array
@@ -54,7 +52,6 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
             $england = 'England';
             $austria = 'Austria';
             $portugal = 'Portugal';
-
         }
 
         return [
@@ -66,20 +63,20 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
             'Telefon',
             'Bestell No.',
             'Status',
-            '' => $headerHg001 ?: $germany,
-            $headerTypII ? $headerTypII : $switzerland,
-            $headerTypIIR ? $headerTypIIR : $italy,
-            $headerHg002 ? $headerHg002 : $france,
-            $headerHg005 ? $headerHg005 : $netherlands,
-            $headerRedMask ? $headerRedMask : $spain,
-            $headerDoorHandler ? $headerDoorHandler : $england,
-            $headerMedEinweg ? $headerMedEinweg : $austria,
-            $headerStoff ? $headerStoff : $portugal,
-            $headerTrennwand ? $headerTrennwand : '',
-            $headerThermometer ? $headerThermometer : '',
-            $headerHanddesinf ? $headerHanddesinf : '',
-            $headerFlachendes ? $headerFlachendes : '',
-            $headerHandSpender ? $headerHandSpender : '',
+            isset($headerHg001) ?: $germany,
+            isset($headerTypII) ?: $switzerland,
+            isset($headerTypIIR) ?: $italy,
+            isset($headerHg002) ?: $france,
+            isset($headerHg005) ?: $netherlands,
+            isset($headerRedMask) ?: $spain,
+            isset($headerDoorHandler) ?: $england,
+            isset($headerMedEinweg) ?: $austria,
+            isset($headerStoff) ?: $portugal,
+            isset($headerTrennwand) ?: '',
+            isset($headerThermometer) ?: '',
+            isset($headerHanddesinf) ?: '',
+            isset($headerFlachendes) ?: '',
+            isset($headerHandSpender) ?: '',
             'Betrag'
         ];
     }
@@ -139,12 +136,8 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
                     'betrag'                => $order->order_total_amount,
                 );
 
-
-
             $colorExportData[] = $formattedOrderProductColors;
         }
-
         return $colorExportData;
     }
-
 }

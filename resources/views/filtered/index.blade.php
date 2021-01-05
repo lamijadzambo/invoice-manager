@@ -74,7 +74,6 @@
                                 <td title="HAND SPENDER">{{$order->handSpender}}</td>
                                 @endif
                                 <td title="BETRAG">{{$order->order_total_amount}}</td>
-
                             </tr>
                         @endforeach
                         </tbody>
