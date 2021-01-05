@@ -18,9 +18,14 @@ class Product{
     public $handsmittel;
     public $flachendes;
     public $handSpender;
-
-    public $flipflop;
-
-    /* ADD FLIPFLOP PRODUCT FIELDS*/
+    public $germany;
+    public $switzerland;
+    public $italy;
+    public $france;
+    public $netherlands;
+    public $spain;
+    public $england;
+    public $austria;
+    public $portugal;
 
 }

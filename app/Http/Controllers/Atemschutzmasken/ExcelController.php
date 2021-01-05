@@ -16,7 +16,7 @@ use Automattic\WooCommerce\Client;
 class ExcelController extends Controller
 {
     private $orderRepository;
-  
+
     public function __construct(ApplicationRepositoryInterface $orderRepository)
     {
         $this->orderRepository = $orderRepository;
@@ -30,8 +30,8 @@ class ExcelController extends Controller
         return view('filtered.index', compact('orders', 'project_id', 'productName'));
     }
 
-    public function exportOrdersExcel(){
-        return (new ExcelService())->download('Bestellungen.xlsx');
+    public function exportOrdersExcel($project_id){
+        return (new ExcelService($project_id))->download('Bestellungen.xlsx');
     }
 
     public function exportProductColorsExcel(){

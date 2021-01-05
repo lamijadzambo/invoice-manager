@@ -33,20 +33,15 @@
                                     <th class="rotate"><div><span>{{$productName->handSpender ?: 'HAND SPENDER'}}</span></div></th>
 
                                 @elseif($project_id == 2)
-                                    <th class="rotate"><div><span>{{($productName->flipflop ?: 'FLIPFLOP 1')}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 2'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 3'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 4'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 5'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 6'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 7'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 8'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 9'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 10'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 11'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 12'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 13'}}</span></div></th>
-                                    <th class="rotate"><div><span>{{$productName->flipflop ?: 'FLIPFLOP 14'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{($productName->germany ?: 'DEUTSCHLAND')}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->switzerland ?: 'SCHWEIZ'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->italy ?: 'ITALIEN'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->france ?: 'FRANKREICH'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->netherlands ?: 'NIEDERLANDE'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->spain ?: 'SPANIEN'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->england ?: 'ENGLAND'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->austria ?: 'ÖSTERREICH'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->portugal ?: 'PORTUGAL'}}</span></div></th>
                                 @endif
                                 <th class="rotate"><div><span>BETRAG</span></div></th>
                             </tr>
@@ -62,16 +57,16 @@
                                 <td title="TELEFON"><a href="tel:{{$order->billing_phone}}">{{$order->billing_phone}}</a></td>
                                 <td class="BESTELL NO.">{{$order->id}}</td>
                                 <td title="STATUS">{{$order->order_status}}</td>
+                                <td title="{{$order->germany ?: 'TYPII' }}">{{$order->typII ? $order->typII : ($order->germany ? $order->germany : '')}}</td>
+                                <td title="{{$order->switzerland ?: 'TYPIIR' }}">{{$order->typIIR ?: $order->switzerland}}</td>
+                                <td title="{{$order->italy ?: 'HG-002' }}">{{$order->hg002 ?: $order->italy}}</td>
+                                <td title="{{$order->france ?: 'HG-005'}}">{{$order->hg005 ?: $order->france}}</td>
+                                <td title="{{$order->netherlands ?: 'HYG ROTE MASKEN'}}">{{$order->redMask ?: $order->netherlands}}</td>
+                                <td title="{{$order->spain ?: 'DOORHANDLER'}}">{{$order->doorHandler ?: $order->spain}}</td>
+                                <td title="{{$order->england ?: 'MED. EINWEG'}}">{{$order->medEinweg ?: $order->england}}</td>
+                                <td title="{{$order->austria ?: 'STOFFMASKEN'}}">{{$order->stoff ?: $order->austria}}</td>
+                                <td title="{{$order->portugal ?: 'TRENNWAND'}}">{{$order->trennwand ?: $order->portugal}}</td>
                                 @if($project_id == 1)
-                                <td title="TYP II">{{$order->typII}}</td>
-                                <td title="TYP IIR">{{$order->typIIR}}</td>
-                                <td title="N95 HG-002">{{$order->hg002}}</td>
-                                <td title="SHILD HG-005">{{$order->hg005}}</td>
-                                <td title="HYG ROTE MASKEN">{{$order->redMask}}</td>
-                                <td title="DOORHANDLER">{{$order->doorHandler}}</td>
-                                <td title="MED. EINWEG">{{$order->medEinweg}}</td>
-                                <td title="STOFFMASKEN">{{$order->stoff}}</td>
-                                <td title="TRENNWAND">{{$order->trennwand}}</td>
                                 <td title="THERMOMETER">{{$order->thermometer}}</td>
                                 <td title="HANDDESINF.">{{$order->handSmilsan}}</td>
                                 <td title="FLÄCHENDES.">{{$order->handsmittel}}</td>
@@ -79,7 +74,6 @@
                                 <td title="HAND SPENDER">{{$order->handSpender}}</td>
                                 @endif
                                 <td title="BETRAG">{{$order->order_total_amount}}</td>
-
                             </tr>
                         @endforeach
                         </tbody>

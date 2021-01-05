@@ -48,7 +48,7 @@ Route::get('/order-status/{id}', [OrderController::class, 'setStatus'])->name('s
 
     // EXCEL EXPORT
     Route::get('/index/filtered/{project_id}', [ExcelController::class, 'index'])->name('excel.index');
-    Route::get('/export', [ExcelController::class, 'exportOrdersExcel'])->name('excel-export');
+    Route::get('/export/{project_id}', [ExcelController::class, 'exportOrdersExcel'])->name('excel-export');
     Route::get('/export-color', [ExcelController::class, 'exportProductColorsExcel'])->name('color-table-export');
     //Route::get('importExportView', [ImportExportController::class, 'importExportView']);
     //Route::post('import', [ImportExportController::class, 'import'])->name('import');

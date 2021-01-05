@@ -3,18 +3,57 @@
 namespace App\AtemschutzmaskenClasses;
 
 use App\Models\Order;
+use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ExcelService implements WithHeadings, WithStyles, WithColumnWidths
+class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWidths
+
 {
     use Exportable;
 
+    public $id;
+    public function __construct ($project_id){
+        $this->id = $project_id;
+    }
+
+
     public function headings(): array
     {
+
+        $id = $this->id;
+
+        if($id == 1){
+            $headerHg001 = 'HYG HG-001';
+            $headerTypII = 'Typ II';
+            $headerTypIIR = 'Typ IIR';
+            $headerHg002 = 'N95 HG-002';
+            $headerHg005 = 'SHILD HG-005';
+            $headerRedMask = 'HYG Rote Masken';
+            $headerDoorHandler = 'Doorhandler';
+            $headerMedEinweg = 'Med. Einweg';
+            $headerStoff = 'Stoffmasken';
+            $headerTrennwand = 'Trennwand';
+            $headerThermometer = 'Thermometer';
+            $headerHanddesinf = 'Handdesinf.';
+            $headerFlachendes = 'Flachendes';
+            $headerHandSpender = 'Hand Spender';
+        }elseif($id == 2){
+            $switzerland = 'Switzerland';
+            $germany = 'Germany';
+            $italy = 'Italy';
+            $france = 'France';
+            $netherlands = 'Netherlands';
+            $spain = 'Spain';
+            $england = 'England';
+            $austria = 'Austria';
+            $portugal = 'Portugal';
+        }
+
         return [
             'Firma',
             'Name',
@@ -24,20 +63,21 @@ class ExcelService implements WithHeadings, WithStyles, WithColumnWidths
             'Telefon',
             'Bestell No.',
             'Status',
-            'HYG HG-001',
-            'Typ II',
-            'Typ IIR',
-            'N95 HG-002',
-            'HYG Rote Masken',
-            'Doorhandler',
-            'Med. Einweg',
-            'Stoffmasken',
-            'Trefnnwand',
-            'Thermometer',
-            'Handdesinf.',
-            'Flachendes',
-            'Hand Spender',
-            'Betrag',
+            isset($headerHg001) ?: $germany,
+            isset($headerTypII) ?: $switzerland,
+            isset($headerTypIIR) ?: $italy,
+            isset($headerHg002) ?: $france,
+            isset($headerHg005) ?: $netherlands,
+            isset($headerRedMask) ?: $spain,
+            isset($headerDoorHandler) ?: $england,
+            isset($headerMedEinweg) ?: $austria,
+            isset($headerStoff) ?: $portugal,
+            isset($headerTrennwand) ?: '',
+            isset($headerThermometer) ?: '',
+            isset($headerHanddesinf) ?: '',
+            isset($headerFlachendes) ?: '',
+            isset($headerHandSpender) ?: '',
+            'Betrag'
         ];
     }
 
@@ -64,22 +104,38 @@ class ExcelService implements WithHeadings, WithStyles, WithColumnWidths
 
     public function array(): array{
 
-        $dbOrders = Order::all();
-        $orders = OrderTransformer::save($dbOrders);
+        $id = $this->id;
+        $dbOrders = Order::where('project_id', $id)->get();
+        $orders = OrderTransformer::transformOrder($dbOrders);
 
         foreach($orders as $order){
-            $formattedOrderProductColors = array(
-                'company'               => $order->billing_company,
-                'name'                  => $order->billing_first_name,
-                'surname'               => $order->billing_last_name,
-                'email'                 => $order->billing_email,
-                'phone'                 => $order->billing_phone,
-                'orderNumber'           => $order->id,
-                'status'                => $order->order_status,
-                'hyg_hg_001'            => '',
-                'typII'                 => $order->typII,
-                'typIIR'                 => $order->typIIR
-            );
+
+                $formattedOrderProductColors = array(
+                    'company'               => $order->billing_company,
+                    'name'                  => $order->billing_first_name,
+                    'surname'               => $order->billing_last_name,
+                    'emptyColumn'           => '',
+                    'email'                 => $order->billing_email,
+                    'phone'                 => $order->billing_phone,
+                    'orderNumber'           => $order->id,
+                    'status'                => $order->order_status,
+                    'hyg_hg_001'            => $order->hg001 ?: $order->germany,
+                    'typII'                 => $order->typII ?: $order->switzerland,
+                    'typIIR'                => $order->typIIR ?: $order->italy,
+                    'hg002'                 => $order->hg002 ?: $order->france,
+                    'hg005'                 => $order->hg005 ?: $order->netherlands,
+                    'redMask'               => $order->redMask ?: $order->spain,
+                    'doorHandler'           => $order->doorHandler ?: $order->england,
+                    'medEinweg'             => $order->medEinweg ?: $order->austria,
+                    'stoff'                 => $order->stoff ?: $order->portugal,
+                    'trennwand'             => $order->trennwand,
+                    'thermometer'           => $order->thermometer,
+                    'handDesif'             => $order->handSmilsan,
+                    'flachendes'            => $order->flachendes,
+                    'handSpender'           => $order->handSpender,
+                    'betrag'                => $order->order_total_amount,
+                );
+
             $colorExportData[] = $formattedOrderProductColors;
         }
         return $colorExportData;

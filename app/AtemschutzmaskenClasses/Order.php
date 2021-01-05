@@ -35,6 +35,7 @@ class Order{
 
     public $typII;
     public $typIIR;
+    public $hg001;
     public $hg002;
     public $hg005;
     public $redMask;
@@ -47,5 +48,14 @@ class Order{
     public $handSpender;
     public $stoff;
     public $medEinweg;
+    public $germany;
+    public $switzerland;
+    public $italy;
+    public $france;
+    public $netherlands;
+    public $spain;
+    public $england;
+    public $austria;
+    public $portugal;
 
 }
