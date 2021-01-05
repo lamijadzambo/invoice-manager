@@ -4,6 +4,7 @@
 namespace App\AtemschutzmaskenClasses;
 
 use App\Models\Order;
+use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
@@ -12,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 
-class ExcelService implements FromCollection, WithHeadings, WithStyles, WithColumnWidths
+class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWidths
 {
     use Exportable;
 
@@ -31,11 +32,12 @@ class ExcelService implements FromCollection, WithHeadings, WithStyles, WithColu
             'Typ II',
             'Typ IIR',
             'N95 HG-002',
+            'SHILD HG-005',
             'HYG Rote Masken',
             'Doorhandler',
             'Med. Einweg',
             'Stoffmasken',
-            'Trefnnwand',
+            'Trennwand',
             'Thermometer',
             'Handdesinf.',
             'Flachendes',
@@ -69,19 +71,33 @@ class ExcelService implements FromCollection, WithHeadings, WithStyles, WithColu
 
         $dbOrders = Order::all();
 
-        $orders = OrderTransformer::save($dbOrders);
+        $orders = OrderTransformer::transformOrder($dbOrders);
 
         foreach($orders as $order){
             $formattedOrderProductColors = array(
                 'company'               => $order->billing_company,
                 'name'                  => $order->billing_first_name,
                 'surname'               => $order->billing_last_name,
+                'emptyColumn'           => '',
                 'email'                 => $order->billing_email,
                 'phone'                 => $order->billing_phone,
                 'orderNumber'           => $order->id,
                 'status'                => $order->order_status,
-                'hyg_hg_001'            => '',
-                'typII'                 => $order->typII
+                'hyg_hg_001'            => $order->hg001,
+                'typII'                 => $order->typII,
+                'typIIR'                => $order->typIIR,
+                'hg002'                 => $order->hg002,
+                'hg005'                 => $order->hg005,
+                'redMask'               => $order->redMask,
+                'doorHandler'           => $order->doorHandler,
+                'medEinweg'             => $order->medEinweg,
+                'stoff'                 => $order->stoff,
+                'trennwand'             => $order->trennwand,
+                'thermometer'           => $order->thermometer,
+                'handDesif'             => $order->handSmilsan,
+                'flachendes'            => $order->flachendes,
+                'handSpender'           => $order->handSpender,
+                'betrag'                => $order->order_total_amount,
             );
 
             $colorExportData[] = $formattedOrderProductColors;
@@ -90,11 +106,4 @@ class ExcelService implements FromCollection, WithHeadings, WithStyles, WithColu
         return $colorExportData;
     }
 
-    /*public function collection()
-    {
-        return Order::all('billing_company', 'billing_last_name', 'billing_first_name', 'item', 'billing_email',
-        'billing_phone', 'id', 'order_status', 'hyg_hg001', 'typ_II', 'typ_IIR', 'n95_hg002', 'schild_hg005', 'hyg_red_masks',
-        'door_handler', 'med_einweg', 'stoffmasken', 'trennwand', 'thermometer', 'hand_disinfection', 'flachendes', 'hand_spender',
-        'order_total_amount');
-    }*/
 }
