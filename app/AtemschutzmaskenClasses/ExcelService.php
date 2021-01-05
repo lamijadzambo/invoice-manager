@@ -92,6 +92,15 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
             'F' => 20,
             'G' => 20,
             'H' => 20,
+            'I' => 20,
+            'J' => 20,
+            'K' => 20,
+            'L' => 20,
+            'M' => 20,
+            'N' => 20,
+            'O' => 20,
+            'P' => 20,
+            'Q' => 20,
         ];
     }
 
