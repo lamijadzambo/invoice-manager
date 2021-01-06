@@ -52,6 +52,7 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
             $england = 'England';
             $austria = 'Austria';
             $portugal = 'Portugal';
+            $columnLimit = '';
         }
 
         return [
@@ -63,21 +64,21 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
             'Telefon',
             'Bestell No.',
             'Status',
-            isset($headerHg001) ?: $germany,
-            isset($headerTypII) ?: $switzerland,
-            isset($headerTypIIR) ?: $italy,
-            isset($headerHg002) ?: $france,
-            isset($headerHg005) ?: $netherlands,
-            isset($headerRedMask) ?: $spain,
-            isset($headerDoorHandler) ?: $england,
-            isset($headerMedEinweg) ?: $austria,
-            isset($headerStoff) ?: $portugal,
-            isset($headerTrennwand) ?: '',
-            isset($headerThermometer) ?: '',
-            isset($headerHanddesinf) ?: '',
-            isset($headerFlachendes) ?: '',
-            isset($headerHandSpender) ?: '',
-            'Betrag'
+            isset($headerHg001) ? $headerHg001 : $germany,
+            isset($headerTypII) ? $headerTypII : $switzerland,
+            isset($headerTypIIR) ? $headerTypIIR : $italy,
+            isset($headerHg002) ? $headerHg002 : $france,
+            isset($headerHg005) ? $headerHg005 : $netherlands,
+            isset($headerRedMask) ? $headerRedMask : $spain,
+            isset($headerDoorHandler) ? $headerDoorHandler : $england,
+            isset($headerMedEinweg) ? $headerMedEinweg : $austria,
+            isset($headerStoff) ? $headerStoff : $portugal,
+            isset($headerTrennwand) ? $headerTrennwand : 'Betrag',
+            isset($headerThermometer) ? $headerThermometer : '',
+            isset($headerHanddesinf) ? $headerHanddesinf : '',
+            isset($headerFlachendes) ? $headerFlachendes : '',
+            isset($headerHandSpender) ? $headerHandSpender : '',
+            isset($columnLimit) ? '' : 'Betrag',
         ];
     }
 
@@ -116,7 +117,9 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
         $id = $this->id;
         $dbOrders = Order::where('project_id', $id)->get();
         $orders = OrderTransformer::transformOrder($dbOrders);
-
+        if($id == 2){
+            $columnLimit = '';
+        }
         foreach($orders as $order){
 
                 $formattedOrderProductColors = array(
@@ -137,16 +140,19 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
                     'doorHandler'           => $order->doorHandler ?: $order->england,
                     'medEinweg'             => $order->medEinweg ?: $order->austria,
                     'stoff'                 => $order->stoff ?: $order->portugal,
-                    'trennwand'             => $order->trennwand,
+                    'trennwand'             => isset($columnLimit) ? $order->order_total_amount : $order->trennwand,
                     'thermometer'           => $order->thermometer,
-                    'handDesif'             => $order->handSmilsan,
+                    'handDesif'             => $order->handsmittel,
                     'flachendes'            => $order->flachendes,
                     'handSpender'           => $order->handSpender,
-                    'betrag'                => $order->order_total_amount,
+                    'betrag'                => isset($columnLimit) ? $columnLimit : $order->order_total_amount,
                 );
 
             $colorExportData[] = $formattedOrderProductColors;
         }
         return $colorExportData;
     }
+
+
+
 }

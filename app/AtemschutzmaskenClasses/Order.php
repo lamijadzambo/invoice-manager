@@ -33,21 +33,20 @@ class Order{
     public $product_sku;
     public $product_value;
 
+    public $hg001;
     public $typII;
     public $typIIR;
-    public $hg001;
     public $hg002;
     public $hg005;
     public $redMask;
     public $doorHandler;
+    public $medEinweg;
+    public $stoff;
     public $trennwand;
     public $thermometer;
     public $handsmittel;
     public $flachendes;
-    public $handSmilsan;
     public $handSpender;
-    public $stoff;
-    public $medEinweg;
     public $germany;
     public $switzerland;
     public $italy;
