@@ -6,7 +6,6 @@ use App\AtemschutzmaskenClasses\ApiKeys;
 use App\AtemschutzmaskenClasses\OrderService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use Automattic\WooCommerce\Client;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller

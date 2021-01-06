@@ -3,7 +3,6 @@
 namespace App\AtemschutzmaskenClasses;
 
 class Product{
-
     public $hg001;
     public $typII;
     public $typIIR;
@@ -27,5 +26,4 @@ class Product{
     public $england;
     public $austria;
     public $portugal;
-
 }

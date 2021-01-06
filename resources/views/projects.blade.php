@@ -10,6 +10,7 @@
                         <form method="GET" role="form">
                             @csrf
                             <div class="form-group row">
+                                <label for="project" class="col-md-4 col-form-label text-md-right">{{ __('Shop:') }}</label>
                                 <div class="col-md-6">
                                     <select name="projects" id="project" class="form-control" onchange="doUrl(event)">
                                         <option value="" selected disabled hidden>Choose shop</option>
