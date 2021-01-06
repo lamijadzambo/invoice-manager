@@ -10,11 +10,14 @@ use PhpOffice\PhpWord\TemplateProcessor;
 
 class WordService extends PhpWord
 {
-
-    public static function generateManDoc($order)
+    public static function generateManDoc($order, $project_id)
     {
         Settings::setOutputEscapingEnabled(true); // allows '&' in word docs
-        $templateProcessor = new TemplateProcessor('word-template/order-word-template.docx');
+            if($project_id == 1){
+                $templateProcessor = new TemplateProcessor('word-template/atemschutz-word-template.docx');
+            }elseif ($project_id == 2){
+                $templateProcessor = new TemplateProcessor('word-template/flipflop-word-template.docx');
+            }
         $templateProcessor->setValue('company', $order->shipping_company);
         $templateProcessor->setValue('name', $order->shipping_first_name);
         $templateProcessor->setValue('surname', $order->shipping_last_name);
@@ -50,7 +53,6 @@ class WordService extends PhpWord
                 $templateProcessor->setValue('quantity' . $i, $place_holder);
                 $templateProcessor->setValue('stk' . $i, $place_holder);
             }
-
         $name = $order->shipping_first_name;
         $shipping_first_name = preg_replace('/[^A-Za-z0-9\-]/', '', $name);
         $surname = $order->shipping_last_name;
@@ -63,10 +65,14 @@ class WordService extends PhpWord
     }
 
 
-    public static function generateWomanDoc($order)
+    public static function generateWomanDoc($order, $project_id)
     {
         Settings::setOutputEscapingEnabled(true); // allows '&' in word docs
-        $templateProcessor = new TemplateProcessor('word-template/order-word-template.docx');
+            if($project_id == 1){
+                $templateProcessor = new TemplateProcessor('word-template/atemschutz-word-template.docx');
+            }elseif ($project_id == 2){
+                $templateProcessor = new TemplateProcessor('word-template/flipflop-word-template.docx');
+            }
         $templateProcessor->setValue('company', $order->shipping_company);
         $templateProcessor->setValue('name', $order->shipping_first_name);
         $templateProcessor->setValue('surname', $order->shipping_last_name);
@@ -102,7 +108,6 @@ class WordService extends PhpWord
                 $templateProcessor->setValue('quantity' . $i, $place_holder);
                 $templateProcessor->setValue('stk' . $i, $place_holder);
             }
-
         $name = $order->shipping_first_name;
         $shipping_first_name = preg_replace('/[^A-Za-z0-9\-]/', '', $name);
         $surname = $order->shipping_last_name;

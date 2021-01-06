@@ -65,12 +65,11 @@
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="mr-2 d-flex flex-column">
-                                                <a href="{{ route('generate-man-pdf', $order->id) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
-                                                <a href="{{ route('generate-woman-pdf', $order->id) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>
-                                            </div>
+                                                <a href="{{ route('generate-man-pdf', ['project_id'=>$project_id, 'id'=>$order->id] ) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
+                                                <a href="{{ route('generate-woman-pdf', ['project_id'=>$project_id, 'id'=>$order->id]) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>                                            </div>
                                             <div class="mr-2 d-flex flex-column">
-                                                <a href="{{ route('generate-man-doc', $order->id) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Man</a>
-                                                <a href="{{ route('generate-woman-doc', $order->id) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Woman</a>
+                                                <a href="{{ route('generate-man-doc', ['project_id'=>$project_id, 'id'=>$order->id]) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Man</a>
+                                                <a href="{{ route('generate-woman-doc', ['project_id'=>$project_id, 'id'=>$order->id]) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Woman</a>
                                             </div>
                                             <div class="d-flex flex-column">
                                                 <a href="{{ route('show.order', ['project_id'=>$project_id, 'id'=>$order->id]) }}" class="btn btn-secondary action-buttons my-1"><i class="fas fa-directions mr-1"></i> View Order</a>

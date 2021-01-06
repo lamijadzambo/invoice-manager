@@ -22,9 +22,16 @@
             font-size: 16px;
         }
 
-        .header-image {
+        .header-image-masks {
             margin-bottom: 85px;
             margin-top: -20px;
+        }
+
+        .header-image-flipflop img {
+            width: 200px;
+            margin-bottom: 85px;
+            margin-top: -20px;
+            margin-left: -20px;
         }
 
         .customer-info {
@@ -57,7 +64,14 @@
             padding-left: 10px;
             margin-top: 15px;
             border: 1px solid black;
-
+        }
+        .green-bar {
+            height: 15px;
+            background-color: #305c24;
+            color: #ffffff;
+            padding-left: 10px;
+            margin-top: 15px;
+            border: 1px solid black;
         }
 
         .product-name-quantity {
@@ -105,20 +119,33 @@
             margin-bottom: 50px;
         }
 
-        .footer-image img {
+        .footer-image-masks img {
             margin-left: 230px;
             padding-top: 38px;
             width: 90px;
+        }
+
+        .footer-image-flipflop img {
+            margin-left: 265px;
+            padding-top: 18px;
+            width: 220px;
         }
     </style>
 </head>
 @if(Auth::check())
 <body>
 
+
 <div class="container">
-    <div class="header-image">
-        <img src="{{asset('img/masken.png')}}" style="width: 100px; height: 120px;"/>
-    </div>
+    @if($project_id == 1)
+        <div class="header-image-masks">
+            <img src="{{asset('img/masken.png')}}" style="width: 100px; height: 120px;"/>
+        </div>
+    @elseif($project_id == 2)
+        <div class="header-image-flipflop">
+            <img src="{{asset('img/flipflop.png')}}"/>
+        </div>
+    @endif
     <div class="customer-info">
         <strong>{{$order->shipping_company}}</strong><br>
         <strong>{{$order->shipping_first_name}} {{$order->shipping_last_name}}</strong><br>
@@ -139,8 +166,11 @@
     <div class="thank-customer">
         {{App\Models\Order::$message_man}} {{$order->shipping_last_name}}<br/>{{App\Models\Order::$thx_message}}
     </div>
-
-    <div class="red-bar">Artikel-/Leistungsbeschrieb</div>
+        @if($project_id == 1)
+            <div class="red-bar">Artikel-/Leistungsbeschrieb</div>
+        @elseif($project_id == 2)
+            <div class="green-bar">Artikel-/Leistungsbeschrieb</div>
+        @endif
 
     @foreach(json_decode($order->products) as $product)
         <div class="product-name-quantity">
@@ -176,20 +206,40 @@
                 <th></th>
             </tr>
             <tr>
-                <td>
-                    <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
-                        Hinterrietstrasse 1<br>
-                        ch-8317 Tagelswangen <br>
-                        + 41 43 321 29 29 <br>
-                        info@atemschutzmasken24.ch <br>
-                        www.atemschutzmasken24.ch<br>
-                    </span>
-                </td>
-                <td>
-                    <span class="footer-image">
-                        <img src="{{asset('img/masken.png')}}"/>
-                    </span>
-                </td>
+                @if($project_id == 1)
+                    <td>
+                        <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
+                            Hinterrietstrasse 1<br>
+                            ch-8317 Tagelswangen <br>
+                            + 41 43 321 29 29 <br>
+                            info@atemschutzmasken24.ch <br>
+                            www.atemschutzmasken24.ch<br>
+                        </span>
+                    </td>
+                @elseif($project_id == 2)
+                    <td>
+                        <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
+                            Hinterrietstrasse 1<br>
+                            ch-8317 Tagelswangen <br>
+                            + 41 44 952 30 25 <br>
+                            info@grass-flipflop.com <br>
+                            www.grass-flipflop.com<br>
+                        </span>
+                    </td>
+                @endif
+                @if($project_id == 1)
+                    <td>
+                        <span class="footer-image-masks">
+                            <img src="{{asset('img/masken.png')}}"/>
+                        </span>
+                    </td>
+                @elseif($project_id == 2)
+                    <td>
+                        <span class="footer-image-flipflop">
+                            <img src="{{asset('img/flipflop.png')}}"/>
+                        </span>
+                    </td>
+                @endif
             </tr>
         </table>
     </div>
