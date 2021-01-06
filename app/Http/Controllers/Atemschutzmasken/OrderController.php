@@ -6,8 +6,8 @@ use App\AtemschutzmaskenClasses\OrderService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Project;
+
 use Automattic\WooCommerce\Client;
-use Automattic\WooCommerce\HttpClient\HttpClientException;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -28,6 +28,9 @@ class OrderController extends Controller
 
     public function get(Request $request, $project_id)
     {
+
+        // code below needs to be moved to a helper class that returns $order
+
         if($project_id == 1){
             $endPoint = env('WOO_ENDPOINT');
             $clientKey = env('WOO_CK');
@@ -52,6 +55,9 @@ class OrderController extends Controller
         ];
 
         $orders = $woocommerce->get('orders', $params);
+
+        // the above code needs to be moved to a helper class that returns $order
+
         $numberOfSavedOrders = OrderService::save($orders, $project_id);
         $orderIds = array_filter($numberOfSavedOrders);
         $order = end($orderIds);
