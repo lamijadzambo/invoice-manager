@@ -62,7 +62,7 @@ class ProductAttributesService implements FromArray, WithHeadings, WithStyles, W
             $products = json_decode($order->products);
             $black = ''; $charcoal = ''; $white = ''; $navy = ''; $orange = '';
             foreach ($products as $product){
-                if($product->sku == '14-01'){
+                if($product->sku == '009AM'){
                     $color = $product->meta_data[0]->value;
                     if ($color === 'schwarz') {
                         $black = $product->quantity;
