@@ -47,6 +47,20 @@
                             @if(isset($project_id))
                             <li class="nav-item"><a href="{{ route('index', $project_id) }}" class="nav-link">Home</a></li>
                                 <li class="nav-item"><a href="{{ route('excel.index', $project_id) }}" class="nav-link">View Filtered Orders</a></li>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('Choose shop') }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('index', 1) }}">
+                                            {{ __('Atemschutzmasken') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('index', 2) }}">
+                                            {{ __('FlipFlop') }}
+                                        </a>
+                                    </div>
+                                </li>
 {{--                            <li class="nav-item"><a href="{{route('upload-file')}}" class="nav-link">Upload Invoice</a></li>--}}
                             @endif
                         </ul>
