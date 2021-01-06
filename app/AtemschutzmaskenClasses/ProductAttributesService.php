@@ -93,7 +93,6 @@ class ProductAttributesService implements FromArray, WithHeadings, WithStyles, W
 
             $colorExportData[] = $formattedOrderProductColors;
         }
-
         return $colorExportData;
     }
 }

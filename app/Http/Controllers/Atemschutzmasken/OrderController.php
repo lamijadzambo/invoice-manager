@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Atemschutzmasken;
 
+use App\AtemschutzmaskenClasses\ApiKeys;
 use App\AtemschutzmaskenClasses\OrderService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use Automattic\WooCommerce\Client;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -26,36 +27,7 @@ class OrderController extends Controller
 
     public function get(Request $request, $project_id)
     {
-
-        // code below needs to be moved to a helper class that returns $order
-
-        if($project_id == 1){
-            $endPoint = env('WOO_ENDPOINT');
-            $clientKey = env('WOO_CK');
-            $clientSecret = env('WOO_CS');
-        }elseif ($project_id == 2){
-            $endPoint = env('WOO_ENDPOINT_FLIPFLOP');
-            $clientKey = env('WOO_CK_FLIPFLOP');
-            $clientSecret = env('WOO_CS_FLIPFLOP');
-        }
-
-        $woocommerce = new Client( $endPoint, $clientKey, $clientSecret,
-            [
-                'wp_api' => true,
-                'version' => 'wc/v3',
-                'query_string_auth' => true,
-            ]
-        );
-
-        $params = [
-            'per_page' => 100,
-            'orderby' => 'date'
-        ];
-
-        $orders = $woocommerce->get('orders', $params);
-
-        // the above code needs to be moved to a helper class that returns $order
-
+        $orders = ApiKeys::getApiOrders($project_id);
         $numberOfSavedOrders = OrderService::save($orders, $project_id);
         $orderIds = array_filter($numberOfSavedOrders);
         $order = end($orderIds);

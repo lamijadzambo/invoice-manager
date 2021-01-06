@@ -2,37 +2,11 @@
 
 namespace App\AtemschutzmaskenClasses;
 
-use Automattic\WooCommerce\Client;
-
 class ProductService{
 
-    public function fetchProductNames($project_id){
+    public static function fetchProductNames($project_id){
 
-
-        if($project_id == 1){
-            $endPoint = env('WOO_ENDPOINT');
-            $clientKey = env('WOO_CK');
-            $clientSecret = env('WOO_CS');
-        }elseif ($project_id == 2){
-            $endPoint = env('WOO_ENDPOINT_FLIPFLOP');
-            $clientKey = env('WOO_CK_FLIPFLOP');
-            $clientSecret = env('WOO_CS_FLIPFLOP');
-        }
-
-        $woocommerce = new Client( $endPoint, $clientKey, $clientSecret,
-            [
-                'wp_api' => true,
-                'version' => 'wc/v3',
-                'query_string_auth' => true,
-            ]
-        );
-
-        $params = [
-            'per_page' => 100,
-            'orderby' => 'date'
-        ];
-
-        $products = $woocommerce->get('products', $params);
+        $products = ApiKeys::getApiProducts($project_id);
 
         foreach ($products as $product){
             $apiProductNames[] = $product->name;

@@ -3,7 +3,6 @@
 namespace App\AtemschutzmaskenClasses;
 
 class Order{
-
     public $id;
     public $order_status;
     public $order_date;
@@ -56,5 +55,4 @@ class Order{
     public $england;
     public $austria;
     public $portugal;
-
 }

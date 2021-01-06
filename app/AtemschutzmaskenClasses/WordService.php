@@ -10,8 +10,7 @@ use PhpOffice\PhpWord\TemplateProcessor;
 
 class WordService extends PhpWord
 {
-
-    public function generateManDoc($order, $project_id)
+    public static function generateManDoc($order, $project_id)
     {
         Settings::setOutputEscapingEnabled(true); // allows '&' in word docs
             if($project_id == 1){
@@ -54,8 +53,6 @@ class WordService extends PhpWord
                 $templateProcessor->setValue('quantity' . $i, $place_holder);
                 $templateProcessor->setValue('stk' . $i, $place_holder);
             }
-
-
         $name = $order->shipping_first_name;
         $shipping_first_name = preg_replace('/[^A-Za-z0-9\-]/', '', $name);
         $surname = $order->shipping_last_name;
@@ -68,7 +65,7 @@ class WordService extends PhpWord
     }
 
 
-    public function generateWomanDoc($order, $project_id)
+    public static function generateWomanDoc($order, $project_id)
     {
         Settings::setOutputEscapingEnabled(true); // allows '&' in word docs
             if($project_id == 1){
@@ -111,7 +108,6 @@ class WordService extends PhpWord
                 $templateProcessor->setValue('quantity' . $i, $place_holder);
                 $templateProcessor->setValue('stk' . $i, $place_holder);
             }
-
         $name = $order->shipping_first_name;
         $shipping_first_name = preg_replace('/[^A-Za-z0-9\-]/', '', $name);
         $surname = $order->shipping_last_name;
@@ -122,8 +118,6 @@ class WordService extends PhpWord
 
         return $fileName;
     }
-
-
 }
 
 

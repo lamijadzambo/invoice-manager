@@ -10,13 +10,14 @@ class WordController extends Controller
 {
     public function generateManWord($id, $project_id){
         $order = Order::findOrFail($id);
-        $fileName = (new WordService())->generateManDoc($order, $project_id);
+        $fileName = WordService::generateManDoc($order, $project_id);
         return response()->download($fileName . '.docx')->deleteFileAfterSend(true);
     }
 
+  
     public function generateWomanWord($id, $project_id){
         $order = Order::findOrFail($id);
-        $fileName = (new WordService())->generateWomanDoc($order, $project_id);
+        $fileName = WordService::generateWomanDoc($order, $project_id);
         return response()->download($fileName . '.docx')->deleteFileAfterSend(true);
     }
 }

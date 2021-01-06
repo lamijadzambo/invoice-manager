@@ -9,13 +9,12 @@ class OrderService
     public static function save($orders, $id)
     {
         foreach ($orders as $apiOrder) {
-            $numberOfSavedOrders[] = (new OrderService)->createOrders($apiOrder, $id);
+            $numberOfSavedOrders[] = self::createOrders($apiOrder, $id);
         }
-
         return $numberOfSavedOrders;
     }
 
-    public function createOrders($apiOrder, $id)
+    public static function createOrders($apiOrder, $id)
     {
         $order = new Order;
         $order->id = $apiOrder->id;
@@ -64,7 +63,7 @@ class OrderService
             $numberOfSavedOrders = $apiOrder->id;
             $order->save();
         }
-      
+
         if (isset($numberOfSavedOrders)) {
             return $numberOfSavedOrders;
         }
