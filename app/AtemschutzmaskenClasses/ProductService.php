@@ -39,7 +39,10 @@ class ProductService{
         $product = new Product();
         foreach($apiProductNames as $productName){
 
-            if ($productName === 'TYP II') {
+            if($productName === 'HG001'){
+                $product->hg001 = 'HG-001';
+            }
+            elseif ($productName === 'TYP II') {
                 $product->typII = 'TYP II';
             }
             elseif ($productName === 'HUM Chirurgische Einwegmasken Typ IIR'){
@@ -68,9 +71,6 @@ class ProductService{
             }
             elseif ($productName == 'Infrarot Thermometer'){
                 $product->thermometer = 'THERMOMETER';
-            }
-            elseif ($productName == "Similasan Handdesinfektion 90 ml"){
-                $product->handSmilsan = 'HANDDESINF SMILSAN';
             }
             elseif ($productName == 'Handdesinfektionsmittel 1Liter'){
                 $product->handsmittel = 'HANDDESINFEKTIONSMITTEL';

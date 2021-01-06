@@ -4,6 +4,7 @@ namespace App\AtemschutzmaskenClasses;
 
 class Product{
 
+    public $hg001;
     public $typII;
     public $typIIR;
     public $hg002;
@@ -14,7 +15,6 @@ class Product{
     public $stoff;
     public $trennwand;
     public $thermometer;
-    public $handSmilsan;
     public $handsmittel;
     public $flachendes;
     public $handSpender;

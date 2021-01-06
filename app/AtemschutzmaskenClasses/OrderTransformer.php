@@ -45,8 +45,8 @@ class OrderTransformer{
         foreach(json_decode($order->products) as $product){
 
             $skus = [
-                '001', '001-1', '002', '003', '001-1-1', '004', '006', '009', '007', '008', '010',
-                '00-11', '14-01', 'medEinweg', '001FF', '002FF', '003FF', '004FF', '005FF', '006FF',
+                '001', '001-1-1', '003AM', '004AM', '005AM', 'HYG', '007AM', 'MED', '009AM', '010AM',
+                '011AM', '012AM', '013AM', '014AM', '001FF', '002FF', '003FF', '004FF', '005FF', '006FF',
                 '007FF', '008FF', '009FF'
             ];
 
@@ -55,33 +55,33 @@ class OrderTransformer{
 
             if($foundSku){
                 if($sku === '001'){
-                    $order->typII += $product->quantity;
-                }elseif ($sku === '001-1'){
-                    $order->typIIR += $product->quantity;
-                }elseif ($sku === '002'){
-                    $order->hg002 += $product->quantity;
-                }elseif ($sku === '003'){
-                    $order->hg005 += $product->quantity;
+                    $order->hg001 += $product->quantity;
                 }elseif ($sku === '001-1-1'){
+                    $order->typII += $product->quantity;
+                }elseif ($sku === '003AM'){
+                    $order->typIIR += $product->quantity;
+                }elseif ($sku === '004AM'){
+                    $order->hg002 += $product->quantity;
+                }elseif ($sku === '005AM'){
+                    $order->hg005 += $product->quantity;
+                }elseif ($sku === 'HYG'){
                     $order->redMask += $product->quantity;
-                }elseif ($sku === '004'){
+                }elseif ($sku === '007AM'){
                     $order->doorHandler += $product->quantity;
-                }elseif ($sku === '006'){
-                    $order->trennwand += $product->quantity;
-                }elseif ($sku === '009'){
-                    $order->thermometer += $product->quantity;
-                }elseif ($sku === '007'){
-                    $order->handsmittel += $product->quantity;
-                }elseif ($sku === '008'){
-                    $order->flachendes += $product->quantity;
-                }elseif ($sku === '010'){
-                    $order->handSmilsan += $product->quantity;
-                }elseif ($sku === '00-11'){
-                    $order->handSpender += $product->quantity;
-                }elseif ($sku == '14-01'){
-                    $order->stoff += $product->quantity;
-                }elseif ($sku === 'medEinweg'){
+                }elseif ($sku === 'MED'){
                     $order->medEinweg += $product->quantity;
+                }elseif ($sku === '009AM'){
+                    $order->stoff += $product->quantity;
+                }elseif ($sku === '010AM'){
+                    $order->trennwand += $product->quantity;
+                }elseif ($sku === '011AM'){
+                    $order->thermometer += $product->quantity;
+                }elseif ($sku === '012AM'){
+                    $order->handsmittel += $product->quantity;
+                }elseif ($sku === '013AM'){
+                    $order->flachendes += $product->quantity;
+                }elseif ($sku === '014AM'){
+                    $order->handSpender += $product->quantity;
                 }elseif ($sku === '001FF'){
                     $order->switzerland += $product->quantity;
                 }elseif ($sku === '002FF'){
