@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>Bestellung</title>
+
     <link href="{{asset('public/fonts/Roboto-regular.ttf')}}" rel="stylesheet">
 
     <style>
+
         body {
             position: relative;
             width: 17cm;
@@ -20,9 +22,16 @@
             font-size: 16px;
         }
 
-        .header-image {
+        .header-image-masks {
             margin-bottom: 85px;
             margin-top: -20px;
+        }
+
+        .header-image-flipflop img {
+            width: 200px;
+            margin-bottom: 85px;
+            margin-top: -20px;
+            margin-left: -20px;
         }
 
         .customer-info {
@@ -56,13 +65,21 @@
             margin-top: 15px;
             border: 1px solid black;
         }
+        .green-bar {
+            height: 15px;
+            background-color: #305c24;
+            color: #ffffff;
+            padding-left: 10px;
+            margin-top: 15px;
+            border: 1px solid black;
+        }
 
         .product-name-quantity {
             margin-top: 20px;
             padding-left: 15px;
         }
 
-        .ordered-quantity {
+        .ordered-quantity{
             padding-left: 250px;
         }
 
@@ -97,126 +114,140 @@
             bottom: 0;
         }
 
-        .contact-info {
+        .contact-info{
             padding-bottom: 50px;
             margin-bottom: 50px;
         }
 
-        .footer-image img {
+        .footer-image-masks img {
             margin-left: 230px;
             padding-top: 38px;
             width: 90px;
         }
+
+        .footer-image-flipflop img {
+            margin-left: 265px;
+            padding-top: 18px;
+            width: 220px;
+        }
     </style>
 </head>
-
-<body>
-
-<div class="container">
-    <div class="header-image">
-        <img src="{{asset('img/masken.png')}}" style="width: 100px; height: 120px;"/>
-    </div>
-    <div class="customer-info">
-        <strong>{{$order->shipping_company}}</strong><br>
-        <strong>{{$order->shipping_first_name}} {{$order->shipping_last_name}}</strong><br>
-        <strong>{{$order->shipping_address}}</strong><br>
-        <strong>{{$order->shipping_post_code}} {{$order->shipping_city}}</strong>
-    </div>
-
-    <div class="order-number">
-        <strong>LIEFERSCHEIN / {{$order->id}}</strong>
-    </div>
+@if(Auth::check())
+    <body>
 
 
-    <div class="invoice-date">
-        8317 Tagelswangen, {{App\Models\Order::currentDate()}}
-    </div>
+    <div class="container">
+        @if($project_id == 1)
+            <div class="header-image-masks">
+                <img src="{{asset('img/masken.png')}}" style="width: 100px; height: 120px;"/>
+            </div>
+        @elseif($project_id == 2)
+            <div class="header-image-flipflop">
+                <img src="{{asset('img/flipflop.png')}}"/>
+            </div>
+        @endif
+        <div class="customer-info">
+            <strong>{{$order->shipping_company}}</strong><br>
+            <strong>{{$order->shipping_first_name}} {{$order->shipping_last_name}}</strong><br>
+            <strong>{{$order->shipping_address}}</strong><br>
+            <strong>{{$order->shipping_post_code}} {{$order->shipping_city}}</strong>
+        </div>
 
-    <div class="thank-customer">
-        {{App\Models\Order::$message_woman}} {{$order->shipping_last_name}}<br/>{{App\Models\Order::$thx_message}}
-    </div>
-
-    <div class="red-bar">Artikel-/Leistungsbeschrieb</div>
+        <div class="order-number">
+            <strong>LIEFERSCHEIN / {{$order->id}}</strong>
+        </div>
 
 
-    @foreach(json_decode($order->products) as $product)
+        <div class="invoice-date">
+            8317 Tagelswangen, {{App\Models\Order::currentDate()}}
+        </div>
 
 
+        <div class="thank-customer">
+            {{App\Models\Order::$message_woman}} {{$order->shipping_last_name}}<br/>{{App\Models\Order::$thx_message}}
+        </div>
+        @if($project_id == 1)
+            <div class="red-bar">Artikel-/Leistungsbeschrieb</div>
+        @elseif($project_id == 2)
+            <div class="green-bar">Artikel-/Leistungsbeschrieb</div>
+        @endif
 
-        <div class="product-name-quantity">
+        @foreach(json_decode($order->products) as $product)
+            <div class="product-name-quantity">
+                <table>
+                    <tr>
+                        <td style="width:250px"><div><strong>{{str_replace(['<span>', '</span>'], '', $product->name)}}</strong></div></td>
+                        <td style="width:150px"><div class="ordered-quantity"><strong>{{$product->quantity}}</strong></div></td>
+                        <td style="width:150px"><div><strong>{{App\Models\Order::$piece}}</strong></div></td>
+                    </tr>
+                </table>
+            </div>
+        @endforeach
+
+        <div class="post-type">
+            <strong>{{$order->shipping_method_title}}</strong>
+        </div>
+
+        <div class="horizontal-line"></div>
+
+        <div class="questions">
+            {{App\Models\Order::$questions}}
+        </div>
+
+        <div class="signature">
+            Freundliche Grüsse <br> Reto Schaufelberger
+        </div>
+
+        <div class="footer">
+
             <table>
                 <tr>
-                    <td style="width:250px"><div><strong>{{str_replace(['<span>', '</span>'], '', $product->name)}}</strong></div></td>
-                    <td style="width:150px"><div class="ordered-quantity"><strong>{{$product->quantity}}</strong></div></td>
-                    <td style="width:150px"><div><strong>{{App\Models\Order::$piece}}</strong></div></td>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    @if($project_id == 1)
+                        <td>
+                        <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
+                            Hinterrietstrasse 1<br>
+                            ch-8317 Tagelswangen <br>
+                            + 41 43 321 29 29 <br>
+                            info@atemschutzmasken24.ch <br>
+                            www.atemschutzmasken24.ch<br>
+                        </span>
+                        </td>
+                    @elseif($project_id == 2)
+                        <td>
+                        <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
+                            Hinterrietstrasse 1<br>
+                            ch-8317 Tagelswangen <br>
+                            + 41 44 952 30 25 <br>
+                            info@grass-flipflop.com <br>
+                            www.grass-flipflop.com<br>
+                        </span>
+                        </td>
+                    @endif
+                    @if($project_id == 1)
+                        <td>
+                        <span class="footer-image-masks">
+                            <img src="{{asset('img/masken.png')}}"/>
+                        </span>
+                        </td>
+                    @elseif($project_id == 2)
+                        <td>
+                        <span class="footer-image-flipflop">
+                            <img src="{{asset('img/flipflop.png')}}"/>
+                        </span>
+                        </td>
+                    @endif
                 </tr>
             </table>
         </div>
-    @endforeach
-
-    {{--@foreach($order->products as $product)
-        <div class="product-name-quantity">
-            <table>
-                <tr>
-                    <td style="width:250px">
-                        <div><strong>{{$product->name}} - {{$product->color}}</strong></div>
-                    </td>
-                    <td style="width:150px">
-                        <div class="ordered-quantity"><strong>{{$product->ordered_quantity}}</strong></div>
-                    </td>
-                    <td style="width:150px">
-                        <div><strong>{{App\Models\Order::$piece}}</strong></div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    @endforeach--}}
-
-    <div class="post-type">
-        <strong>{{$order->shipping_method_title}}</strong>
     </div>
 
-    <div class="horizontal-line"></div>
-
-    <div class="questions">
-        {{App\Models\Order::$questions}}
-    </div>
-
-    <div class="signature">
-        Freundliche Grüsse <br> Reto Schaufelberger
-    </div>
-
-    <div class="footer">
-
-        <table>
-            <tr>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>
-                    <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
-                        Hinterrietstrasse 1<br>
-                        ch-8317 Tagelswangen <br>
-                        + 41 43 321 29 29 <br>
-                        info@atemschutzmasken24.ch <br>
-                        www.atemschutzmasken24.ch<br>
-                    </span>
-                </td>
-                <td>
-                    <span class="footer-image">
-                        <img src="{{asset('img/masken.png')}}"/>
-                    </span>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
-
-
-</body>
+    </body>
+@endif
 </html>
-
 
 
 

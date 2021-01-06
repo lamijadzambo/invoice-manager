@@ -11,10 +11,14 @@ use PhpOffice\PhpWord\TemplateProcessor;
 class WordService extends PhpWord
 {
 
-    public function generateManDoc($order)
+    public function generateManDoc($order, $project_id)
     {
         Settings::setOutputEscapingEnabled(true); // allows '&' in word docs
-        $templateProcessor = new TemplateProcessor('word-template/order-word-template.docx');
+            if($project_id == 1){
+                $templateProcessor = new TemplateProcessor('word-template/atemschutz-word-template.docx');
+            }elseif ($project_id == 2){
+                $templateProcessor = new TemplateProcessor('word-template/flipflop-word-template.docx');
+            }
         $templateProcessor->setValue('company', $order->shipping_company);
         $templateProcessor->setValue('name', $order->shipping_first_name);
         $templateProcessor->setValue('surname', $order->shipping_last_name);
@@ -22,8 +26,7 @@ class WordService extends PhpWord
         $templateProcessor->setValue('postcode', $order->shipping_post_code);
         $templateProcessor->setValue('city', $order->shipping_city);
         $templateProcessor->setValue('order_id', $order->id);
-        $dt = Carbon::now();
-        $templateProcessor->setValue('date', $dt->formatLocalized('%d. %B. %Y'));
+        $templateProcessor->setValue('date', Carbon::now()->formatLocalized('%d. %B. %Y'));
         $templateProcessor->setValue('message', Order::$message_man);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
@@ -65,10 +68,14 @@ class WordService extends PhpWord
     }
 
 
-    public function generateWomanDoc($order)
+    public function generateWomanDoc($order, $project_id)
     {
         Settings::setOutputEscapingEnabled(true); // allows '&' in word docs
-        $templateProcessor = new TemplateProcessor('word-template/order-word-template.docx');
+            if($project_id == 1){
+                $templateProcessor = new TemplateProcessor('word-template/atemschutz-word-template.docx');
+            }elseif ($project_id == 2){
+                $templateProcessor = new TemplateProcessor('word-template/flipflop-word-template.docx');
+            }
         $templateProcessor->setValue('company', $order->shipping_company);
         $templateProcessor->setValue('name', $order->shipping_first_name);
         $templateProcessor->setValue('surname', $order->shipping_last_name);
@@ -76,8 +83,7 @@ class WordService extends PhpWord
         $templateProcessor->setValue('postcode', $order->shipping_post_code);
         $templateProcessor->setValue('city', $order->shipping_city);
         $templateProcessor->setValue('order_id', $order->id);
-        $dt = Carbon::now();
-        $templateProcessor->setValue('date', $dt->formatLocalized('%d. %B. %Y'));
+        $templateProcessor->setValue('date', Carbon::now()->formatLocalized('%d. %B. %Y'));
         $templateProcessor->setValue('message', Order::$message_woman);
         $templateProcessor->setValue('thank_you', Order::$thx_message);
         $templateProcessor->setValue('thank_you', Order::$thx_message);

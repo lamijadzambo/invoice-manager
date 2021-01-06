@@ -54,12 +54,12 @@ Route::get('/order-status/{id}', [OrderController::class, 'setStatus'])->name('s
     //Route::post('import', [ImportExportController::class, 'import'])->name('import');
 
     // PDF EXPORT
-    Route::get('/generate-man-pdf/{id}', [PDFController::class, 'generateManPdf'])->name('generate-man-pdf');
-    Route::get('/generate-woman-pdf/{id}', [PDFController::class, 'generateWomanPdf'])->name('generate-woman-pdf');
+    Route::get('/generate-man-pdf/{id}/{project_id}', [PDFController::class, 'generateManPdf'])->name('generate-man-pdf');
+    Route::get('/generate-woman-pdf/{id}/{project_id}', [PDFController::class, 'generateWomanPdf'])->name('generate-woman-pdf');
 
     // WORD EXPORT
-    Route::get('/generate-man-docx/{id}', [WordController::class, 'generateManWord'])->name('generate-man-doc');
-    Route::get('/generate-woman-docx/{id}', [WordController::class, 'generateWomanWord'])->name('generate-woman-doc');
+    Route::get('/generate-man-docx/{id}/{project_id}', [WordController::class, 'generateManWord'])->name('generate-man-doc');
+    Route::get('/generate-woman-docx/{id}/{project_id}', [WordController::class, 'generateWomanWord'])->name('generate-woman-doc');
 
 //    Route::get('/google-sheet-post', function(){ (new GoogleOrdersController())->__invoke(); })->name('google-spreadsheet');
 
