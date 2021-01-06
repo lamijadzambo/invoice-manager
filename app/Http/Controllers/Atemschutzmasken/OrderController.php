@@ -6,7 +6,6 @@ use App\AtemschutzmaskenClasses\OrderService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Project;
-use App\Repositories\ApplicationRepositoryInterface;
 use Automattic\WooCommerce\Client;
 use Automattic\WooCommerce\HttpClient\HttpClientException;
 use Illuminate\Http\Request;
