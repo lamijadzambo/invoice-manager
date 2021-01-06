@@ -10,19 +10,11 @@ use App\AtemschutzmaskenClasses\ExcelService;
 use App\AtemschutzmaskenClasses\ProductService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Repositories\ApplicationRepositoryInterface;
 use Automattic\WooCommerce\Client;
 use Illuminate\Http\Request;
 
 class ExcelController extends Controller
 {
-    private $orderRepository;
-
-    public function __construct(ApplicationRepositoryInterface $orderRepository)
-    {
-        $this->orderRepository = $orderRepository;
-    }
-
     public function index($project_id, Request $request)
     {
         $dbOrders = Order::where('project_id', $project_id)->get();
