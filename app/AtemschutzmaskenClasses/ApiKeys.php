@@ -7,23 +7,21 @@ use Automattic\WooCommerce\Client;
 class ApiKeys{
 
     public static function getApiOrders($project_id){
-
-        $woocommerce = (new ApiKeys)->getApiKeys($project_id);
-        $params = (new ApiKeys)->setParameters();
+        $woocommerce = self::getApiKeys($project_id);
+        $params = self::setParameters();
         $orders = $woocommerce->get('orders', $params);
         return $orders;
     }
 
-    public static function getApiProducts($project_id){
 
-        $woocommerce = (new ApiKeys)->getApiKeys($project_id);
-        $params = (new ApiKeys)->getParameters();
+    public static function getApiProducts($project_id){
+        $woocommerce = self::getApiKeys($project_id);
+        $params = self::setParameters();
         $products = $woocommerce->get('products', $params);
         return $products;
     }
 
-    public function getApiKeys($project_id){
-
+    public static function getApiKeys($project_id){
         if($project_id == 1){
             $endPoint = env('WOO_ENDPOINT');
             $clientKey = env('WOO_CK');
@@ -44,7 +42,8 @@ class ApiKeys{
         return $woocommerce;
     }
 
-    public function getParameters(){
+
+    public static function setParameters(){
         $params = [
             'per_page' => 100,
             'orderby' => 'date'

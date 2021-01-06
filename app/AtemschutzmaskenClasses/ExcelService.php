@@ -4,7 +4,6 @@ namespace App\AtemschutzmaskenClasses;
 
 use App\Models\Order;
 use Maatwebsite\Excel\Concerns\FromArray;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -12,7 +11,6 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWidths
-
 {
     use Exportable;
 
@@ -21,10 +19,8 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
         $this->id = $project_id;
     }
 
-
     public function headings(): array
     {
-
         $id = $this->id;
 
         if($id == 1){
@@ -152,7 +148,5 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
         }
         return $colorExportData;
     }
-
-
 
 }

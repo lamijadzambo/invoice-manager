@@ -7,12 +7,12 @@ class OrderTransformer{
     public static function transformOrder($orders)
     {
         foreach ($orders as $item) {
-            $transformedOrders[] = (new OrderTransformer)->createOrder($item);
+            $transformedOrders[] = self::createOrder($item);
         }
         return $transformedOrders;
     }
 
-    public function createOrder($item)
+    public static function createOrder($item)
     {
         $order = new Order;
         $order->id = $item->id;

@@ -2,11 +2,9 @@
 
 namespace App\AtemschutzmaskenClasses;
 
-use Automattic\WooCommerce\Client;
-
 class ProductService{
 
-    public function fetchProductNames($project_id){
+    public static function fetchProductNames($project_id){
 
         $products = ApiKeys::getApiProducts($project_id);
 

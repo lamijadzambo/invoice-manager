@@ -28,7 +28,6 @@ class HomeController extends Controller
         return redirect()->route('projects');
     }
 
-
     // Google spreadsheet
     public function __invoke(Request $request)
     {
@@ -67,8 +66,4 @@ class HomeController extends Controller
 
         return view('welcome')->with(compact('posts'));
     }
-
-
-
-
 }
