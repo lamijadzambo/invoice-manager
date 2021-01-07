@@ -1,32 +1,14 @@
 <?php
 
-use App\Http\Controllers\Atemschutzmasken\ExcelController;
-use App\Http\Controllers\Atemschutzmasken\OrderController;
-use App\Http\Controllers\Atemschutzmasken\PDFController;
-use App\Http\Controllers\Atemschutzmasken\WordController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProjectController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-//GOOGLE SHEET
-//Route::get('google-sheet', function (){ return view('welcome'); });
-//Route::get('google-sheet-invoke', HomeController::class);
-//Route::post('/google-sheet-post', [GoogleOrdersController::class])->name('google-spreadsheet');
 
 Auth::routes(['register' => false]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -38,28 +20,29 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/projects', [ProjectController::class, 'showProjects'])->name('projects');
     Route::get('/index/{project_id}', [OrderController::class, 'index'])->name('index');
 
-// CRUD ORDER
-Route::get('/orders/{project_id}', [OrderController::class, 'get'])->name('get.orders');
-Route::get('/order/{project_id}/show/{id}/', [OrderController::class, 'show'])->name('show.order');
-Route::delete('/order/{id}', [OrderController::class, 'delete'])->name('delete.order');
+    // CRUD ORDER
+    Route::get('/orders/{project_id}', [OrderController::class, 'get'])->name('get.orders');
+    Route::get('/order/{project_id}/show/{id}/', [OrderController::class, 'show'])->name('show.order');
+    Route::delete('/order/{id}', [OrderController::class, 'delete'])->name('delete.order');
 
-// SELECT IF ORDER PRINTED OUT
-Route::get('/order-status/{id}', [OrderController::class, 'setStatus'])->name('set-status.order');
+    Route::get('/order-status/{id}', [OrderController::class, 'setStatus'])->name('set-status.order');
 
-    // EXCEL EXPORT
+    // IMPORT AND EXPORT OF ORDERS
     Route::get('/index/filtered/{project_id}', [ExcelController::class, 'index'])->name('excel.index');
     Route::get('/export/{project_id}', [ExcelController::class, 'exportOrdersExcel'])->name('excel-export');
     Route::get('/export-color/{project_id}', [ExcelController::class, 'exportProductColorsExcel'])->name('color-table-export');
+    Route::get('/generate-pdf/{id}/{project_id}/{customer_id}', [PDFController::class, 'generatePdf'])->name('generate-pdf');
+    Route::get('/generate-docx/{id}/{project_id}/{customer_id}', [WordController::class, 'generateWord'])->name('generate-doc');
     //Route::get('importExportView', [ImportExportController::class, 'importExportView']);
     //Route::post('import', [ImportExportController::class, 'import'])->name('import');
 
-    // PDF EXPORT
-    Route::get('/generate-man-pdf/{id}/{project_id}', [PDFController::class, 'generateManPdf'])->name('generate-man-pdf');
-    Route::get('/generate-woman-pdf/{id}/{project_id}', [PDFController::class, 'generateWomanPdf'])->name('generate-woman-pdf');
 
-    // WORD EXPORT
-    Route::get('/generate-man-docx/{id}/{project_id}', [WordController::class, 'generateManWord'])->name('generate-man-doc');
-    Route::get('/generate-woman-docx/{id}/{project_id}', [WordController::class, 'generateWomanWord'])->name('generate-woman-doc');
+
+
+//GOOGLE SHEET
+//Route::get('google-sheet', function (){ return view('welcome'); });
+//Route::get('google-sheet-invoke', HomeController::class);
+//Route::post('/google-sheet-post', [GoogleOrdersController::class])->name('google-spreadsheet');
 
 //    Route::get('/google-sheet-post', function(){ (new GoogleOrdersController())->__invoke(); })->name('google-spreadsheet');
 

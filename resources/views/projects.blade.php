@@ -12,10 +12,10 @@
                             <div class="form-group row">
                                 <label for="project" class="col-md-4 col-form-label text-md-right">{{ __('Shop:') }}</label>
                                 <div class="col-md-6">
-                                    <select name="projects" id="project" class="form-control" onchange="doUrl(event)">
-                                        <option value="" selected disabled hidden>Choose shop</option>
+                                    <select name="projects" id="project" class="form-control" onchange="doUrl(event) " required>
+                                        <option id="value" value="" selected hidden>Choose shop</option>
                                         @foreach($projects as $project)
-                                            <option value="{{ $project->id }} ">{{ $project->name }}</option>
+                                            <option id="value" value="{{ $project->id }} ">{{ $project->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -23,9 +23,10 @@
 
                             <div id="next" class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button id="btn"><a id="linkNext" href="">Next</a></button>
+                                    <button><a id="linkNext" href="">Next</a></button>
                                 </div>
                             </div>
+                            <label id="result"></label>
                         </form>
                     </div>
                 </div>
@@ -35,10 +36,19 @@
 @endsection
 
 
-
-
 <script>
     function doUrl(e){
         $('#linkNext').attr('href','/index/'+e.target.value);
     }
 </script>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AtemschutzmaskenClasses;
+namespace App\Helpers;
 
 class Order{
     public $id;
@@ -31,7 +31,6 @@ class Order{
     public $products;
     public $product_sku;
     public $product_value;
-
     public $hg001;
     public $typII;
     public $typIIR;
