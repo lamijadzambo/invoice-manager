@@ -31,7 +31,11 @@
             <div class="container-fluid">
                 @if(isset($project_id))
                 <a class="navbar-brand" href="{{ route('index', $project_id) }}">
-                    {{ config('app.name') }}
+                    @if($project_id == 1)
+                        {{ 'Atemschutzmasken' }}
+                    @elseif($project_id == 2)
+                        {{ 'FlipFlop' }}
+                    @endif
                 </a>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse"

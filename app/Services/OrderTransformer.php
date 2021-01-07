@@ -1,6 +1,8 @@
 <?php
 
-namespace App\AtemschutzmaskenClasses;
+namespace App\Services;
+
+use App\Helpers\Order;
 
 class OrderTransformer{
 

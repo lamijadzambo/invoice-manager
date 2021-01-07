@@ -46,7 +46,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Classes\\": "app/AtemschutzmaskenClasses"
+            "Classes\\": "app/Services"
         }
     },
     "autoload-dev": {
