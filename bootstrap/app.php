@@ -43,9 +43,12 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 68d150a41682dd86cbfdd6735cb83c75ee9ee3f5
 setlocale(LC_TIME, 'German');
 
 /*
