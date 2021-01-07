@@ -1,8 +1,10 @@
 <?php
 
-namespace App\AtemschutzmaskenClasses;
+namespace App\Services;
 
-class ProductService{
+use App\Helpers\Product;
+
+class ProductNames{
 
     public static function fetchProductNames($project_id){
 
@@ -13,6 +15,7 @@ class ProductService{
         }
 
         $product = new Product();
+
         foreach($apiProductNames as $productName){
 
             if($productName === 'HG001'){

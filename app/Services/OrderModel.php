@@ -1,30 +1,30 @@
 <?php
 
-namespace App\AtemschutzmaskenClasses;
+namespace App\Services;
 
 use App\Models\Order;
 
-class OrderService
+class OrderModel
 {
-    public static function save($orders, $id)
+    public static function save($orders, $project_id)
     {
         foreach ($orders as $apiOrder) {
-            $numberOfSavedOrders[] = self::createOrders($apiOrder, $id);
+            $numberOfSavedOrders[] = self::createOrders($apiOrder, $project_id);
         }
         return $numberOfSavedOrders;
     }
 
-    public static function createOrders($apiOrder, $id)
+    public static function createOrders($apiOrder, $project_id)
     {
         $order = new Order;
         $order->id = $apiOrder->id;
-        $order->project_id = $id;
+        $order->project_id = $project_id;
         $order->order_status = $apiOrder->status;
         $order->order_date = $apiOrder->date_created;
         $order->customer_note = $apiOrder->customer_note;
         $order->payment_method_title = $apiOrder->payment_method_title;
-        $order->card_discount_amount = 0.00; // check with Nadira
-        $order->order_refund_amount = 0.00; // check with Reto
+        $order->card_discount_amount = 0.00;
+        $order->order_refund_amount = 0.00;
         $order->order_total_amount = $apiOrder->total;
         $order->discount_amount = $apiOrder->discount_total;
         $order->coupon_code = 'N/A';
@@ -36,7 +36,6 @@ class OrderService
             $order->shipping_method_title = $shipping_method_title;
             $order->order_shipping_amount = $shipping->total;
         }
-
         $order->order_total_tax_amount = $apiOrder->total_tax;
         $order->billing_first_name = $apiOrder->billing->first_name;
         $order->billing_last_name = $apiOrder->billing->last_name;

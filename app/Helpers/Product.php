@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AtemschutzmaskenClasses;
+namespace App\Helpers;
 
 class Product{
     public $hg001;

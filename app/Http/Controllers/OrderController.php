@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Atemschutzmasken;
+namespace App\Http\Controllers;
 
-use App\AtemschutzmaskenClasses\ApiKeys;
-use App\AtemschutzmaskenClasses\OrderService;
+use App\Services\ApiKeys;
+use App\Services\OrderModel;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 
@@ -28,7 +28,7 @@ class OrderController extends Controller
     public function get(Request $request, $project_id)
     {
         $orders = ApiKeys::getApiOrders($project_id);
-        $numberOfSavedOrders = OrderService::save($orders, $project_id);
+        $numberOfSavedOrders = OrderModel::save($orders, $project_id);
         $orderIds = array_filter($numberOfSavedOrders);
         $order = end($orderIds);
 
@@ -43,17 +43,17 @@ class OrderController extends Controller
 
     public function delete($id)
     {
-        $full_order = Order::findOrFail($id);
-        $full_order->delete();
-        return back()->with('success', 'Order deleted successfully.');
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return back()->with('success', 'Order ' . $order->id . ' deleted.');
     }
 
     public function setStatus($id)
     {
-        $full_order = Order::findOrFail($id);
+        $order = Order::findOrFail($id);
         $status = 'printed';
-        $full_order->print_status = $status;
-        $full_order->save();
-        return back()->with('success', 'Order printed successfully.');
+        $order->print_status = $status;
+        $order->save();
+        return back()->with('success', 'Order ' . $order->id . ' printed.');
     }
 }

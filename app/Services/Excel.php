@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AtemschutzmaskenClasses;
+namespace App\Services;
 
 use App\Models\Order;
 use Maatwebsite\Excel\Concerns\FromArray;
@@ -10,11 +10,11 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWidths
+class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
 {
     use Exportable;
 
-    public $id;
+    protected $id;
     public function __construct ($project_id){
         $this->id = $project_id;
     }
@@ -113,6 +113,8 @@ class ExcelService implements FromArray, WithHeadings, WithStyles, WithColumnWid
         $id = $this->id;
         $dbOrders = Order::where('project_id', $id)->get();
         $orders = OrderTransformer::transformOrder($dbOrders);
+
+        // FlipFlop orders ($id=2) have fewer columns; $columnLimit used to avoid empty columns
         if($id == 2){
             $columnLimit = '';
         }

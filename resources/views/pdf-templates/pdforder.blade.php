@@ -133,81 +133,87 @@
     </style>
 </head>
 @if(Auth::check())
-    <body>
+<body>
 
 
-    <div class="container">
-        @if($project_id == 1)
-            <div class="header-image-masks">
-                <img src="{{asset('img/masken.png')}}" style="width: 100px; height: 120px;"/>
-            </div>
-        @elseif($project_id == 2)
-            <div class="header-image-flipflop">
-                <img src="{{asset('img/flipflop.png')}}"/>
-            </div>
-        @endif
-        <div class="customer-info">
-            <strong>{{$order->shipping_company}}</strong><br>
-            <strong>{{$order->shipping_first_name}} {{$order->shipping_last_name}}</strong><br>
-            <strong>{{$order->shipping_address}}</strong><br>
-            <strong>{{$order->shipping_post_code}} {{$order->shipping_city}}</strong>
+<div class="container">
+    @if($project_id == 1)
+        <div class="header-image-masks">
+            <img src="{{asset('img/masken.png')}}" style="width: 100px; height: 120px;"/>
         </div>
-
-        <div class="order-number">
-            <strong>LIEFERSCHEIN / {{$order->id}}</strong>
+    @elseif($project_id == 2)
+        <div class="header-image-flipflop">
+            <img src="{{asset('img/flipflop.png')}}"/>
         </div>
+    @endif
+    <div class="customer-info">
+        <strong>{{$order->shipping_company}}</strong><br>
+        <strong>{{$order->shipping_first_name}} {{$order->shipping_last_name}}</strong><br>
+        <strong>{{$order->shipping_address}}</strong><br>
+        <strong>{{$order->shipping_post_code}} {{$order->shipping_city}}</strong>
+    </div>
+
+    <div class="order-number">
+        <strong>LIEFERSCHEIN / {{$order->id}}</strong>
+    </div>
 
 
-        <div class="invoice-date">
-            8317 Tagelswangen, {{App\Models\Order::currentDate()}}
+    <div class="invoice-date">
+        8317 Tagelswangen, {{App\Models\Order::currentDate()}}
+    </div>
+
+    @if($customer_id == 'man')
+        <div class="thank-customer">
+            {{App\Models\Order::$message_man}} {{$order->shipping_last_name}}<br/>{{App\Models\Order::$thx_message}}
         </div>
-
-
+    @elseif($customer_id == 'woman')
         <div class="thank-customer">
             {{App\Models\Order::$message_woman}} {{$order->shipping_last_name}}<br/>{{App\Models\Order::$thx_message}}
         </div>
-        @if($project_id == 1)
-            <div class="red-bar">Artikel-/Leistungsbeschrieb</div>
-        @elseif($project_id == 2)
-            <div class="green-bar">Artikel-/Leistungsbeschrieb</div>
-        @endif
+    @endif
 
-        @foreach(json_decode($order->products) as $product)
-            <div class="product-name-quantity">
-                <table>
-                    <tr>
-                        <td style="width:250px"><div><strong>{{str_replace(['<span>', '</span>'], '', $product->name)}}</strong></div></td>
-                        <td style="width:150px"><div class="ordered-quantity"><strong>{{$product->quantity}}</strong></div></td>
-                        <td style="width:150px"><div><strong>{{App\Models\Order::$piece}}</strong></div></td>
-                    </tr>
-                </table>
-            </div>
-        @endforeach
+    @if($project_id == 1)
+        <div class="red-bar">Artikel-/Leistungsbeschrieb</div>
+    @elseif($project_id == 2)
+        <div class="green-bar">Artikel-/Leistungsbeschrieb</div>
+    @endif
 
-        <div class="post-type">
-            <strong>{{$order->shipping_method_title}}</strong>
-        </div>
-
-        <div class="horizontal-line"></div>
-
-        <div class="questions">
-            {{App\Models\Order::$questions}}
-        </div>
-
-        <div class="signature">
-            Freundliche Grüsse <br> Reto Schaufelberger
-        </div>
-
-        <div class="footer">
-
+    @foreach(json_decode($order->products) as $product)
+        <div class="product-name-quantity">
             <table>
                 <tr>
-                    <th></th>
-                    <th></th>
+                    <td style="width:250px"><div><strong>{{str_replace(['<span>', '</span>'], '', $product->name)}}</strong></div></td>
+                    <td style="width:150px"><div class="ordered-quantity"><strong>{{$product->quantity}}</strong></div></td>
+                    <td style="width:150px"><div><strong>{{App\Models\Order::$piece}}</strong></div></td>
                 </tr>
-                <tr>
-                    @if($project_id == 1)
-                        <td>
+            </table>
+        </div>
+    @endforeach
+
+    <div class="post-type">
+        <strong>{{$order->shipping_method_title}}</strong>
+    </div>
+
+    <div class="horizontal-line"></div>
+
+    <div class="questions">
+        {{App\Models\Order::$questions}}
+    </div>
+
+    <div class="signature">
+        Freundliche Grüsse <br> Reto Schaufelberger
+    </div>
+
+    <div class="footer">
+
+        <table>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                @if($project_id == 1)
+                    <td>
                         <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
                             Hinterrietstrasse 1<br>
                             ch-8317 Tagelswangen <br>
@@ -215,9 +221,9 @@
                             info@atemschutzmasken24.ch <br>
                             www.atemschutzmasken24.ch<br>
                         </span>
-                        </td>
-                    @elseif($project_id == 2)
-                        <td>
+                    </td>
+                @elseif($project_id == 2)
+                    <td>
                         <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
                             Hinterrietstrasse 1<br>
                             ch-8317 Tagelswangen <br>
@@ -225,27 +231,27 @@
                             info@grass-flipflop.com <br>
                             www.grass-flipflop.com<br>
                         </span>
-                        </td>
-                    @endif
-                    @if($project_id == 1)
-                        <td>
+                    </td>
+                @endif
+                @if($project_id == 1)
+                    <td>
                         <span class="footer-image-masks">
                             <img src="{{asset('img/masken.png')}}"/>
                         </span>
-                        </td>
-                    @elseif($project_id == 2)
-                        <td>
+                    </td>
+                @elseif($project_id == 2)
+                    <td>
                         <span class="footer-image-flipflop">
                             <img src="{{asset('img/flipflop.png')}}"/>
                         </span>
-                        </td>
-                    @endif
-                </tr>
-            </table>
-        </div>
+                    </td>
+                @endif
+            </tr>
+        </table>
     </div>
+</div>
 
-    </body>
+</body>
 @endif
 </html>
 
