@@ -27,15 +27,9 @@ class Order extends Model
     public static $piece = 'Stk. ';
 
     public static function currentDate(){
-<<<<<<< HEAD
         return Carbon::now()->formatLocalized('%d. %B. %Y');
     }
-=======
-        $dt = Carbon::now();
-        return $dt->formatLocalized('%d. %B. %Y');
-    }
 
->>>>>>> 68d150a41682dd86cbfdd6735cb83c75ee9ee3f5
 
     public function projects(){
         return $this->belongsTo(Project::class);

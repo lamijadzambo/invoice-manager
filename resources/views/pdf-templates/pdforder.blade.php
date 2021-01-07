@@ -157,16 +157,8 @@
         <strong>LIEFERSCHEIN / {{$order->id}}</strong>
     </div>
 
-
     <div class="invoice-date">
         8317 Tagelswangen, {{App\Models\Order::currentDate()}}
-<<<<<<< HEAD:resources/views/pdf-templates/pdforder.blade.php
-=======
-    </div>
-
-    <div class="thank-customer">
-        {{App\Models\Order::$message_woman}} {{$order->shipping_last_name}}<br/>{{App\Models\Order::$thx_message}}
->>>>>>> 68d150a41682dd86cbfdd6735cb83c75ee9ee3f5:resources/views/pdf-templates/woman.blade.php
     </div>
 
     @if($customer_id == 'man')
