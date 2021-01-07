@@ -21,10 +21,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div id="next" class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <a id="linkNext" href="">Next</a>
-                                    <p id="demo"></p>
+                                    <button><a id="linkNext" href="">Next</a></button>
                                 </div>
                             </div>
                             <label id="result"></label>
@@ -39,7 +38,7 @@
 
 <script>
     function doUrl(e){
-            $('#linkNext').attr('href','/index/'+e.target.value)
+        $('#linkNext').attr('href','/index/'+e.target.value);
     }
 </script>
 
