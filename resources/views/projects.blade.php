@@ -21,9 +21,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div id="next" class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button><a id="linkNext" href="{{ url('index/'. $project->id) }}">Next</a></button>
+                                    <button id="btn"><a id="linkNext" href="">Next</a></button>
                                 </div>
                             </div>
                         </form>
@@ -39,6 +39,6 @@
 
 <script>
     function doUrl(e){
-        $('#linkNext').attr('href','/index/'+e.target.value)
+        $('#linkNext').attr('href','/index/'+e.target.value);
     }
 </script>
