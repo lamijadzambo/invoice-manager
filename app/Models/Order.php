@@ -16,6 +16,10 @@ class Order extends Model
 
     public $incrementing = false;
 
+    public static $man = 'man';
+
+    public static $woman = 'woman';
+
     public static $message_man = 'Sehr geehrter Herr';
 
     public static $message_woman = 'Sehr geehrte Frau';
