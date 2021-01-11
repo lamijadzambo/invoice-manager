@@ -12,15 +12,6 @@ class ApiKeys{
         return $orders;
     }
 
-
-    public static function getApiProducts($project_id){
-        $woocommerce = self::getApiKeys($project_id);
-        $params = self::setParameters();
-        $products = $woocommerce->get('products', $params);
-        return $products;
-    }
-
-
     public static function getApiKeys($project_id){
         if($project_id == 1){
             $endPoint = env('WOO_ENDPOINT');
@@ -50,5 +41,13 @@ class ApiKeys{
         ];
         return $params;
     }
+
+    //FUNCTION TO GET PRODUCT NAMES DIRECTLY FROM API
+//    public static function getApiProducts($project_id){
+//        $woocommerce = self::getApiKeys($project_id);
+//        $params = self::setParameters();
+//        $products = $woocommerce->get('products', $params);
+//        return $products;
+//    }
 
 }
