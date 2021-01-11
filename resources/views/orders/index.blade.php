@@ -65,8 +65,8 @@
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="mr-2 d-flex flex-column">
-                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man'] ) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
-                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'woman']) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>                                            </div>
+                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man] ) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
+                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman]) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>                                            </div>
                                             <div class="mr-2 d-flex flex-column">
                                                 <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man']) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Man</a>
                                                 <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'woman']) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Woman</a>

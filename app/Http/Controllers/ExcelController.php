@@ -17,7 +17,7 @@ class ExcelController extends Controller
         $dbOrders = Order::where('project_id', $project_id)->get();
         if(count($dbOrders)>0){
             $orders = OrderTransformer::transformOrder($dbOrders);
-            $productName = ProductNames::fetchProductNames($project_id);
+            $productName = ProductNames::fetchProductNames();
             return view('filtered.index', compact('orders', 'project_id', 'productName'));
         }else{
             $request->session()->flash('info', 'No orders in database.');

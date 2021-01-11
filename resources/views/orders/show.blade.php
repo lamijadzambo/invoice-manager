@@ -12,10 +12,10 @@
                                 <h4>EXPORT ORDER</h4>
                             </div>
                             <div class="d-flex mt-3 mb-5">
-                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man'] ) }}" class="btn btn-dark mr-2"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
-                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'woman']) }}" class="btn btn-dark mr-2"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>
-                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man']) }}" class="btn btn-info mr-2"><i class="fas fa-file-download mr-1"></i> Word Man</a>
-                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man']) }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Word Woman</a>
+                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man] ) }}" class="btn btn-dark mr-2"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
+                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman]) }}" class="btn btn-dark mr-2"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>
+                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man]) }}" class="btn btn-info mr-2"><i class="fas fa-file-download mr-1"></i> Word Man</a>
+                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman]) }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Word Woman</a>
                             </div>
                         </div>
                         <div class="d-flex justify-content-around mb-5">
