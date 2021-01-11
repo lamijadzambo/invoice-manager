@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\ApiKeys;
 use App\Services\OrderModel;
-use App\Http\Controllers\Controller;
 use App\Models\Order;
 
 use Illuminate\Http\Request;
