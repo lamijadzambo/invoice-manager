@@ -137,11 +137,11 @@
 
 
 <div class="container">
-    @if($project_id == 1)
+    @if($project_id == \App\Models\Project::$atemshutz)
         <div class="header-image-masks">
             <img src="{{asset('img/masken.png')}}" style="width: 100px; height: 120px;"/>
         </div>
-    @elseif($project_id == 2)
+    @elseif($project_id == \App\Models\Project::$flipflop)
         <div class="header-image-flipflop">
             <img src="{{asset('img/flipflop.png')}}"/>
         </div>
@@ -171,9 +171,9 @@
         </div>
     @endif
 
-    @if($project_id == 1)
+    @if($project_id == \App\Models\Project::$atemshutz)
         <div class="red-bar">Artikel-/Leistungsbeschrieb</div>
-    @elseif($project_id == 2)
+    @elseif($project_id == \App\Models\Project::$flipflop)
         <div class="green-bar">Artikel-/Leistungsbeschrieb</div>
     @endif
 
@@ -211,7 +211,7 @@
                 <th></th>
             </tr>
             <tr>
-                @if($project_id == 1)
+                @if($project_id == \App\Models\Project::$atemshutz)
                     <td>
                         <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
                             Hinterrietstrasse 1<br>
@@ -221,7 +221,7 @@
                             www.atemschutzmasken24.ch<br>
                         </span>
                     </td>
-                @elseif($project_id == 2)
+                @elseif($project_id == \App\Models\Project::$flipflop)
                     <td>
                         <span class="contact-info">Reto Schaufelberger Eurotrends GmbH <br>
                             Hinterrietstrasse 1<br>
@@ -232,13 +232,13 @@
                         </span>
                     </td>
                 @endif
-                @if($project_id == 1)
+                @if($project_id == \App\Models\Project::$atemshutz)
                     <td>
                         <span class="footer-image-masks">
                             <img src="{{asset('img/masken.png')}}"/>
                         </span>
                     </td>
-                @elseif($project_id == 2)
+                @elseif($project_id == \App\Models\Project::$flipflop)
                     <td>
                         <span class="footer-image-flipflop">
                             <img src="{{asset('img/flipflop.png')}}"/>

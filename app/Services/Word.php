@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Order;
+use App\Models\Project;
 use Carbon\Carbon;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
@@ -14,9 +15,9 @@ class Word extends PhpWord
     {
         Settings::setOutputEscapingEnabled(true); // allows '&' in word docs
 
-            if($project_id == 1){
+            if($project_id == Project::$atemshutz){
                 $templateProcessor = new TemplateProcessor('word-template/atemschutz-word-template.docx');
-            }elseif ($project_id == 2){
+            }elseif ($project_id == Project::$flipflop){
                 $templateProcessor = new TemplateProcessor('word-template/flipflop-word-template.docx');
             }
 

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Order;
+use App\Models\Project;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
@@ -23,7 +24,7 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
     {
         $id = $this->id;
 
-        if($id == 1){
+        if($id == Project::$atemshutz){
             $headerHg001 = 'HYG HG-001';
             $headerTypII = 'Typ II';
             $headerTypIIR = 'Typ IIR';
@@ -38,7 +39,7 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
             $headerHanddesinf = 'Handdesinf.';
             $headerFlachendes = 'Flachendes';
             $headerHandSpender = 'Hand Spender';
-        }elseif($id == 2){
+        }elseif($id == Project::$flipflop){
             $switzerland = 'Switzerland';
             $germany = 'Germany';
             $italy = 'Italy';
@@ -115,7 +116,7 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
         $orders = OrderTransformer::transformOrder($dbOrders);
 
         // FlipFlop orders ($id=2) have fewer columns; $columnLimit used to avoid empty columns
-        if($id == 2){
+        if($id == Project::$flipflop){
             $columnLimit = '';
         }
         foreach($orders as $order){

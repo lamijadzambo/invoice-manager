@@ -57,10 +57,10 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('index', 1) }}">
+                                        <a class="dropdown-item" href="{{ route('index', \App\Models\Project::$atemshutz) }}">
                                             {{ __('Atemschutzmasken') }}
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('index', 2) }}">
+                                        <a class="dropdown-item" href="{{ route('index', \App\Models\Project::$flipflop) }}">
                                             {{ __('FlipFlop') }}
                                         </a>
                                     </div>
