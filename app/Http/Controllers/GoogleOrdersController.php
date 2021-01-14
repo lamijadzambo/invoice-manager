@@ -9,7 +9,7 @@ class GoogleOrdersController extends Controller
 {
     public function __invoke()
     {
-        $orders = Order::all();
+        $orders = Order::where('project_id', 1)->get();
 
         foreach ($orders as $order) {
 
@@ -22,7 +22,7 @@ class GoogleOrdersController extends Controller
                 $order->billing_phone,
                 $order->id,
                 $order->order_status,
-                (string)$order->hyg_hg001,
+                /*(string)$order->hyg_hg001,
                 (string)$order->typ_II,
                 (string)$order->typ_IIR,
                 (string)$order->n95_hg002,
@@ -35,7 +35,7 @@ class GoogleOrdersController extends Controller
                 (string)$order->thermometer,
                 (string)$order->hand_disinfection,
                 (string)$order->flachendes,
-                (string)$order->hand_spender,
+                (string)$order->hand_spender,*/
                 (string)$order->order_total_amount,
             ];
 

@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         $sheets = Sheets::spreadsheet(config('sheets.post_spreadsheet_id'))
             ->sheetById(config('sheets.post_sheet_id'))
-            ->get();
+            ->all();
 
         $header = [
             'Firma',
@@ -62,7 +62,7 @@ class HomeController extends Controller
         ];
 
         $posts = Sheets::collection($header, $sheets);
-        $posts = $posts->reverse()->take(10);
+        $posts = $posts->reverse()->take(8);
 
         return view('welcome')->with(compact('posts'));
     }
