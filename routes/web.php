@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\GoogleOrdersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PDFController;
@@ -44,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
 //Route::get('google-sheet-invoke', HomeController::class);
 //Route::post('/google-sheet-post', [GoogleOrdersController::class])->name('google-spreadsheet');
 
-//    Route::get('/google-sheet-post', function(){ (new GoogleOrdersController())->__invoke(); })->name('google-spreadsheet');
+    Route::get('/google-sheet-post/{project_id}', [GoogleOrdersController::class, '__invoke'])->name('google-spreadsheet');
 
     // SAVE FILE IN GOOGLE CLOUD (HARD CODED)
 //    Route::get('/test', function () {

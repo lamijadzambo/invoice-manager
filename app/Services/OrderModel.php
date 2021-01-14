@@ -56,6 +56,7 @@ class OrderModel
         $order->shipping_post_code = $apiOrder->shipping->postcode;
         $order->shipping_country_code = $apiOrder->shipping->country;
         $order->products = json_encode($apiOrder->line_items);
+
         $orderExist = Order::where('id', $apiOrder->id)->exists();
 
         if ($orderExist == false) {
