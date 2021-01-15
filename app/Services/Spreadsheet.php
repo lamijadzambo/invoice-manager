@@ -7,7 +7,6 @@ use App\Models\Project;
 class Spreadsheet
 {
 
-
     public function setOrders($dbOrders, $project_id){
 
         // FlipFlop orders ($project_id=2) have fewer columns than AM; $columnLimit used to avoid empty columns
