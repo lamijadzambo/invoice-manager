@@ -15,6 +15,9 @@ class Spreadsheet
             $columnLimit = '';
         }
 
+        $spreadSheetOrders = [];
+        $orderIds = [];
+
         if (count($dbOrders) > 0) {
             $transformedOrders = OrderTransformer::transformOrder($dbOrders);
 
@@ -47,9 +50,11 @@ class Spreadsheet
 
                 $spreadSheetOrders[] = $orders;
                 $orderIds[] = $order->id;
+
             }
         }
-        $orderData = [$spreadSheetOrders, $orderIds];
+
+        $orderData = ['spreadSheetOrders' => $spreadSheetOrders, 'orderIds' => $orderIds];
 
         return $orderData;
     }
