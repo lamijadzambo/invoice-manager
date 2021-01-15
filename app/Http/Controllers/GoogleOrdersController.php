@@ -17,7 +17,7 @@ class GoogleOrdersController extends Controller
     {
         $lastInsertedOrder = Googlespreadsheet::where('project_id', $project_id)->get('order_id');
 
-        $order_id = 0;
+        $lastInsertedOrderId = 0;
 
         foreach($lastInsertedOrder as $order){
             $lastInsertedOrderId = $order->order_id;
@@ -71,7 +71,6 @@ class GoogleOrdersController extends Controller
 
             $lastOrderId = end($orderIds);
 
-            /* we can't use now() for created_at */
             Googlespreadsheet::upsert(
                 ['project_id' => $project_id, 'order_id' => $lastOrderId, 'created_at' => now(), 'updated_at' => now()],
                 'project_id', ['order_id', 'updated_at']
