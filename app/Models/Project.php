@@ -11,6 +11,10 @@ class Project extends Model
 
     protected $guarded = [];
 
+    public static $atemshutz = 1;
+
+    public static $flipflop = 2;
+
     public function orders(){
         return $this->hasMany(Order::class);
     }

@@ -31,9 +31,9 @@
             <div class="container-fluid">
                 @if(isset($project_id))
                 <a class="navbar-brand" href="{{ route('index', $project_id) }}">
-                    @if($project_id == 1)
+                    @if($project_id == \App\Models\Project::$atemshutz)
                         {{ 'Atemschutzmasken' }}
-                    @elseif($project_id == 2)
+                    @elseif(\App\Models\Project::$flipflop)
                         {{ 'FlipFlop' }}
                     @endif
                 </a>
@@ -57,10 +57,10 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('index', 1) }}">
+                                        <a class="dropdown-item" href="{{ route('index', \App\Models\Project::$atemshutz) }}">
                                             {{ __('Atemschutzmasken') }}
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('index', 2) }}">
+                                        <a class="dropdown-item" href="{{ route('index', \App\Models\Project::$flipflop) }}">
                                             {{ __('FlipFlop') }}
                                         </a>
                                     </div>

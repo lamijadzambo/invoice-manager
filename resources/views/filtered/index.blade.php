@@ -16,7 +16,7 @@
                                 <th>TELEFON</th>
                                 <th>BESTELL NO.</th>
                                 <th>STATUS</th>
-                                @if($project_id == 1)
+                                @if($project_id == \App\Models\Project::$atemshutz)
                                     <th class="rotate"><div><span>{{($productName->hg001 ?: 'HG-001')}}</span></div></th>
                                     <th class="rotate"><div><span>{{($productName->typII ?: 'TYP II')}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->typIIR ?: 'TYP IIR'}}</span></div></th>
@@ -32,7 +32,7 @@
                                     <th class="rotate"><div><span>{{$productName->flachendes ?: 'FLACHENDES'}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->handSpender ?: 'HAND SPENDER'}}</span></div></th>
 
-                                @elseif($project_id == 2)
+                                @elseif($project_id == \App\Models\Project::$flipflop)
                                     <th class="rotate"><div><span>{{($productName->germany ?: 'DEUTSCHLAND')}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->switzerland ?: 'SCHWEIZ'}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->italy ?: 'ITALIEN'}}</span></div></th>
@@ -66,12 +66,12 @@
                                 <td title="{{isset($productName->doorHandler) ? $productName->doorHandler : $productName->england}}">{{$order->doorHandler ?: $order->england}}</td>
                                 <td title="{{isset($productName->medEinweg) ? $productName->medEinweg : $productName->austria}}">{{$order->medEinweg ?: $order->austria}}</td>
                                 <td title="{{isset($productName->stoff) ? $productName->stoff : $productName->portugal}}">{{$order->stoff ?: $order->portugal}}</td>
-                                @if($project_id == 1)
-                                    <td title="TRENNWAND">{{isset($productName->trennwand) ?: $productName->trennwand}}</td>
-                                    <td title="THERMOMETER">{{isset($productName->thermometer) ?: $productName->thermometer}}</td>
-                                    <td title="HANDSMITTEL">{{isset($productName->handsmittel) ?: $productName->handsmittel}}</td>
-                                    <td title="FLÄCHENDES.">{{isset($productName->flachendes) ?: $productName->flachendes}}</td>
-                                    <td title="HAND SPENDER">{{isset($productName->handSpender) ?: $productName->handSpender}}</td>
+                                @if($project_id == \App\Models\Project::$atemshutz)
+                                    <td title="{{isset($productName->trennwand) ? $productName->trennwand : ''}}">{{$order->trennwand ?: ''}}</td>
+                                    <td title="{{isset($productName->thermometer) ? $productName->thermometer : ''}}">{{$order->thermometer ?: ''}}</td>
+                                    <td title="{{isset($productName->handsmittel) ? $productName->handsmittel : ''}}">{{$order->handsmittel ?: ''}}</td>
+                                    <td title="{{isset($productName->flachendes) ? $productName->flachendes : ''}}">{{$order->flachendes ?: ''}}</td>
+                                    <td title="{{isset($productName->handSpender) ? $productName->handSpender : ''}}">{{$order->handSpender ?: ''}}</td>
                                 @endif
                                 <td title="BETRAG">{{$order->order_total_amount}}</td>
                             </tr>
