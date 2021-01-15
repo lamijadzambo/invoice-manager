@@ -51,7 +51,7 @@ class ApiKeys{
             $spreadsheetId = env('POST_SPREADSHEET_ID');
             $sheetId = env('POST_SHEET_ID_FLIPFLOP');
         }
-        $apiKeys = [$spreadsheetId, $sheetId];
+        $apiKeys = ['spreadsheetId' => $spreadsheetId, 'sheetId' => $sheetId];
         return $apiKeys;
     }
 

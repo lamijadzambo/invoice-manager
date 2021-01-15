@@ -6,7 +6,6 @@ use App\Services\OrderTransformer;
 use App\Services\ProductAttributes;
 use App\Services\Excel;
 use App\Services\ProductNames;
-use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
