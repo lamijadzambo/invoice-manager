@@ -121,7 +121,7 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
         }
         foreach($orders as $order){
 
-                $formattedOrderProductColors = array(
+                $formattedOrders = array(
                     'company'               => $order->billing_company,
                     'name'                  => $order->billing_first_name,
                     'surname'               => $order->billing_last_name,
@@ -147,9 +147,10 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
                     'betrag'                => isset($columnLimit) ? $columnLimit : $order->order_total_amount,
                 );
 
-            $colorExportData[] = $formattedOrderProductColors;
+            $excelOrders[] = $formattedOrders;
         }
-        return $colorExportData;
+        return $excelOrders;
+       // dd($colorExportData);
     }
 
 }

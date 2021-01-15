@@ -1,38 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
-use App\Models\Googlespreadsheet;
-use App\Models\Order;
 use App\Models\Project;
-use App\Services\ApiKeys;
-use App\Services\OrderTransformer;
-use App\Services\Spreadsheet;
-use Illuminate\Http\Request;
-use Revolution\Google\Sheets\Facades\Sheets;
 
-class GoogleOrdersController extends Controller
+class Spreadsheet
 {
-    public function __invoke(Request $request, $project_id)
-    {
-        $lastInsertedOrder = Googlespreadsheet::where('project_id', $project_id)->get('order_id');
 
-        $order_id = 0;
 
-        foreach($lastInsertedOrder as $order){
-            $lastInsertedOrderId = $order->order_id;
-        }
-
-        $dbOrders = Order::where([['project_id', '=', $project_id], [ 'id', '>', $lastInsertedOrderId]])->get();
+    public function setOrders($dbOrders, $project_id){
 
         // FlipFlop orders ($project_id=2) have fewer columns than AM; $columnLimit used to avoid empty columns
-        if($project_id == Project::$flipflop){
+        if ($project_id == Project::$flipflop) {
             $columnLimit = '';
         }
 
-        //$orderData = (new Spreadsheet)->setOrders($dbOrders, $project_id);
-
-        if(count($dbOrders) > 0){
+        if (count($dbOrders) > 0) {
             $transformedOrders = OrderTransformer::transformOrder($dbOrders);
 
             foreach ($transformedOrders as $order) {
@@ -65,30 +48,9 @@ class GoogleOrdersController extends Controller
                 $spreadSheetOrders[] = $orders;
                 $orderIds[] = $order->id;
             }
-
-            $sheetApiKeys = ApiKeys::getSpreadsheetApiKeys($project_id);
-            Sheets::spreadsheet($sheetApiKeys[0])->sheetById($sheetApiKeys[1])->append($spreadSheetOrders);
-
-            $lastOrderId = end($orderIds);
-
-            /* we can't use now() for created_at */
-            Googlespreadsheet::upsert(
-                ['project_id' => $project_id, 'order_id' => $lastOrderId, 'created_at' => now(), 'updated_at' => now()],
-                'project_id', ['order_id', 'updated_at']
-            );
-
-            $orderIds = array_reverse($orderIds);
-            $firstNewOrderId = end($orderIds);
-
-            $request->session()->flash('success', 'New orders, starting from order ' . $firstNewOrderId . ' have been exported to your spreadsheet.');
-        }else{
-            $request->session()->flash('info', 'No new orders in database.');
         }
-        return redirect()->route('index', $project_id);
+        $orderData = [$spreadSheetOrders, $orderIds];
+
+        return $orderData;
     }
-
 }
-
-
-
-
