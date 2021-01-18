@@ -35,6 +35,7 @@ class Order{
     public $typII;
     public $typIIR;
     public $hg002;
+    public $ffp3;
     public $hg005;
     public $redMask;
     public $doorHandler;
