@@ -21,6 +21,7 @@
                                     <th class="rotate"><div><span>{{($productName->typII ?: 'TYP II')}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->typIIR ?: 'TYP IIR'}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->hg002 ?: 'HG-002'}}</span></div></th>
+                                    <th class="rotate"><div><span>{{$productName->ffp3 ?: 'FFP3'}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->hg005 ?: 'HG-005'}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->redMask ?: 'HYG ROTE MASKEN'}}</span></div></th>
                                     <th class="rotate"><div><span>{{$productName->doorHandler ?: 'DOORHANDLER'}}</span></div></th>
@@ -61,12 +62,13 @@
                                 <td title="{{isset($productName->typII) ? $productName->typII : $productName->switzerland }}">{{$order->typII ?: $order->switzerland}}</td>
                                 <td title="{{isset($productName->typIIR) ? $productName->typIIR : $productName->italy}}">{{$order->typIIR ?: $order->italy}}</td>
                                 <td title="{{isset($productName->hg002) ? $productName->hg002 : $productName->france}}">{{$order->hg002 ?: $order->france}}</td>
-                                <td title="{{isset($productName->hg005) ? $productName->hg005 : $productName->netherlands}}">{{$order->hg005 ?: $order->netherlands}}</td>
-                                <td title="{{isset($productName->redMask) ? $productName->redMask : $productName->spain}}">{{$order->redMask ?: $order->spain}}</td>
-                                <td title="{{isset($productName->doorHandler) ? $productName->doorHandler : $productName->england}}">{{$order->doorHandler ?: $order->england}}</td>
-                                <td title="{{isset($productName->medEinweg) ? $productName->medEinweg : $productName->austria}}">{{$order->medEinweg ?: $order->austria}}</td>
-                                <td title="{{isset($productName->stoff) ? $productName->stoff : $productName->portugal}}">{{$order->stoff ?: $order->portugal}}</td>
+                                <td title="{{isset($productName->ffp3) ? $productName->ffp3 : $productName->netherlands}}">{{$order->ffp3 ?: $order->netherlands}}</td>
+                                <td title="{{isset($productName->hg005) ? $productName->hg005 : $productName->spain}}">{{$order->hg005 ?: $order->spain}}</td>
+                                <td title="{{isset($productName->redMask) ? $productName->redMask : $productName->england}}">{{$order->redMask ?: $order->england}}</td>
+                                <td title="{{isset($productName->doorHandler) ? $productName->doorHandler : $productName->austria}}">{{$order->doorHandler ?: $order->austria}}</td>
+                                <td title="{{isset($productName->medEinweg) ? $productName->medEinweg : $productName->portugal}}">{{$order->medEinweg ?: $order->portugal}}</td>
                                 @if($project_id == \App\Models\Project::$atemshutz)
+                                    <td title="{{isset($productName->stoff) ? $productName->stoff : ''}}">{{$order->stoff ?: ''}}</td>
                                     <td title="{{isset($productName->trennwand) ? $productName->trennwand : ''}}">{{$order->trennwand ?: ''}}</td>
                                     <td title="{{isset($productName->thermometer) ? $productName->thermometer : ''}}">{{$order->thermometer ?: ''}}</td>
                                     <td title="{{isset($productName->handsmittel) ? $productName->handsmittel : ''}}">{{$order->handsmittel ?: ''}}</td>
