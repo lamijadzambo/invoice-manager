@@ -7,6 +7,7 @@ class Product{
     public $typII;
     public $typIIR;
     public $hg002;
+    public $ffp2;
     public $ffp3;
     public $hg005;
     public $redMask;
