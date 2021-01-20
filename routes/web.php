@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 //Route::post('/google-sheet-post', [GoogleOrdersController::class])->name('google-spreadsheet');
 
     Route::get('/google-sheet-post/{project_id}', [GoogleOrdersController::class, '__invoke'])->name('google-spreadsheet');
+    //Route::get('/export-invoices', [WordController::class, 'exportWord'])->name('export-invoices');
 
     // SAVE FILE IN GOOGLE CLOUD (HARD CODED)
     Route::get('/test', function () {
@@ -64,7 +65,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/upload', function (Request $request){
         $request->file('thing')->store(env('GOOGLE_DRIVE_NESTED_FOLDER_ID'), 'google');
         //$request->file('thing')->store('', 'google'); // google drive folder specified in .env
-        return redirect()->route('index');
+
+        return redirect()->route('get.orders');
     });
 
 //    Route::get('/download', function(){

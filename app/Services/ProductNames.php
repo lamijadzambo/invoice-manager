@@ -23,6 +23,7 @@ class ProductNames{
         $product->handsmittel = 'HANDDESINFEKTIONSMITTEL';
         $product->flachendes = 'FLÄCHENDES.';
         $product->handSpender = 'HAND SPENDER';
+        $product->ffp2 = 'N95 HG-002-2';
         $product->ffp3 = 'FFP3';
         $product->germany = 'DEUTSCHLAND';
         $product->switzerland = 'SCHWEIZ';
