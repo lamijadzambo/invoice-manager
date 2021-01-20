@@ -11,6 +11,7 @@ use App\Http\Controllers\WordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Auth::routes(['register' => false]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -50,10 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('/export-invoices', [WordController::class, 'exportWord'])->name('export-invoices');
 
     // SAVE FILE IN GOOGLE CLOUD (HARD CODED)
-//    Route::get('/test', function () {
-//        Storage::disk('google')->put('Test.txt', 'Emir');
-//        return redirect()->route('index');
-//    });
+    Route::get('/test', function () {
+        Storage::disk('google')->put('Test.txt', 'Emir');
+        return redirect()->route('index');
+    });
 
     // FORM FOR UPLOADING FILE IN GOOGLE FOLDER
     Route::get('/add-file', function (){
@@ -64,10 +65,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/upload', function (Request $request){
         $request->file('thing')->store(env('GOOGLE_DRIVE_NESTED_FOLDER_ID'), 'google');
         //$request->file('thing')->store('', 'google'); // google drive folder specified in .env
+
         return redirect()->route('get.orders');
     });
-
-
 
 //    Route::get('/download', function(){
 //        $item = 'Laravel.txt';
