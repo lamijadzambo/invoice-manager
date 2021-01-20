@@ -29,6 +29,7 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
             $headerTypII = 'Typ II';
             $headerTypIIR = 'Typ IIR';
             $headerHg002 = 'N95 HG-002';
+            $headerFFP2 = 'N95 HG-002-2';
             $headerFFP3 = 'FFP3';
             $headerHg005 = 'SHILD HG-005';
             $headerRedMask = 'HYG Rote Masken';
@@ -66,12 +67,13 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
             isset($headerTypII) ? $headerTypII : $switzerland,
             isset($headerTypIIR) ? $headerTypIIR : $italy,
             isset($headerHg002) ? $headerHg002 : $france,
-            isset($headerFFP3) ? $headerFFP3 : $netherlands,
-            isset($headerHg005) ? $headerHg005 : $spain,
-            isset($headerRedMask) ? $headerRedMask : $england,
-            isset($headerDoorHandler) ? $headerDoorHandler : $austria,
-            isset($headerMedEinweg) ? $headerMedEinweg : $portugal,
-            isset($headerTrennwand) ? $headerTrennwand : 'Betrag',
+            isset($headerFFP3) ? $headerFFP2 : $netherlands,
+            isset($headerFFP3) ? $headerFFP3 : $spain,
+            isset($headerHg005) ? $headerHg005 : $england,
+            isset($headerRedMask) ? $headerRedMask : $austria,
+            isset($headerDoorHandler) ? $headerDoorHandler : $portugal,
+            isset($headerMedEinweg) ? $headerMedEinweg : 'Betrag',
+            isset($headerTrennwand) ? $headerTrennwand : '',
             isset($headerStoff) ? $headerStoff : '',
             isset($headerThermometer) ? $headerThermometer : '',
             isset($headerHanddesinf) ? $headerHanddesinf : '',
@@ -137,12 +139,13 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
                     'typII'                 => $order->typII ?: $order->switzerland,
                     'typIIR'                => $order->typIIR ?: $order->italy,
                     'hg002'                 => $order->hg002 ?: $order->france,
-                    'ffp3'                  => $order->ffp3 ?: $order->netherlands,
-                    'hg005'                 => $order->hg005 ?: $order->spain,
-                    'redMask'               => $order->redMask ?: $order->england,
-                    'doorHandler'           => $order->doorHandler ?: $order->austria,
-                    'medEinweg'             => $order->medEinweg ?: $order->portugal,
-                    'stoff'                 => isset($columnLimit) ? $order->order_total_amount : $order->stoff,
+                    'ffp2'                  => $order->ffp2 ?: $order->netherlands,
+                    'ffp3'                  => $order->ffp3 ?: $order->spain,
+                    'hg005'                 => $order->hg005 ?: $order->england,
+                    'redMask'               => $order->redMask ?: $order->austria,
+                    'doorHandler'           => $order->doorHandler ?: $order->portugal,
+                    'medEinweg'             => isset($columnLimit) ? $order->order_total_amount : $order->medEinweg,
+                    'stoff'                 => $order->stoff,
                     'trennwand'             => $order->trennwand,
                     'thermometer'           => $order->thermometer,
                     'handDesif'             => $order->handsmittel,
