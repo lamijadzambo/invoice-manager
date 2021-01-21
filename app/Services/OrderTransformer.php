@@ -48,7 +48,7 @@ class OrderTransformer{
 
             $skus = [
                 '001', '001-1-1', '003AM', '004AM', '005AM', 'HYG', '007AM', 'MED', '009AM', '010AM',
-                '011AM', '012AM', '013AM', '014AM', '015AM', '016AM', '001FF', '002FF', '003FF', '004FF', '005FF', '006FF',
+                '011AM', '012AM', '013AM', '014AM', '015AM', '016AM', '017AM', '001FF', '002FF', '003FF', '004FF', '005FF', '006FF',
                 '007FF', '008FF', '009FF'
             ];
 
@@ -88,6 +88,8 @@ class OrderTransformer{
                     $order->ffp3 += $product->quantity;
                 }elseif ($sku === '016AM'){
                     $order->ffp2 += $product->quantity;
+                }elseif ($sku === '017AM'){
+                    $order->childMask += $product->quantity;
                 }elseif ($sku === '001FF'){
                     $order->switzerland += $product->quantity;
                 }elseif ($sku === '002FF'){
