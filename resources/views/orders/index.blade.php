@@ -61,7 +61,7 @@
                                         <form method="POST" action="{{ route('delete.order', $order->id) }}" class="d-inline-block">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit"  title="DELETE ORDER"><i style="color:red;" class="far fa-trash-alt"></i></button>
+                                            <button type="submit"  title="DELETE ORDER"><i class="far fa-trash-alt button-icon-red"></i></button>
                                         </form>
                                     </td>
                                     <td><a title="VIEW ORDER" href="{{route('show.order', ['project_id'=>$project_id, 'id'=>$order->id])}}">{{$order->id}}</a></td>
@@ -88,9 +88,9 @@
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             @if($order->print_status == 'printed')
-                                                <span class="my-1"><i class="fas fa-print" style="color:green;"></i></span>
+                                                <span class="my-1"><i class="fas fa-print button-icon-green" title="PRINTED"></i></span>
                                             @else
-                                                <a href="{{ route('set-status.order', $order->id) }}" class="my-1"><i class="fas fa-print" style="color:red;"></i></a>
+                                                <a href="{{ route('set-status.order', $order->id) }}" class="my-1" title="NOT PRINTED"><i class="fas fa-print button-icon-red"></i></a>
                                             @endif
                                         </div>
                                     </td>
