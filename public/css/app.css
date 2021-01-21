@@ -6565,7 +6565,9 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .justify-content-center {
-    justify-content: center !important
+    justify-content: center !important;
+    font-size: 20px;
+    margin: 8px 10px 8px 0;
 }
 
 .justify-content-between {
