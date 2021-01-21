@@ -33,7 +33,7 @@
                         @if($project_id == \App\Models\Project::$atemshutz)
                             <a href="{{ route('color-table-export', $project_id) }}" class="btn btn-warning"><i class="fas fa-file-download mr-1"></i> Export Color Table</a>
                         @endif
-                        <a href="{{--{{ route('google-spreadsheet', $project_id) }}--}}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>
+                        <a href="{{ route('google-spreadsheet', $project_id) }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>
 {{--                        <a href="{{ route('export-invoices') }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Export Invoices</a>--}}
                     </div>
                 </div>
