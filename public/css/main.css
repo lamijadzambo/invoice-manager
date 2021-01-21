@@ -16,3 +16,10 @@ tfoot tr th.rotate > div > span {
     padding: 5px 10px;
 }
 
+.button-icon-red{
+    color: #ff0000;
+}
+
+.button-icon-green{
+    color: #008000;
+}
