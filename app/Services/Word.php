@@ -69,7 +69,7 @@ class Word extends PhpWord
         $shipping_last_name = preg_replace('/[^A-Za-z0-9\-]/', '', $surname);
 
         $fileName = $shipping_first_name . ' ' . $shipping_last_name;
-        $templateProcessor->saveAs('invoices/' . $fileName . '.docx');
+        $templateProcessor->saveAs($fileName . '.docx');
 
 
         return $fileName;
