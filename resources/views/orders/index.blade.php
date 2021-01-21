@@ -33,8 +33,8 @@
                         @if($project_id == \App\Models\Project::$atemshutz)
                             <a href="{{ route('color-table-export', $project_id) }}" class="btn btn-warning"><i class="fas fa-file-download mr-1"></i> Export Color Table</a>
                         @endif
-                        <a href="{{--{{ route('google-spreadsheet', $project_id) }}--}}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>
-{{--                        <a href="{{ route('export-invoices') }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Export Invoices</a>--}}
+                        <a href="{{route('google-spreadsheet', $project_id)}}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>
+                        <a href="{{ route('export-invoices', $project_id) }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Export Invoices</a>
                     </div>
                 </div>
             </div>
@@ -44,6 +44,7 @@
                     <table class="table table-striped text-center" id="orders-table">
                         <thead>
                             <tr>
+                                <th>DELETE ORDER</th>
                                 <th>ORDER NUMBER</th>
                                 <th>FIRST NAME</th>
                                 <th>LAST NAME</th>
@@ -57,7 +58,15 @@
                         <tbody>
                             @foreach($orders as $order)
                                 <tr>
-                                    <td>{{$order->id}}</td>
+                                    <td><a href="">
+                                        <form method="POST" action="{{ route('delete.order', $order->id) }}" class="d-inline-block">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit"  title="DELETE ORDER"><i class="far fa-trash-alt"></i></button>
+                                        </form>
+                                        </a>
+                                    </td>
+                                    <td><a title="VIEW ORDER" href="{{route('show.order', ['project_id'=>$project_id, 'id'=>$order->id])}}">{{$order->id}}</a></td>
                                     <td>{{$order->billing_first_name}}</td>
                                     <td>{{$order->billing_last_name}}</td>
                                     <td>{{$order->order_date}}</td>
@@ -66,28 +75,24 @@
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="mr-2 d-flex flex-column">
-                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man] ) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Man</a>
-                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman]) }}" class="btn btn-dark action-buttons my-1"><i class="fas fa-file-download mr-1"></i> PDF Woman</a>                                            </div>
+                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man] ) }}" class="my-1" title="PDF MAN"><i class="fas fa-file-pdf"></i></a>
+                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman]) }}" class="my-1" title="PDF WOMAN"><i class="fas fa-file-pdf"></i></a>                                            </div>
                                             <div class="mr-2 d-flex flex-column">
-                                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man']) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Man</a>
-                                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'woman']) }}" class="btn btn-info action-buttons my-1"><i class="fas fa-file-download mr-1"></i> Word Woman</a>
+                                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man']) }}" class="my-1" title="WORD MAN"><i class="fas fa-file-word"></i></a>
+                                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'woman']) }}" class="my-1" title="WORD WOMAN"><i class="fas fa-file-word"></i></a>
                                             </div>
-                                            <div class="d-flex flex-column">
-                                                <a href="{{ route('show.order', ['project_id'=>$project_id, 'id'=>$order->id]) }}" class="btn btn-secondary action-buttons my-1"><i class="fas fa-directions mr-1"></i> View Order</a>
-                                                <form method="POST" action="{{ route('delete.order', $order->id) }}" class="d-inline-block">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-danger action-buttons my-1"><i class="fas fa-exclamation-triangle mr-1"></i> Delete Order</button>
-                                                </form>
+                                            <div class="mr-2 d-flex flex-column">
+                                                <a href="" class="my-1" title="GOOGLE DRIVE MAN"><i class="fab fa-google-drive"></i></a>
+                                                <a href="" class="my-1" title="GOOLE DRIVE WOMAN"><i class="fab fa-google-drive"></i></a>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <div>
+                                        <div class="d-flex justify-content-center">
                                             @if($order->print_status == 'printed')
-                                                <span class="d-block p-2 bg-success text-white rounded my-1"><i class="fas fa-check-circle mr-1"></i> Printed</span>
+                                                <span class="my-1"><i class="fas fa-print" style="color:green;"></i></span>
                                             @else
-                                                <a href="{{ route('set-status.order', $order->id) }}" class="d-block btn btn-warning my-1"><i class="fas fa-times-circle mr-1"></i> Not Printed</a>
+                                                <a href="{{ route('set-status.order', $order->id) }}" class="my-1"><i class="fas fa-print" style="color:red;"></i></a>
                                             @endif
                                         </div>
                                     </td>
