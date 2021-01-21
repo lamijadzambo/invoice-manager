@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 //Route::post('/google-sheet-post', [GoogleOrdersController::class])->name('google-spreadsheet');
 
     Route::get('/google-sheet-post/{project_id}', [GoogleOrdersController::class, '__invoke'])->name('google-spreadsheet');
-    //Route::get('/export-invoices', [WordController::class, 'exportWord'])->name('export-invoices');
+    Route::get('/export-invoices/{project_id}', [WordController::class, 'exportWord'])->name('export-invoices');
 
     // SAVE FILE IN GOOGLE CLOUD (HARD CODED)
     Route::get('/test', function () {
