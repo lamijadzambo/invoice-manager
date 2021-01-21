@@ -143,7 +143,7 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
                     'hg002'                 => $order->hg002 ?: $order->france,
                     'ffp2'                  => $order->ffp2 ?: $order->netherlands,
                     'ffp3'                  => $order->ffp3 ?: $order->spain,
-                    'childMask'                 => $order->childMask ?: $order->england,
+                    'childMask'             => $order->childMask ?: $order->england,
                     'hg005'                 => $order->hg005 ?: $order->austria,
                     'redMask'               => $order->redMask ?: $order->portugal,
                     'doorHandler'           => isset($columnLimit) ? $order->order_total_amount : $order->doorHandler,

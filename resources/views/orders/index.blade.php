@@ -33,8 +33,7 @@
                         @if($project_id == \App\Models\Project::$atemshutz)
                             <a href="{{ route('color-table-export', $project_id) }}" class="btn btn-warning"><i class="fas fa-file-download mr-1"></i> Export Color Table</a>
                         @endif
-                        <a href="{{route('google-spreadsheet', $project_id)}}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>
-                        <a href="{{ route('export-invoices', $project_id) }}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Export Invoices</a>
+{{--                        <a href="{{route('google-spreadsheet', $project_id)}}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>--}}
                     </div>
                 </div>
             </div>
@@ -58,13 +57,12 @@
                         <tbody>
                             @foreach($orders as $order)
                                 <tr>
-                                    <td><a href="">
+                                    <td>
                                         <form method="POST" action="{{ route('delete.order', $order->id) }}" class="d-inline-block">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit"  title="DELETE ORDER"><i class="far fa-trash-alt"></i></button>
+                                            <button type="submit"  title="DELETE ORDER"><i style="color:red;" class="far fa-trash-alt"></i></button>
                                         </form>
-                                        </a>
                                     </td>
                                     <td><a title="VIEW ORDER" href="{{route('show.order', ['project_id'=>$project_id, 'id'=>$order->id])}}">{{$order->id}}</a></td>
                                     <td>{{$order->billing_first_name}}</td>
@@ -81,10 +79,10 @@
                                                 <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man']) }}" class="my-1" title="WORD MAN"><i class="fas fa-file-word"></i></a>
                                                 <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'woman']) }}" class="my-1" title="WORD WOMAN"><i class="fas fa-file-word"></i></a>
                                             </div>
-                                            <div class="mr-2 d-flex flex-column">
-                                                <a href="" class="my-1" title="GOOGLE DRIVE MAN"><i class="fab fa-google-drive"></i></a>
-                                                <a href="" class="my-1" title="GOOLE DRIVE WOMAN"><i class="fab fa-google-drive"></i></a>
-                                            </div>
+{{--                                            <div class="mr-2 d-flex flex-column">--}}
+{{--                                                <a href="" class="my-1" title="GOOGLE DRIVE MAN"><i class="fab fa-google-drive"></i></a>--}}
+{{--                                                <a href="" class="my-1" title="GOOLE DRIVE WOMAN"><i class="fab fa-google-drive"></i></a>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </td>
                                     <td>
