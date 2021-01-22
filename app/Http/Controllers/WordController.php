@@ -22,13 +22,17 @@ class WordController extends Controller
         $order = Order::where(['project_id' => $project_id])->findOrFail($id);
         $fileName = Word::generateDoc($order, $project_id, $customer_id);
         Storage::disk('google')->put( $fileName . '.docx', File::get('invoices/'. $fileName . '.docx'));
-        if(File::exists(public_path('invoices/'. $fileName . '.docx'))){
-            File::delete(public_path('invoices/'. $fileName . '.docx'));
-            $request->session()->flash('success', 'The order has been exported to Google Drive');
-        }else{
-            $request->session()->flash('info', 'The file does not exist.');
-        }
-        return redirect()->back();
+
+            if(File::exists(public_path('invoices/'. $fileName . '.docx'))){
+                File::delete(public_path('invoices/'. $fileName . '.docx'));
+
+                $request->session()->flash('success', 'The order has been exported to Google Drive');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('info', 'The file does not exist.');
+                return redirect()->back();
+            }
+
     }
 
 }
