@@ -16,6 +16,7 @@ class WordController extends Controller
     }
 
     public function exportWord($id, $project_id, $customer_id){
+
         $order = Order::where(['project_id' => $project_id])->findOrFail($id);
         Word::generateDoc($order, $project_id, $customer_id);
         return redirect()->back();

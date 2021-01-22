@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         $request->file('thing')->store(env('GOOGLE_DRIVE_NESTED_FOLDER_ID'), 'google');
         //$request->file('thing')->store('', 'google'); // google drive folder specified in .env
 
-        return redirect()->route('get.orders');
+        return redirect()->back();
     });
 
 //    Route::get('/download', function(){
