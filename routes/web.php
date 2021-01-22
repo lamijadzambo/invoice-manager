@@ -65,14 +65,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/upload', function (Request $request){
         $request->file('thing')->store(env('GOOGLE_DRIVE_NESTED_FOLDER_ID'), 'google');
         //$request->file('thing')->store('', 'google'); // google drive folder specified in .env
-
         return redirect()->back();
     });
 
-//    Route::get('/download', function(){
-//        $item = 'Laravel.txt';
-//        $file = Storage::disk('google')->url($item['https://drive.google.com/drive/u/0/my-drive']);
-//        return $file;
-//    });
+
+    /*Route::get('/download', function(){
+        $item = 'Laravel.txt';
+        $file = Storage::disk('google')->url($item['https://drive.google.com/drive/u/0/my-drive']);
+        return $file;
+    });*/
 
 });
