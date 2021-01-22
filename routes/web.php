@@ -39,14 +39,10 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('importExportView', [ImportExportController::class, 'importExportView']);
     //Route::post('import', [ImportExportController::class, 'import'])->name('import');
 
-
-
-
 //GOOGLE SHEET
 //Route::get('google-sheet', function (){ return view('welcome'); });
 //Route::get('google-sheet-invoke', HomeController::class);
 //Route::post('/google-sheet-post', [GoogleOrdersController::class])->name('google-spreadsheet');
-
     Route::get('/google-sheet-post/{project_id}', [GoogleOrdersController::class, '__invoke'])->name('google-spreadsheet');
     Route::get('/export-invoices/{id}/{project_id}/{customer_id}', [WordController::class, 'exportWord'])->name('export-invoices');
 

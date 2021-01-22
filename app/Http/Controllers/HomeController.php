@@ -31,16 +31,8 @@ class HomeController extends Controller
     // Google spreadsheet
     public function __invoke(Request $request)
     {
-//        $sheets = Sheets::spreadsheet(config('sheets.post_spreadsheet_id'))
-//
-//            ->sheet(config('sheets.post_sheet_id'))
-//
-//            ->get();
-
         $sheets = Sheets::spreadsheet(config('sheets.post_spreadsheet_id'))
-
             ->sheetById(config('sheets.post_sheet_id'))
-
             ->all();
 
         $header = [
@@ -70,8 +62,7 @@ class HomeController extends Controller
         ];
 
         $posts = Sheets::collection($header, $sheets);
-
-        $posts = $posts->reverse()->take(10);
+        $posts = $posts->reverse()->take(8);
 
         return view('welcome')->with(compact('posts'));
     }
