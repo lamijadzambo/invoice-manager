@@ -54,8 +54,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path(),
+            //'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
 
@@ -71,11 +71,11 @@ return [
 
         'google' => [
             'driver' => 'google',
-            'clientId' => env('GOOGLE_CLIENT_ID'),
-            'clientSecret' => env('GOOGLE_CLIENT_SECRET'),
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
             'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
-            //'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
             'folderId' => env('GOOGLE_DRIVE_NESTED_FOLDER_ID'),
+
         ],
 
     ],

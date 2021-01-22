@@ -31,6 +31,7 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
             $headerHg002 = 'N95 HG-002';
             $headerFFP2 = 'N95 HG-002-2';
             $headerFFP3 = 'FFP3';
+            $headerChildMask = 'Kindermasken';
             $headerHg005 = 'SHILD HG-005';
             $headerRedMask = 'HYG Rote Masken';
             $headerDoorHandler = 'Doorhandler';
@@ -69,10 +70,11 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
             isset($headerHg002) ? $headerHg002 : $france,
             isset($headerFFP3) ? $headerFFP2 : $netherlands,
             isset($headerFFP3) ? $headerFFP3 : $spain,
-            isset($headerHg005) ? $headerHg005 : $england,
-            isset($headerRedMask) ? $headerRedMask : $austria,
-            isset($headerDoorHandler) ? $headerDoorHandler : $portugal,
-            isset($headerMedEinweg) ? $headerMedEinweg : 'Betrag',
+            isset($headerChildMask) ? $headerChildMask : $england,
+            isset($headerHg005) ? $headerHg005 : $austria,
+            isset($headerRedMask) ? $headerRedMask : $portugal,
+            isset($headerDoorHandler) ? $headerDoorHandler : 'Betrag',
+            isset($headerMedEinweg) ? $headerMedEinweg : '',
             isset($headerTrennwand) ? $headerTrennwand : '',
             isset($headerStoff) ? $headerStoff : '',
             isset($headerThermometer) ? $headerThermometer : '',
@@ -141,10 +143,11 @@ class Excel implements FromArray, WithHeadings, WithStyles, WithColumnWidths
                     'hg002'                 => $order->hg002 ?: $order->france,
                     'ffp2'                  => $order->ffp2 ?: $order->netherlands,
                     'ffp3'                  => $order->ffp3 ?: $order->spain,
-                    'hg005'                 => $order->hg005 ?: $order->england,
-                    'redMask'               => $order->redMask ?: $order->austria,
-                    'doorHandler'           => $order->doorHandler ?: $order->portugal,
-                    'medEinweg'             => isset($columnLimit) ? $order->order_total_amount : $order->medEinweg,
+                    'childMask'             => $order->childMask ?: $order->england,
+                    'hg005'                 => $order->hg005 ?: $order->austria,
+                    'redMask'               => $order->redMask ?: $order->portugal,
+                    'doorHandler'           => isset($columnLimit) ? $order->order_total_amount : $order->doorHandler,
+                    'medEinweg'             => $order->medEinweg,
                     'stoff'                 => $order->stoff,
                     'trennwand'             => $order->trennwand,
                     'thermometer'           => $order->thermometer,

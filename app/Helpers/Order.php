@@ -37,6 +37,7 @@ class Order{
     public $hg002;
     public $ffp2;
     public $ffp3;
+    public $childMask;
     public $hg005;
     public $redMask;
     public $doorHandler;
