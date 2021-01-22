@@ -64,25 +64,25 @@
                                             <button type="submit"  title="DELETE ORDER"><i class="far fa-trash-alt button-icon-red"></i></button>
                                         </form>
                                     </td>
-                                    <td><a title="VIEW ORDER" href="{{route('show.order', ['project_id'=>$project_id, 'id'=>$order->id])}}">{{$order->id}}</a></td>
+                                    <td><a title="VIEW ORDER" class="bold" href="{{route('show.order', ['project_id'=>$project_id, 'id'=>$order->id])}}">{{$order->id}}</a></td>
                                     <td>{{$order->billing_first_name}}</td>
                                     <td>{{$order->billing_last_name}}</td>
                                     <td>{{$order->order_date}}</td>
                                     <td>{{$order->order_status}}</td>
                                     <td>{{$order->order_total_amount}}</td>
                                     <td>
-                                        <div class="d-flex justify-content-center">
+                                        <div class="d-flex justify-content-around">
                                             <div class="mr-2 d-flex flex-column">
-                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man] ) }}" class="my-1" title="PDF MAN"><i class="fas fa-file-pdf"></i></a>
-                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman]) }}" class="my-1" title="PDF WOMAN"><i class="fas fa-file-pdf"></i></a>                                            </div>
+                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man] ) }}" class="my-1" title="PDF MAN"><i class="fas fa-file-pdf button-icon"></i></a>
+                                                <a href="{{ route('generate-pdf', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman]) }}" class="my-1" title="PDF WOMAN"><i class="fas fa-file-pdf button-icon"></i></a>                                            </div>
                                             <div class="mr-2 d-flex flex-column">
-                                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man']) }}" class="my-1" title="WORD MAN"><i class="fas fa-file-word"></i></a>
-                                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'woman']) }}" class="my-1" title="WORD WOMAN"><i class="fas fa-file-word"></i></a>
+                                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'man']) }}" class="my-1" title="WORD MAN"><i class="fas fa-file-word button-icon"></i></a>
+                                                <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => 'woman']) }}" class="my-1" title="WORD WOMAN"><i class="fas fa-file-word button-icon"></i></a>
                                             </div>
-{{--                                            <div class="mr-2 d-flex flex-column">--}}
-{{--                                                <a href="" class="my-1" title="GOOGLE DRIVE MAN"><i class="fab fa-google-drive"></i></a>--}}
-{{--                                                <a href="" class="my-1" title="GOOLE DRIVE WOMAN"><i class="fab fa-google-drive"></i></a>--}}
-{{--                                            </div>--}}
+                                            <div class="mr-2 d-flex flex-column">
+                                                <a href="" class="my-1" title="GOOGLE DRIVE MAN"><i class="fab fa-google-drive button-icon"></i></a>
+                                                <a href="" class="my-1" title="GOOLE DRIVE WOMAN"><i class="fab fa-google-drive button-icon"></i></a>
+                                            </div>
                                         </div>
                                     </td>
                                     <td>
