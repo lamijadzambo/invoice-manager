@@ -71,7 +71,6 @@ class Word extends PhpWord
         $fileName = $shipping_first_name . ' ' . $shipping_last_name;
         $templateProcessor->saveAs('invoices/' . $fileName . '.docx');
 
-
         return $fileName;
     }
 

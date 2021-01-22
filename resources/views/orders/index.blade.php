@@ -33,7 +33,7 @@
                         @if($project_id == \App\Models\Project::$atemshutz)
                             <a href="{{ route('color-table-export', $project_id) }}" class="btn btn-warning"><i class="fas fa-file-download mr-1"></i> Export Color Table</a>
                         @endif
-{{--                        <a href="{{route('google-spreadsheet', $project_id)}}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>--}}
+                        <a href="{{route('google-spreadsheet', $project_id)}}" class="btn btn-info"><i class="fas fa-file-download mr-1"></i> Insert Google Sheets</a>
                     </div>
                 </div>
             </div>
@@ -79,10 +79,10 @@
                                                 <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man]) }}" class="my-1" title="WORD MAN"><i class="fas fa-file-word button-icon"></i></a>
                                                 <a href="{{ route('generate-doc', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman]) }}" class="my-1" title="WORD WOMAN"><i class="fas fa-file-word button-icon"></i></a>
                                             </div>
-{{--                                            <div class="mr-2 d-flex flex-column">--}}
-{{--                                                <a href="{{route('export-invoices', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man])}}" class="my-1" title="GOOGLE DRIVE MAN"><i class="fab fa-google-drive button-icon"></i></a>--}}
-{{--                                                <a href="{{route('export-invoices', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman])}}" class="my-1" title="GOOLE DRIVE WOMAN"><i class="fab fa-google-drive button-icon"></i></a>--}}
-{{--                                            </div>--}}
+                                            <div class="mr-2 d-flex flex-column">
+                                                <a href="{{route('export-invoices', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$man])}}" class="my-1" title="GOOGLE DRIVE MAN"><i class="fab fa-google-drive button-icon"></i></a>
+                                                <a href="{{route('export-invoices', ['project_id'=>$project_id, 'id'=>$order->id, 'customer_id' => App\Models\Order::$woman])}}" class="my-1" title="GOOLE DRIVE WOMAN"><i class="fab fa-google-drive button-icon"></i></a>
+                                            </div>
                                         </div>
                                     </td>
                                     <td>
