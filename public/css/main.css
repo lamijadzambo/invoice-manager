@@ -16,6 +16,11 @@ tfoot tr th.rotate > div > span {
     padding: 5px 10px;
 }
 
+.button-icon{
+    font-size: xx-large;
+    margin: 10px 0 10px 0;
+}
+
 .button-icon-red{
     color: #ff0000;
 }
@@ -23,3 +28,9 @@ tfoot tr th.rotate > div > span {
 .button-icon-green{
     color: #008000;
 }
+
+.bold{
+    font-weight: 900;
+}
+
+
